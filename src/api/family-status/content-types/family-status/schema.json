@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "family_statuses",
+  "info": {
+    "singularName": "family-status",
+    "pluralName": "family-statuses",
+    "displayName": "[Dropdown] Familienstand",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "state": {
+      "type": "string"
+    }
+  }
+}

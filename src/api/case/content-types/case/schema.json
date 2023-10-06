@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cases",
+  "info": {
+    "singularName": "case",
+    "pluralName": "cases",
+    "displayName": "Fälle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Identifier": {
+      "type": "string",
+      "required": true
+    },
+    "crime_date": {
+      "type": "date",
+      "required": true
+    },
+    "Victim": {
+      "type": "component",
+      "repeatable": false,
+      "component": "victim.victim",
+      "required": true
+    }
+  }
+}
