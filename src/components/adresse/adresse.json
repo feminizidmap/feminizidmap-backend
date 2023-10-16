@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_adresse_adresses",
+  "info": {
+    "displayName": "Adresse",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "country": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
+    }
+  }
+}

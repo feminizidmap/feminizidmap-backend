@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_crime_crimes",
+  "info": {
+    "displayName": "Crime",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Adresse": {
+      "displayName": "crime",
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.crime"
+    }
+  }
+}

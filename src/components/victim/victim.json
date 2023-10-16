@@ -6,22 +6,11 @@
   },
   "options": {},
   "attributes": {
-    "first_name": {
-      "type": "string"
-    },
-    "last_name": {
-      "type": "string"
-    },
-    "age": {
-      "type": "integer"
-    },
-    "adresse": {
-      "type": "string"
-    },
-    "victim_family_status": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::family-status.family-status"
+    "victim": {
+      "displayName": "victim",
+      "type": "component",
+      "repeatable": false,
+      "component": "person.victim"
     }
   }
 }

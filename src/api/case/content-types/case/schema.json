@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Identifier": {
+    "identifier": {
       "type": "string",
       "required": true
     },
@@ -20,11 +20,23 @@
       "type": "date",
       "required": true
     },
-    "Victim": {
+    "perpetrator": {
+      "displayName": "Perpetrator_case",
       "type": "component",
       "repeatable": false,
-      "component": "victim.victim",
-      "required": true
+      "component": "perpetrator.perpetrator-case"
+    },
+    "victim": {
+      "displayName": "Victim_case",
+      "type": "component",
+      "repeatable": false,
+      "component": "victim.victim-case"
+    },
+    "crime": {
+      "displayName": "Crime_case",
+      "type": "component",
+      "repeatable": false,
+      "component": "crime.crime-case"
     }
   }
 }

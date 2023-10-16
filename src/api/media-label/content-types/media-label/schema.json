@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "family_statuses",
+  "collectionName": "media_labels",
   "info": {
-    "singularName": "family-status",
-    "pluralName": "family-statuses",
-    "displayName": "[Dropdown] Familienstand",
+    "singularName": "media-label",
+    "pluralName": "media-labels",
+    "displayName": "[Dropdown] Mediale Bezeichnung",
     "description": ""
   },
   "options": {

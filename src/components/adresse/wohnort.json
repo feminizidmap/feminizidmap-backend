@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_adresse_wohnorts",
+  "info": {
+    "displayName": "Wohnort",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {}
+}

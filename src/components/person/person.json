@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_person_people",
+  "info": {
+    "displayName": "person",
+    "icon": "user",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "citizenship": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
+    },
+    "citizenship_type": {
+      "type": "enumeration",
+      "enum": [
+        "Deutsche Staatsbürgerschaft",
+        "Doppelte Staatsbürgerschaft (DE+andere)",
+        "Ausländische Staatsbürgerschaft"
+      ]
+    },
+    "family_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::family-status.family-status"
+    },
+    "educational_background": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::educational-background.educational-background"
+    },
+    "legal_status": {
+      "type": "enumeration",
+      "enum": [
+        "Asylsuchend/geflüchtet",
+        "Aufenthaltsgenehmigung (ohne Geflüchtete)",
+        "Undokumentiert/ohne Papiere",
+        "entfällt"
+      ]
+    },
+    "age": {
+      "type": "integer"
+    },
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "home_address": {
+      "displayName": "Wohnort",
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.wohnort"
+    }
+  }
+}

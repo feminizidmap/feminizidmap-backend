@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "family_statuses",
+  "collectionName": "educational_backgrounds",
   "info": {
-    "singularName": "family-status",
-    "pluralName": "family-statuses",
-    "displayName": "[Dropdown] Familienstand",
+    "singularName": "educational-background",
+    "pluralName": "educational-backgrounds",
+    "displayName": "[Dropdown] Bildungshintergrund",
     "description": ""
   },
   "options": {
