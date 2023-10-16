@@ -6,11 +6,20 @@
   },
   "options": {},
   "attributes": {
-    "Adresse": {
-      "displayName": "crime",
+    "location": {
       "type": "component",
       "repeatable": false,
-      "component": "adresse.crime"
+      "component": "adresse.adresse"
+    },
+    "feminicide_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::feminicide-type.feminicide-type"
+    },
+    "media_label": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-label.media-label"
     }
   }
 }

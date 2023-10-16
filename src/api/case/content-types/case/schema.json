@@ -20,23 +20,20 @@
       "type": "date",
       "required": true
     },
-    "perpetrator": {
-      "displayName": "Perpetrator_case",
-      "type": "component",
-      "repeatable": false,
-      "component": "perpetrator.perpetrator-case"
-    },
     "victim": {
-      "displayName": "Victim_case",
       "type": "component",
-      "repeatable": false,
-      "component": "victim.victim-case"
+      "repeatable": true,
+      "component": "person.person"
+    },
+    "perpetrator": {
+      "type": "component",
+      "repeatable": true,
+      "component": "person.person"
     },
     "crime": {
-      "displayName": "Crime_case",
       "type": "component",
       "repeatable": false,
-      "component": "crime.crime-case"
+      "component": "crime.crime"
     }
   }
 }

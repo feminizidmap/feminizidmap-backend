@@ -1,9 +1,15 @@
 {
   "collectionName": "components_adresse_wohnorts",
   "info": {
-    "displayName": "Wohnort",
-    "icon": "pinMap"
+    "displayName": "Residency",
+    "icon": "pinMap",
+    "description": ""
   },
   "options": {},
-  "attributes": {}
+  "attributes": {
+    "country": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
+    }
+  }
 }

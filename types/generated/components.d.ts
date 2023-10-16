@@ -12,29 +12,17 @@ export interface AdresseAdresse extends Schema.Component {
   };
 }
 
-export interface AdresseCrime extends Schema.Component {
-  collectionName: 'components_adresse_crimes';
-  info: {
-    displayName: 'crime';
-  };
-  attributes: {};
-}
-
 export interface AdresseWohnort extends Schema.Component {
   collectionName: 'components_adresse_wohnorts';
   info: {
-    displayName: 'Wohnort';
+    displayName: 'Residency';
     icon: 'pinMap';
+    description: '';
   };
-  attributes: {};
-}
-
-export interface CrimeCrimeCase extends Schema.Component {
-  collectionName: 'components_crime_crime_cases';
-  info: {
-    displayName: 'Crime_case';
+  attributes: {
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
   };
-  attributes: {};
 }
 
 export interface CrimeCrime extends Schema.Component {
@@ -44,34 +32,18 @@ export interface CrimeCrime extends Schema.Component {
     description: '';
   };
   attributes: {
-    Adresse: Attribute.Component<'adresse.crime'>;
+    location: Attribute.Component<'adresse.adresse'>;
+    feminicide_type: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::feminicide-type.feminicide-type'
+    >;
+    media_label: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::media-label.media-label'
+    >;
   };
-}
-
-export interface PerpetratorPerpetratorCase extends Schema.Component {
-  collectionName: 'components_perpetrator_perpetrator_cases';
-  info: {
-    displayName: 'Perpetrator_case';
-  };
-  attributes: {};
-}
-
-export interface PerpetratorPerpetrator extends Schema.Component {
-  collectionName: 'components_perpetrator_perpetrators';
-  info: {
-    displayName: 'perpetrator';
-  };
-  attributes: {
-    Perpetrator: Attribute.Component<'person.perpetrator'>;
-  };
-}
-
-export interface PersonPerpetrator extends Schema.Component {
-  collectionName: 'components_person_perpetrators';
-  info: {
-    displayName: 'perpetrator';
-  };
-  attributes: {};
 }
 
 export interface PersonPerson extends Schema.Component {
@@ -116,48 +88,13 @@ export interface PersonPerson extends Schema.Component {
   };
 }
 
-export interface PersonVictim extends Schema.Component {
-  collectionName: 'components_person_victims';
-  info: {
-    displayName: 'victim';
-  };
-  attributes: {};
-}
-
-export interface VictimVictimCase extends Schema.Component {
-  collectionName: 'components_victim_victim_cases';
-  info: {
-    displayName: 'Victim_case';
-  };
-  attributes: {};
-}
-
-export interface VictimVictim extends Schema.Component {
-  collectionName: 'components_victim_victims';
-  info: {
-    displayName: 'Victim';
-    description: '';
-  };
-  attributes: {
-    victim: Attribute.Component<'person.victim'>;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'adresse.adresse': AdresseAdresse;
-      'adresse.crime': AdresseCrime;
       'adresse.wohnort': AdresseWohnort;
-      'crime.crime-case': CrimeCrimeCase;
       'crime.crime': CrimeCrime;
-      'perpetrator.perpetrator-case': PerpetratorPerpetratorCase;
-      'perpetrator.perpetrator': PerpetratorPerpetrator;
-      'person.perpetrator': PersonPerpetrator;
       'person.person': PersonPerson;
-      'person.victim': PersonVictim;
-      'victim.victim-case': VictimVictimCase;
-      'victim.victim': VictimVictim;
     }
   }
 }

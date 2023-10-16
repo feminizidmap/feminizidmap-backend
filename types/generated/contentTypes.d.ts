@@ -691,9 +691,9 @@ export interface ApiCaseCase extends Schema.CollectionType {
   attributes: {
     identifier: Attribute.String & Attribute.Required;
     crime_date: Attribute.Date & Attribute.Required;
-    perpetrator: Attribute.Component<'perpetrator.perpetrator-case'>;
-    victim: Attribute.Component<'victim.victim-case'>;
-    crime: Attribute.Component<'crime.crime-case'>;
+    victim: Attribute.Component<'person.person', true>;
+    perpetrator: Attribute.Component<'person.person', true>;
+    crime: Attribute.Component<'crime.crime'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
