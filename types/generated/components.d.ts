@@ -8,15 +8,8 @@ export interface AdresseAdresse extends Schema.Component {
     description: '';
   };
   attributes: {
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
     city: Attribute.Relation<'adresse.adresse', 'oneToOne', 'api::city.city'>;
     street: Attribute.String;
-    federal_state: Attribute.Relation<
-      'adresse.adresse',
-      'oneToOne',
-      'api::federal-state.federal-state'
-    >;
     district: Attribute.String;
   };
 }
@@ -29,13 +22,6 @@ export interface AdresseWohnort extends Schema.Component {
     description: '';
   };
   attributes: {
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
-    federal_state: Attribute.Relation<
-      'adresse.wohnort',
-      'oneToOne',
-      'api::federal-state.federal-state'
-    >;
     city: Attribute.Relation<'adresse.wohnort', 'oneToOne', 'api::city.city'>;
     street: Attribute.String;
     district: Attribute.String;

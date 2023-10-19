@@ -748,6 +748,13 @@ export interface ApiCityCity extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    federal_state: Attribute.Relation<
+      'api::city.city',
+      'oneToOne',
+      'api::federal-state.federal-state'
+    >;
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
