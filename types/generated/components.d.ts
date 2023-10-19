@@ -5,10 +5,19 @@ export interface AdresseAdresse extends Schema.Component {
   info: {
     displayName: 'Adresse';
     icon: 'pinMap';
+    description: '';
   };
   attributes: {
     country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+    city: Attribute.Relation<'adresse.adresse', 'oneToOne', 'api::city.city'>;
+    street: Attribute.String;
+    federal_state: Attribute.Relation<
+      'adresse.adresse',
+      'oneToOne',
+      'api::federal-state.federal-state'
+    >;
+    district: Attribute.String;
   };
 }
 
@@ -22,6 +31,14 @@ export interface AdresseWohnort extends Schema.Component {
   attributes: {
     country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+    federal_state: Attribute.Relation<
+      'adresse.wohnort',
+      'oneToOne',
+      'api::federal-state.federal-state'
+    >;
+    city: Attribute.Relation<'adresse.wohnort', 'oneToOne', 'api::city.city'>;
+    street: Attribute.String;
+    district: Attribute.String;
   };
 }
 
@@ -42,6 +59,21 @@ export interface CrimeCrime extends Schema.Component {
       'crime.crime',
       'oneToMany',
       'api::media-label.media-label'
+    >;
+    location_of_body: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::location-of-body.location-of-body'
+    >;
+    cause_of_death: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::cause-of-death.cause-of-death'
+    >;
+    violent_acts: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::violent-act.violent-act'
     >;
   };
 }

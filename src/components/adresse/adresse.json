@@ -2,13 +2,30 @@
   "collectionName": "components_adresse_adresses",
   "info": {
     "displayName": "Adresse",
-    "icon": "pinMap"
+    "icon": "pinMap",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::city.city"
+    },
+    "street": {
+      "type": "string"
+    },
+    "federal_state": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::federal-state.federal-state"
+    },
+    "district": {
+      "type": "string"
     }
   }
 }

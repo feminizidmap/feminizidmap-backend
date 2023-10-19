@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cause_of_deaths",
+  "info": {
+    "singularName": "cause-of-death",
+    "pluralName": "cause-of-deaths",
+    "displayName": "[Dropdown]  Gewalthandlung die zum Tod führte",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

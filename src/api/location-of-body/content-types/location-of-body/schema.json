@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "location_of_bodies",
+  "info": {
+    "singularName": "location-of-body",
+    "pluralName": "location-of-bodies",
+    "displayName": "[Dropdown] Fundort des Körpers",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

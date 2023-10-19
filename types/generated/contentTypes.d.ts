@@ -704,6 +704,60 @@ export interface ApiCaseCase extends Schema.CollectionType {
   };
 }
 
+export interface ApiCauseOfDeathCauseOfDeath extends Schema.CollectionType {
+  collectionName: 'cause_of_deaths';
+  info: {
+    singularName: 'cause-of-death';
+    pluralName: 'cause-of-deaths';
+    displayName: '[Dropdown]  Gewalthandlung die zum Tod f\u00FChrte';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cause-of-death.cause-of-death',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cause-of-death.cause-of-death',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCityCity extends Schema.CollectionType {
+  collectionName: 'cities';
+  info: {
+    singularName: 'city';
+    pluralName: 'cities';
+    displayName: '[Dropdown] Stadt';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEducationalBackgroundEducationalBackground
   extends Schema.CollectionType {
   collectionName: 'educational_backgrounds';
@@ -767,6 +821,37 @@ export interface ApiFamilyStatusFamilyStatus extends Schema.CollectionType {
   };
 }
 
+export interface ApiFederalStateFederalState extends Schema.CollectionType {
+  collectionName: 'federal_states';
+  info: {
+    singularName: 'federal-state';
+    pluralName: 'federal-states';
+    displayName: '[Dropdown] Bundesland';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::federal-state.federal-state',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::federal-state.federal-state',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
   collectionName: 'feminicide_types';
   info: {
@@ -791,6 +876,37 @@ export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::feminicide-type.feminicide-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLocationOfBodyLocationOfBody extends Schema.CollectionType {
+  collectionName: 'location_of_bodies';
+  info: {
+    singularName: 'location-of-body';
+    pluralName: 'location-of-bodies';
+    displayName: '[Dropdown] Fundort des K\u00F6rpers';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location-of-body.location-of-body',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location-of-body.location-of-body',
       'oneToOne',
       'admin::user'
     > &
@@ -829,6 +945,37 @@ export interface ApiMediaLabelMediaLabel extends Schema.CollectionType {
   };
 }
 
+export interface ApiViolentActViolentAct extends Schema.CollectionType {
+  collectionName: 'violent_acts';
+  info: {
+    singularName: 'violent-act';
+    pluralName: 'violent-acts';
+    displayName: '[Dropdown] Weitere Gewalthandlungen';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::violent-act.violent-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::violent-act.violent-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -846,10 +993,15 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::case.case': ApiCaseCase;
+      'api::cause-of-death.cause-of-death': ApiCauseOfDeathCauseOfDeath;
+      'api::city.city': ApiCityCity;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
+      'api::federal-state.federal-state': ApiFederalStateFederalState;
       'api::feminicide-type.feminicide-type': ApiFeminicideTypeFeminicideType;
+      'api::location-of-body.location-of-body': ApiLocationOfBodyLocationOfBody;
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
+      'api::violent-act.violent-act': ApiViolentActViolentAct;
     }
   }
 }

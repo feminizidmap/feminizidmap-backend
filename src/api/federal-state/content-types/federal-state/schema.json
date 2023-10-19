@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "federal_states",
+  "info": {
+    "singularName": "federal-state",
+    "pluralName": "federal-states",
+    "displayName": "[Dropdown] Bundesland",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

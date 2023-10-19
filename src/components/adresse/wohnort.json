@@ -10,6 +10,22 @@
     "country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "federal_state": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::federal-state.federal-state"
+    },
+    "city": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::city.city"
+    },
+    "street": {
+      "type": "string"
+    },
+    "district": {
+      "type": "string"
     }
   }
 }

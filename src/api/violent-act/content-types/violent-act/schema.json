@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "violent_acts",
+  "info": {
+    "singularName": "violent-act",
+    "pluralName": "violent-acts",
+    "displayName": "[Dropdown] Weitere Gewalthandlungen",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

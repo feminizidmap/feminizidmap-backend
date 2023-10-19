@@ -20,6 +20,21 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-label.media-label"
+    },
+    "location_of_body": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-of-body.location-of-body"
+    },
+    "cause_of_death": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cause-of-death.cause-of-death"
+    },
+    "violent_acts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::violent-act.violent-act"
     }
   }
 }
