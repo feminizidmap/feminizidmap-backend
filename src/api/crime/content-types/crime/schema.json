@@ -4,7 +4,7 @@
   "info": {
     "singularName": "crime",
     "pluralName": "crimes",
-    "displayName": "crime",
+    "displayName": "Tat",
     "description": ""
   },
   "options": {
@@ -53,6 +53,12 @@
     },
     "motiv": {
       "type": "string"
+    },
+    "faelle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::case.case",
+      "mappedBy": "crime"
     }
   }
 }

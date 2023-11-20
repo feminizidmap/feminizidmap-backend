@@ -16,6 +16,72 @@
       "type": "component",
       "repeatable": false,
       "component": "person.person"
+    },
+    "dropdown_geschlecht_des_taeters_der_taeterin": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::gender-perpetrator.gender-perpetrator"
+    },
+    "dropdown_moeglicher_verdaechtiger": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::possible-suspect.possible-suspect"
+    },
+    "dropdown_alkoholisiert_waehrend_der_tat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::alcohol-influence-during-crime.alcohol-influence-during-crime"
+    },
+    "dropdown_drogeneinfluss_waehrend_der_tat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::drug-influence-during-crime.drug-influence-during-crime"
+    },
+    "type_of_drug": {
+      "type": "string"
+    },
+    "dropdown_psychische_vorerkrankungen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::previous-mental-illness.previous-mental-illness"
+    },
+    "type_of_mental_illness": {
+      "type": "string"
+    },
+    "criminal_record": {
+      "type": "string"
+    },
+    "restraining_orders": {
+      "type": "string"
+    },
+    "dropdown_verfahrensstatus_des_taeter": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::lawsuit-status-perpetrator.lawsuit-status-perpetrator"
+    },
+    "dropdown_strafsatz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::criminal-act.criminal-act"
+    },
+    "details_on_criminal_act": {
+      "type": "string"
+    },
+    "dropdown_selbstmord_nach_tat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::suicide-after-crime.suicide-after-crime"
+    },
+    "dropdown_beziehung_zum_opfer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::relationship-to-victim.relationship-to-victim"
+    },
+    "faelle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::case.case",
+      "inversedBy": "taeters"
     }
   }
 }

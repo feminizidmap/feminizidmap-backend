@@ -4,7 +4,7 @@
   "info": {
     "singularName": "relationship-to-victim",
     "pluralName": "relationships-to-victim",
-    "displayName": "[Dropdown] Beziehungsstatus mit Opfer",
+    "displayName": "[Dropdown] Beziehung zum Opfer",
     "description": ""
   },
   "options": {

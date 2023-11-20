@@ -37,6 +37,29 @@
       "relation": "oneToMany",
       "target": "api::victim.victim",
       "mappedBy": "faelle"
+    },
+    "taeters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::perpetrator.perpetrator",
+      "mappedBy": "faelle"
+    },
+    "crime": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::crime.crime",
+      "inversedBy": "faelle"
+    },
+    "review2": {
+      "type": "boolean",
+      "private": true
+    },
+    "review3": {
+      "type": "boolean",
+      "private": true
+    },
+    "attempt": {
+      "type": "boolean"
     }
   }
 }

@@ -735,6 +735,15 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'oneToMany',
       'api::victim.victim'
     >;
+    taeters: Attribute.Relation<
+      'api::case.case',
+      'oneToMany',
+      'api::perpetrator.perpetrator'
+    >;
+    crime: Attribute.Relation<'api::case.case', 'oneToOne', 'api::crime.crime'>;
+    review2: Attribute.Boolean & Attribute.Private;
+    review3: Attribute.Boolean & Attribute.Private;
+    attempt: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -874,7 +883,7 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
   info: {
     singularName: 'crime';
     pluralName: 'crimes';
-    displayName: 'crime';
+    displayName: 'Tat';
     description: '';
   };
   options: {
@@ -911,6 +920,11 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
     >;
     further_victims: Attribute.String;
     motiv: Attribute.String;
+    faelle: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::case.case'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1318,6 +1332,61 @@ export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
   };
   attributes: {
     person: Attribute.Component<'person.person'>;
+    dropdown_geschlecht_des_taeters_der_taeterin: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::gender-perpetrator.gender-perpetrator'
+    >;
+    dropdown_moeglicher_verdaechtiger: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::possible-suspect.possible-suspect'
+    >;
+    dropdown_alkoholisiert_waehrend_der_tat: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::alcohol-influence-during-crime.alcohol-influence-during-crime'
+    >;
+    dropdown_drogeneinfluss_waehrend_der_tat: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::drug-influence-during-crime.drug-influence-during-crime'
+    >;
+    type_of_drug: Attribute.String;
+    dropdown_psychische_vorerkrankungen: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::previous-mental-illness.previous-mental-illness'
+    >;
+    type_of_mental_illness: Attribute.String;
+    criminal_record: Attribute.String;
+    restraining_orders: Attribute.String;
+    dropdown_verfahrensstatus_des_taeter: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator'
+    >;
+    dropdown_strafsatz: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::criminal-act.criminal-act'
+    >;
+    details_on_criminal_act: Attribute.String;
+    dropdown_selbstmord_nach_tat: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::suicide-after-crime.suicide-after-crime'
+    >;
+    dropdown_beziehung_zum_opfer: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'api::relationship-to-victim.relationship-to-victim'
+    >;
+    faelle: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'manyToOne',
+      'api::case.case'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1406,7 +1475,7 @@ export interface ApiRelationshipToVictimRelationshipToVictim
   info: {
     singularName: 'relationship-to-victim';
     pluralName: 'relationships-to-victim';
-    displayName: '[Dropdown] Beziehungsstatus mit Opfer';
+    displayName: '[Dropdown] Beziehung zum Opfer';
     description: '';
   };
   options: {
@@ -1469,7 +1538,7 @@ export interface ApiSourceSource extends Schema.CollectionType {
   info: {
     singularName: 'source';
     pluralName: 'sources';
-    displayName: 'Source';
+    displayName: 'Quelle';
     description: '';
   };
   options: {
