@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gender_perpetrators",
+  "info": {
+    "singularName": "gender-perpetrator",
+    "pluralName": "gender-perpetrators",
+    "displayName": "[Dropdown] Geschlecht des Täters/ der Täterin",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

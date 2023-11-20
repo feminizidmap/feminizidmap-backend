@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "possible_suspects",
+  "info": {
+    "singularName": "possible-suspect",
+    "pluralName": "possible-suspects",
+    "displayName": "[Dropdown] Möglicher Verdächtiger",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

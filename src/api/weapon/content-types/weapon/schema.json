@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weapons",
+  "info": {
+    "singularName": "weapon",
+    "pluralName": "weapons",
+    "displayName": "[Dropdown] Waffen",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

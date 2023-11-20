@@ -992,6 +992,38 @@ export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
   };
 }
 
+export interface ApiGenderPerpetratorGenderPerpetrator
+  extends Schema.CollectionType {
+  collectionName: 'gender_perpetrators';
+  info: {
+    singularName: 'gender-perpetrator';
+    pluralName: 'gender-perpetrators';
+    displayName: '[Dropdown] Geschlecht des T\u00E4ters/ der T\u00E4terin';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gender-perpetrator.gender-perpetrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gender-perpetrator.gender-perpetrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator
   extends Schema.CollectionType {
   collectionName: 'lawsuit_status_perpetrators';
@@ -1110,6 +1142,38 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPossibleSuspectPossibleSuspect
+  extends Schema.CollectionType {
+  collectionName: 'possible_suspects';
+  info: {
+    singularName: 'possible-suspect';
+    pluralName: 'possible-suspects';
+    displayName: '[Dropdown] M\u00F6glicher Verd\u00E4chtiger';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::possible-suspect.possible-suspect',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::possible-suspect.possible-suspect',
       'oneToOne',
       'admin::user'
     > &
@@ -1324,6 +1388,37 @@ export interface ApiViolentActViolentAct extends Schema.CollectionType {
   };
 }
 
+export interface ApiWeaponWeapon extends Schema.CollectionType {
+  collectionName: 'weapons';
+  info: {
+    singularName: 'weapon';
+    pluralName: 'weapons';
+    displayName: '[Dropdown] Waffen';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::weapon.weapon',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::weapon.weapon',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1350,16 +1445,19 @@ declare module '@strapi/types' {
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
       'api::federal-state.federal-state': ApiFederalStateFederalState;
       'api::feminicide-type.feminicide-type': ApiFeminicideTypeFeminicideType;
+      'api::gender-perpetrator.gender-perpetrator': ApiGenderPerpetratorGenderPerpetrator;
       'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator': ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator;
       'api::location-of-body.location-of-body': ApiLocationOfBodyLocationOfBody;
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
       'api::notification.notification': ApiNotificationNotification;
+      'api::possible-suspect.possible-suspect': ApiPossibleSuspectPossibleSuspect;
       'api::previous-mental-illness.previous-mental-illness': ApiPreviousMentalIllnessPreviousMentalIllness;
       'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
       'api::restraining-order.restraining-order': ApiRestrainingOrderRestrainingOrder;
       'api::source.source': ApiSourceSource;
       'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
+      'api::weapon.weapon': ApiWeaponWeapon;
     }
   }
 }
