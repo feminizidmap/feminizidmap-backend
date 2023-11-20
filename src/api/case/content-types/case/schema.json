@@ -31,6 +31,12 @@
     },
     "notes": {
       "type": "text"
+    },
+    "opfers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::victim.victim",
+      "mappedBy": "faelle"
     }
   }
 }

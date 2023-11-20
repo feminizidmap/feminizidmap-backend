@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "crimes",
+  "info": {
+    "singularName": "crime",
+    "pluralName": "crimes",
+    "displayName": "crime",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.adresse"
+    },
+    "dropdown_fundort_des_koerper": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-of-body.location-of-body"
+    },
+    "details_of_location": {
+      "type": "string"
+    },
+    "dropdown_gewalthandlung_die_zum_tod_fuehrte": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cause-of-death.cause-of-death"
+    },
+    "dropdown_weitere_gewalthandlungen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::violent-act.violent-act"
+    },
+    "dropdown_waffen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::weapon.weapon"
+    },
+    "details_on_weapons": {
+      "type": "string"
+    },
+    "dropdown_feminizidart": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::feminicide-type.feminicide-type"
+    },
+    "further_victims": {
+      "type": "string"
+    },
+    "motiv": {
+      "type": "string"
+    }
+  }
+}

@@ -730,6 +730,11 @@ export interface ApiCaseCase extends Schema.CollectionType {
     >;
     summary: Attribute.Text;
     notes: Attribute.Text;
+    opfers: Attribute.Relation<
+      'api::case.case',
+      'oneToMany',
+      'api::victim.victim'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -860,6 +865,66 @@ export interface ApiCityCity extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCrimeCrime extends Schema.CollectionType {
+  collectionName: 'crimes';
+  info: {
+    singularName: 'crime';
+    pluralName: 'crimes';
+    displayName: 'crime';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Attribute.Component<'adresse.adresse'>;
+    dropdown_fundort_des_koerper: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::location-of-body.location-of-body'
+    >;
+    details_of_location: Attribute.String;
+    dropdown_gewalthandlung_die_zum_tod_fuehrte: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::cause-of-death.cause-of-death'
+    >;
+    dropdown_weitere_gewalthandlungen: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::violent-act.violent-act'
+    >;
+    dropdown_waffen: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::weapon.weapon'
+    >;
+    details_on_weapons: Attribute.String;
+    dropdown_feminizidart: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::feminicide-type.feminicide-type'
+    >;
+    further_victims: Attribute.String;
+    motiv: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1505,6 +1570,11 @@ export interface ApiVictimVictim extends Schema.CollectionType {
     >;
     type_of_drug: Attribute.String;
     history_of_violence: Attribute.String;
+    faelle: Attribute.Relation<
+      'api::victim.victim',
+      'manyToOne',
+      'api::case.case'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1607,6 +1677,7 @@ declare module '@strapi/types' {
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::city.city': ApiCityCity;
+      'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;

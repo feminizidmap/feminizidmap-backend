@@ -35,6 +35,12 @@
     },
     "history_of_violence": {
       "type": "string"
+    },
+    "faelle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::case.case",
+      "inversedBy": "opfers"
     }
   }
 }
