@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "previous_mental_illnesses",
+  "info": {
+    "singularName": "previous-mental-illness",
+    "pluralName": "previous-mental-illnesses",
+    "displayName": "[Dropdown] Psychische Vorerkrankungen",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

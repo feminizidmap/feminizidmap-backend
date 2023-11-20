@@ -34,6 +34,18 @@
       "type": "component",
       "repeatable": false,
       "component": "crime.crime"
+    },
+    "sources": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::source.source",
+      "mappedBy": "faelle"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
     }
   }
 }

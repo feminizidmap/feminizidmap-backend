@@ -677,6 +677,38 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAlcoholInfluenceDuringCrimeAlcoholInfluenceDuringCrime
+  extends Schema.CollectionType {
+  collectionName: 'alcohol_influence_during_crimes';
+  info: {
+    singularName: 'alcohol-influence-during-crime';
+    pluralName: 'alcohol-influence-during-crimes';
+    displayName: '[Dropdown] Alkoholisiert w\u00E4hrend der Tat';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::alcohol-influence-during-crime.alcohol-influence-during-crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::alcohol-influence-during-crime.alcohol-influence-during-crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCaseCase extends Schema.CollectionType {
   collectionName: 'cases';
   info: {
@@ -694,6 +726,13 @@ export interface ApiCaseCase extends Schema.CollectionType {
     victim: Attribute.Component<'person.person', true>;
     perpetrator: Attribute.Component<'person.person', true>;
     crime: Attribute.Component<'crime.crime'>;
+    sources: Attribute.Relation<
+      'api::case.case',
+      'oneToMany',
+      'api::source.source'
+    >;
+    summary: Attribute.Text;
+    notes: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -761,6 +800,69 @@ export interface ApiCityCity extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
+  collectionName: 'criminal_acts';
+  info: {
+    singularName: 'criminal-act';
+    pluralName: 'criminal-acts';
+    displayName: '[Dropdown] Strafsatz';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::criminal-act.criminal-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::criminal-act.criminal-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime
+  extends Schema.CollectionType {
+  collectionName: 'drug_influence_during_crimes';
+  info: {
+    singularName: 'drug-influence-during-crime';
+    pluralName: 'drug-influence-during-crimes';
+    displayName: '[Dropdown] Drogeneinfluss w\u00E4hrend der Tat';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::drug-influence-during-crime.drug-influence-during-crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::drug-influence-during-crime.drug-influence-during-crime',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -890,6 +992,38 @@ export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
   };
 }
 
+export interface ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator
+  extends Schema.CollectionType {
+  collectionName: 'lawsuit_status_perpetrators';
+  info: {
+    singularName: 'lawsuit-status-perpetrator';
+    pluralName: 'lawsuit-status-perpetrators';
+    displayName: '[Dropdown] Verfahrensstatus des T\u00E4ters';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLocationOfBodyLocationOfBody extends Schema.CollectionType {
   collectionName: 'location_of_bodies';
   info: {
@@ -952,6 +1086,213 @@ export interface ApiMediaLabelMediaLabel extends Schema.CollectionType {
   };
 }
 
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    singularName: 'notification';
+    pluralName: 'notifications';
+    displayName: '[Dropdown] Benachrichtigung \u00FCber die Tat';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPreviousMentalIllnessPreviousMentalIllness
+  extends Schema.CollectionType {
+  collectionName: 'previous_mental_illnesses';
+  info: {
+    singularName: 'previous-mental-illness';
+    pluralName: 'previous-mental-illnesses';
+    displayName: '[Dropdown] Psychische Vorerkrankungen';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::previous-mental-illness.previous-mental-illness',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::previous-mental-illness.previous-mental-illness',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRelationshipToVictimRelationshipToVictim
+  extends Schema.CollectionType {
+  collectionName: 'relationships_to_victim';
+  info: {
+    singularName: 'relationship-to-victim';
+    pluralName: 'relationships-to-victim';
+    displayName: '[Dropdown] Beziehungsstatus mit Opfer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::relationship-to-victim.relationship-to-victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::relationship-to-victim.relationship-to-victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRestrainingOrderRestrainingOrder
+  extends Schema.CollectionType {
+  collectionName: 'restraining_orders';
+  info: {
+    singularName: 'restraining-order';
+    pluralName: 'restraining-orders';
+    displayName: '[Dropdown] Kontaktverbote';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::restraining-order.restraining-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::restraining-order.restraining-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSourceSource extends Schema.CollectionType {
+  collectionName: 'sources';
+  info: {
+    singularName: 'source';
+    pluralName: 'sources';
+    displayName: 'Source';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    last_retrieved: Attribute.Date & Attribute.Required & Attribute.Private;
+    url_to_pdf: Attribute.String & Attribute.Required & Attribute.Private;
+    label: Attribute.String;
+    faelle: Attribute.Relation<
+      'api::source.source',
+      'manyToOne',
+      'api::case.case'
+    >;
+    url: Attribute.String & Attribute.Required & Attribute.Private;
+    source_type: Attribute.Enumeration<
+      [
+        'Medien',
+        'Rechtsf\u00E4lle',
+        'Polizeiberichte',
+        'Zivilgesellschaftliche Berichte',
+        'Einzelpersonen',
+        'Sonstiges (bitte angeben)'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::source.source',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::source.source',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSuicideAfterCrimeSuicideAfterCrime
+  extends Schema.CollectionType {
+  collectionName: 'suicide_after_crimes';
+  info: {
+    singularName: 'suicide-after-crime';
+    pluralName: 'suicide-after-crimes';
+    displayName: '[Dropdown] Selbstmord nach Tat';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::suicide-after-crime.suicide-after-crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::suicide-after-crime.suicide-after-crime',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiViolentActViolentAct extends Schema.CollectionType {
   collectionName: 'violent_acts';
   info: {
@@ -999,15 +1340,25 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::alcohol-influence-during-crime.alcohol-influence-during-crime': ApiAlcoholInfluenceDuringCrimeAlcoholInfluenceDuringCrime;
       'api::case.case': ApiCaseCase;
       'api::cause-of-death.cause-of-death': ApiCauseOfDeathCauseOfDeath;
       'api::city.city': ApiCityCity;
+      'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
+      'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
       'api::federal-state.federal-state': ApiFederalStateFederalState;
       'api::feminicide-type.feminicide-type': ApiFeminicideTypeFeminicideType;
+      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator': ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator;
       'api::location-of-body.location-of-body': ApiLocationOfBodyLocationOfBody;
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
+      'api::notification.notification': ApiNotificationNotification;
+      'api::previous-mental-illness.previous-mental-illness': ApiPreviousMentalIllnessPreviousMentalIllness;
+      'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
+      'api::restraining-order.restraining-order': ApiRestrainingOrderRestrainingOrder;
+      'api::source.source': ApiSourceSource;
+      'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
     }
   }

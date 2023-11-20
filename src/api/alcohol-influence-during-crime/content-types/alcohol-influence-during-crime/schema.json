@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alcohol_influence_during_crimes",
+  "info": {
+    "singularName": "alcohol-influence-during-crime",
+    "pluralName": "alcohol-influence-during-crimes",
+    "displayName": "[Dropdown] Alkoholisiert während der Tat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

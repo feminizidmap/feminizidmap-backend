@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lawsuit_status_perpetrators",
+  "info": {
+    "singularName": "lawsuit-status-perpetrator",
+    "pluralName": "lawsuit-status-perpetrators",
+    "displayName": "[Dropdown] Verfahrensstatus des Täters",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

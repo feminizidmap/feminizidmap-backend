@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "criminal_acts",
+  "info": {
+    "singularName": "criminal-act",
+    "pluralName": "criminal-acts",
+    "displayName": "[Dropdown] Strafsatz",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

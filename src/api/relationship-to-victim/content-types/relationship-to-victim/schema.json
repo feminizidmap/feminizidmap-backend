@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "relationships_to_victim",
+  "info": {
+    "singularName": "relationship-to-victim",
+    "pluralName": "relationships-to-victim",
+    "displayName": "[Dropdown] Beziehungsstatus mit Opfer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

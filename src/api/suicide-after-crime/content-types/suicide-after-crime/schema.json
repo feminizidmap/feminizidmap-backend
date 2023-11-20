@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suicide_after_crimes",
+  "info": {
+    "singularName": "suicide-after-crime",
+    "pluralName": "suicide-after-crimes",
+    "displayName": "[Dropdown] Selbstmord nach Tat"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}
