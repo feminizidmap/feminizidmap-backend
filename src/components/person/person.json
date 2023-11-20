@@ -11,14 +11,6 @@
       "type": "customField",
       "customField": "plugin::country-select.country"
     },
-    "citizenship_type": {
-      "type": "enumeration",
-      "enum": [
-        "Deutsche Staatsbürgerschaft",
-        "Doppelte Staatsbürgerschaft (DE+andere)",
-        "Ausländische Staatsbürgerschaft"
-      ]
-    },
     "family_status": {
       "type": "relation",
       "relation": "oneToOne",
@@ -28,15 +20,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::educational-background.educational-background"
-    },
-    "legal_status": {
-      "type": "enumeration",
-      "enum": [
-        "Asylsuchend/geflüchtet",
-        "Aufenthaltsgenehmigung (ohne Geflüchtete)",
-        "Undokumentiert/ohne Papiere",
-        "entfällt"
-      ]
     },
     "age": {
       "type": "integer"
@@ -52,6 +35,27 @@
       "type": "component",
       "repeatable": false,
       "component": "adresse.wohnort"
+    },
+    "dropdown_staatsbuergerschaft_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::citizenship-type.citizenship-type"
+    },
+    "dropdown_rechtlichter_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::legal-status.legal-status"
+    },
+    "dropdown_staatsbuergerschaft": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::citizenship.citizenship"
+    },
+    "profession": {
+      "type": "string"
+    },
+    "workplace": {
+      "type": "string"
     }
   }
 }

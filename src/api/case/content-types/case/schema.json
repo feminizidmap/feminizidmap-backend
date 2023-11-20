@@ -20,21 +20,6 @@
       "type": "date",
       "required": true
     },
-    "victim": {
-      "type": "component",
-      "repeatable": true,
-      "component": "person.person"
-    },
-    "perpetrator": {
-      "type": "component",
-      "repeatable": true,
-      "component": "person.person"
-    },
-    "crime": {
-      "type": "component",
-      "repeatable": false,
-      "component": "crime.crime"
-    },
     "sources": {
       "type": "relation",
       "relation": "oneToMany",

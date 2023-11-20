@@ -723,9 +723,6 @@ export interface ApiCaseCase extends Schema.CollectionType {
   attributes: {
     identifier: Attribute.String & Attribute.Required;
     crime_date: Attribute.Date & Attribute.Required;
-    victim: Attribute.Component<'person.person', true>;
-    perpetrator: Attribute.Component<'person.person', true>;
-    crime: Attribute.Component<'crime.crime'>;
     sources: Attribute.Relation<
       'api::case.case',
       'oneToMany',
@@ -767,6 +764,69 @@ export interface ApiCauseOfDeathCauseOfDeath extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::cause-of-death.cause-of-death',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
+  collectionName: 'citizenships';
+  info: {
+    singularName: 'citizenship';
+    pluralName: 'citizenships';
+    displayName: '[Dropdown] Staatsb\u00FCrgerschaft';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::citizenship.citizenship',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::citizenship.citizenship',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCitizenshipTypeCitizenshipType
+  extends Schema.CollectionType {
+  collectionName: 'citizenship_types';
+  info: {
+    singularName: 'citizenship-type';
+    pluralName: 'citizenship-types';
+    displayName: '[Dropdown] Staatsb\u00FCrgerschaft Typ';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::citizenship-type.citizenship-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::citizenship-type.citizenship-type',
       'oneToOne',
       'admin::user'
     > &
@@ -1056,6 +1116,37 @@ export interface ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator
   };
 }
 
+export interface ApiLegalStatusLegalStatus extends Schema.CollectionType {
+  collectionName: 'legal_statuses';
+  info: {
+    singularName: 'legal-status';
+    pluralName: 'legal-statuses';
+    displayName: '[Dropdown] Rechtlichter Status';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::legal-status.legal-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::legal-status.legal-status',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLocationOfBodyLocationOfBody extends Schema.CollectionType {
   collectionName: 'location_of_bodies';
   info: {
@@ -1142,6 +1233,37 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
+  collectionName: 'perpetrators';
+  info: {
+    singularName: 'perpetrator';
+    pluralName: 'perpetrators';
+    displayName: 'T\u00E4ter';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    person: Attribute.Component<'person.person'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::perpetrator.perpetrator',
       'oneToOne',
       'admin::user'
     > &
@@ -1357,6 +1479,50 @@ export interface ApiSuicideAfterCrimeSuicideAfterCrime
   };
 }
 
+export interface ApiVictimVictim extends Schema.CollectionType {
+  collectionName: 'victims';
+  info: {
+    singularName: 'victim';
+    pluralName: 'victims';
+    displayName: 'Opfer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    person: Attribute.Component<'person.person'>;
+    survived_by: Attribute.String;
+    dropdown_alkoholisiert_waehrend_der_tat: Attribute.Relation<
+      'api::victim.victim',
+      'oneToOne',
+      'api::alcohol-influence-during-crime.alcohol-influence-during-crime'
+    >;
+    dropdown_drogeneinfluss_waehrend_der_tat: Attribute.Relation<
+      'api::victim.victim',
+      'oneToOne',
+      'api::drug-influence-during-crime.drug-influence-during-crime'
+    >;
+    type_of_drug: Attribute.String;
+    history_of_violence: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::victim.victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::victim.victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiViolentActViolentAct extends Schema.CollectionType {
   collectionName: 'violent_acts';
   info: {
@@ -1438,6 +1604,8 @@ declare module '@strapi/types' {
       'api::alcohol-influence-during-crime.alcohol-influence-during-crime': ApiAlcoholInfluenceDuringCrimeAlcoholInfluenceDuringCrime;
       'api::case.case': ApiCaseCase;
       'api::cause-of-death.cause-of-death': ApiCauseOfDeathCauseOfDeath;
+      'api::citizenship.citizenship': ApiCitizenshipCitizenship;
+      'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::city.city': ApiCityCity;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
@@ -1447,15 +1615,18 @@ declare module '@strapi/types' {
       'api::feminicide-type.feminicide-type': ApiFeminicideTypeFeminicideType;
       'api::gender-perpetrator.gender-perpetrator': ApiGenderPerpetratorGenderPerpetrator;
       'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator': ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator;
+      'api::legal-status.legal-status': ApiLegalStatusLegalStatus;
       'api::location-of-body.location-of-body': ApiLocationOfBodyLocationOfBody;
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
       'api::notification.notification': ApiNotificationNotification;
+      'api::perpetrator.perpetrator': ApiPerpetratorPerpetrator;
       'api::possible-suspect.possible-suspect': ApiPossibleSuspectPossibleSuspect;
       'api::previous-mental-illness.previous-mental-illness': ApiPreviousMentalIllnessPreviousMentalIllness;
       'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
       'api::restraining-order.restraining-order': ApiRestrainingOrderRestrainingOrder;
       'api::source.source': ApiSourceSource;
       'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
+      'api::victim.victim': ApiVictimVictim;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
       'api::weapon.weapon': ApiWeaponWeapon;
     }

@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "citizenship_types",
+  "info": {
+    "singularName": "citizenship-type",
+    "pluralName": "citizenship-types",
+    "displayName": "[Dropdown] Staatsbürgerschaft Typ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

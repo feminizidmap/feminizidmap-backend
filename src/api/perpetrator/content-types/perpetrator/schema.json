@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "perpetrators",
+  "info": {
+    "singularName": "perpetrator",
+    "pluralName": "perpetrators",
+    "displayName": "Täter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "person": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.person"
+    }
+  }
+}
