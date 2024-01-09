@@ -59,6 +59,11 @@
       "relation": "oneToOne",
       "target": "api::case.case",
       "mappedBy": "crime"
+    },
+    "dropdown_mediale_bezeichnungs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-label.media-label"
     }
   }
 }

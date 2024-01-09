@@ -896,6 +896,11 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
       'oneToOne',
       'api::case.case'
     >;
+    dropdown_mediale_bezeichnungs: Attribute.Relation<
+      'api::crime.crime',
+      'oneToMany',
+      'api::media-label.media-label'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
