@@ -7,16 +7,19 @@
   },
   "options": {},
   "attributes": {
-    "city": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::city.city"
-    },
     "street": {
       "type": "string"
     },
-    "district": {
+    "city": {
       "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "dropdown_bundesland": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::federal-state.federal-state"
     }
   }
 }

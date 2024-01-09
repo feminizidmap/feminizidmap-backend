@@ -76,12 +76,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::relationship-to-victim.relationship-to-victim"
-    },
-    "faelle": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::case.case",
-      "inversedBy": "taeters"
     }
   }
 }

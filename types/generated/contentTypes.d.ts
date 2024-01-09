@@ -848,36 +848,6 @@ export interface ApiCitizenshipTypeCitizenshipType
   };
 }
 
-export interface ApiCityCity extends Schema.CollectionType {
-  collectionName: 'cities';
-  info: {
-    singularName: 'city';
-    pluralName: 'cities';
-    displayName: '[Dropdown] Stadt';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    federal_state: Attribute.Relation<
-      'api::city.city',
-      'oneToOne',
-      'api::federal-state.federal-state'
-    >;
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::city.city', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCrimeCrime extends Schema.CollectionType {
   collectionName: 'crimes';
   info: {
@@ -1382,11 +1352,6 @@ export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
       'oneToOne',
       'api::relationship-to-victim.relationship-to-victim'
     >;
-    faelle: Attribute.Relation<
-      'api::perpetrator.perpetrator',
-      'manyToOne',
-      'api::case.case'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1639,11 +1604,6 @@ export interface ApiVictimVictim extends Schema.CollectionType {
     >;
     type_of_drug: Attribute.String;
     history_of_violence: Attribute.String;
-    faelle: Attribute.Relation<
-      'api::victim.victim',
-      'manyToOne',
-      'api::case.case'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1745,7 +1705,6 @@ declare module '@strapi/types' {
       'api::cause-of-death.cause-of-death': ApiCauseOfDeathCauseOfDeath;
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
-      'api::city.city': ApiCityCity;
       'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;

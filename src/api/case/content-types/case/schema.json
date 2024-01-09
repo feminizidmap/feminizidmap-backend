@@ -35,14 +35,12 @@
     "opfers": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::victim.victim",
-      "mappedBy": "faelle"
+      "target": "api::victim.victim"
     },
     "taeters": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::perpetrator.perpetrator",
-      "mappedBy": "faelle"
+      "target": "api::perpetrator.perpetrator"
     },
     "crime": {
       "type": "relation",

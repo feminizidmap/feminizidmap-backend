@@ -30,12 +30,6 @@
     "lastname": {
       "type": "string"
     },
-    "home_address": {
-      "displayName": "Wohnort",
-      "type": "component",
-      "repeatable": false,
-      "component": "adresse.wohnort"
-    },
     "dropdown_staatsbuergerschaft_type": {
       "type": "relation",
       "relation": "oneToOne",
@@ -56,6 +50,11 @@
     },
     "workplace": {
       "type": "string"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.adresse"
     }
   }
 }

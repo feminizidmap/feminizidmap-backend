@@ -8,23 +8,14 @@ export interface AdresseAdresse extends Schema.Component {
     description: '';
   };
   attributes: {
-    city: Attribute.Relation<'adresse.adresse', 'oneToOne', 'api::city.city'>;
     street: Attribute.String;
-    district: Attribute.String;
-  };
-}
-
-export interface AdresseWohnort extends Schema.Component {
-  collectionName: 'components_adresse_wohnorts';
-  info: {
-    displayName: 'Residency';
-    icon: 'pinMap';
-    description: '';
-  };
-  attributes: {
-    city: Attribute.Relation<'adresse.wohnort', 'oneToOne', 'api::city.city'>;
-    street: Attribute.String;
-    district: Attribute.String;
+    city: Attribute.String;
+    county: Attribute.String;
+    dropdown_bundesland: Attribute.Relation<
+      'adresse.adresse',
+      'oneToOne',
+      'api::federal-state.federal-state'
+    >;
   };
 }
 
@@ -51,7 +42,6 @@ export interface PersonPerson extends Schema.Component {
     age: Attribute.Integer;
     firstname: Attribute.String;
     lastname: Attribute.String;
-    home_address: Attribute.Component<'adresse.wohnort'>;
     dropdown_staatsbuergerschaft_type: Attribute.Relation<
       'person.person',
       'oneToOne',
@@ -69,6 +59,7 @@ export interface PersonPerson extends Schema.Component {
     >;
     profession: Attribute.String;
     workplace: Attribute.String;
+    address: Attribute.Component<'adresse.adresse'>;
   };
 }
 
@@ -76,7 +67,6 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'adresse.adresse': AdresseAdresse;
-      'adresse.wohnort': AdresseWohnort;
       'person.person': PersonPerson;
     }
   }
