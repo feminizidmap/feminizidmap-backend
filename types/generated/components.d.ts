@@ -38,28 +38,33 @@ export interface PersonPerson extends Schema.Component {
       'person.person',
       'oneToOne',
       'api::educational-background.educational-background'
-    >;
+    > &
+      Attribute.Private;
     age: Attribute.Integer;
-    firstname: Attribute.String;
-    lastname: Attribute.String;
+    firstname: Attribute.String & Attribute.Private;
+    lastname: Attribute.String & Attribute.Private;
     dropdown_staatsbuergerschaft_type: Attribute.Relation<
       'person.person',
       'oneToOne',
       'api::citizenship-type.citizenship-type'
-    >;
+    > &
+      Attribute.Private;
     dropdown_rechtlichter_status: Attribute.Relation<
       'person.person',
       'oneToOne',
       'api::legal-status.legal-status'
-    >;
-    dropdown_staatsbuergerschaft: Attribute.Relation<
+    > &
+      Attribute.Private;
+    dropdown_staatsbuergerschafts: Attribute.Relation<
       'person.person',
-      'oneToOne',
+      'oneToMany',
       'api::citizenship.citizenship'
-    >;
+    > &
+      Attribute.Private;
     profession: Attribute.String;
-    workplace: Attribute.String;
-    address: Attribute.Component<'adresse.adresse'>;
+    workplace: Attribute.String & Attribute.Private;
+    address: Attribute.Component<'adresse.adresse'> & Attribute.Private;
+    public_name: Attribute.String;
   };
 }
 

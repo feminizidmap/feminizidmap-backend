@@ -728,8 +728,8 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'oneToMany',
       'api::source.source'
     >;
-    summary: Attribute.Text;
-    notes: Attribute.Text;
+    summary: Attribute.Text & Attribute.Private;
+    notes: Attribute.Text & Attribute.Private;
     opfers: Attribute.Relation<
       'api::case.case',
       'oneToMany',
@@ -741,9 +741,10 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'api::perpetrator.perpetrator'
     >;
     crime: Attribute.Relation<'api::case.case', 'oneToOne', 'api::crime.crime'>;
-    review2: Attribute.Boolean & Attribute.Private;
-    review3: Attribute.Boolean & Attribute.Private;
-    attempt: Attribute.Boolean;
+    review2: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    review3: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    attempt: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
+    authority: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -937,6 +938,99 @@ export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::criminal-act.criminal-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_hinterbliebene_privats';
+  info: {
+    singularName: 'dropdown-hinterbliebene-privat';
+    pluralName: 'dropdown-hinterbliebene-privats';
+    displayName: '[Dropdown] Hinterbliebene (privat)';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownReportOnViolenceDropdownReportOnViolence
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_reports_on_violence';
+  info: {
+    singularName: 'dropdown-report-on-violence';
+    pluralName: 'dropdown-reports-on-violence';
+    displayName: '[Dropdown] Berichte \u00FCber Gewalt';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-report-on-violence.dropdown-report-on-violence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-report-on-violence.dropdown-report-on-violence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownSurvivedByPublicDropdownSurvivedByPublic
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_survived_by_publics';
+  info: {
+    singularName: 'dropdown-survived-by-public';
+    pluralName: 'dropdown-survived-by-publics';
+    displayName: '[Dropdown] Hinterbliebene (public)';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-survived-by-public.dropdown-survived-by-public',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-survived-by-public.dropdown-survived-by-public',
       'oneToOne',
       'admin::user'
     > &
@@ -1316,7 +1410,8 @@ export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
       'api::perpetrator.perpetrator',
       'oneToOne',
       'api::alcohol-influence-during-crime.alcohol-influence-during-crime'
-    >;
+    > &
+      Attribute.Private;
     dropdown_drogeneinfluss_waehrend_der_tat: Attribute.Relation<
       'api::perpetrator.perpetrator',
       'oneToOne',
@@ -1591,19 +1686,24 @@ export interface ApiVictimVictim extends Schema.CollectionType {
   };
   attributes: {
     person: Attribute.Component<'person.person'>;
-    survived_by: Attribute.String;
     dropdown_alkoholisiert_waehrend_der_tat: Attribute.Relation<
       'api::victim.victim',
       'oneToOne',
       'api::alcohol-influence-during-crime.alcohol-influence-during-crime'
-    >;
+    > &
+      Attribute.Private;
     dropdown_drogeneinfluss_waehrend_der_tat: Attribute.Relation<
       'api::victim.victim',
       'oneToOne',
       'api::drug-influence-during-crime.drug-influence-during-crime'
     >;
     type_of_drug: Attribute.String;
-    history_of_violence: Attribute.String;
+    history_of_violence: Attribute.String & Attribute.Private;
+    dropdown_berichte_ueber_gewalt: Attribute.Relation<
+      'api::victim.victim',
+      'oneToOne',
+      'api::dropdown-report-on-violence.dropdown-report-on-violence'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1707,6 +1807,9 @@ declare module '@strapi/types' {
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
+      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat': ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat;
+      'api::dropdown-report-on-violence.dropdown-report-on-violence': ApiDropdownReportOnViolenceDropdownReportOnViolence;
+      'api::dropdown-survived-by-public.dropdown-survived-by-public': ApiDropdownSurvivedByPublicDropdownSurvivedByPublic;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;

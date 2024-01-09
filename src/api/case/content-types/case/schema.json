@@ -27,10 +27,12 @@
       "mappedBy": "faelle"
     },
     "summary": {
-      "type": "text"
+      "type": "text",
+      "private": true
     },
     "notes": {
-      "type": "text"
+      "type": "text",
+      "private": true
     },
     "opfers": {
       "type": "relation",
@@ -50,14 +52,18 @@
     },
     "review2": {
       "type": "boolean",
-      "private": true
+      "private": true,
+      "default": false
     },
     "review3": {
       "type": "boolean",
-      "private": true
+      "private": true,
+      "default": false
     },
     "attempt": {
-      "type": "boolean"
+      "type": "boolean",
+      "private": true,
+      "default": false
     },
     "authority": {
       "type": "string",
