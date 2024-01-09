@@ -17,13 +17,11 @@
       "repeatable": false,
       "component": "person.person"
     },
-    "survived_by": {
-      "type": "string"
-    },
     "dropdown_alkoholisiert_waehrend_der_tat": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::alcohol-influence-during-crime.alcohol-influence-during-crime"
+      "target": "api::alcohol-influence-during-crime.alcohol-influence-during-crime",
+      "private": true
     },
     "dropdown_drogeneinfluss_waehrend_der_tat": {
       "type": "relation",
@@ -34,7 +32,13 @@
       "type": "string"
     },
     "history_of_violence": {
-      "type": "string"
+      "type": "string",
+      "private": true
+    },
+    "dropdown_berichte_ueber_gewalt": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-report-on-violence.dropdown-report-on-violence"
     }
   }
 }

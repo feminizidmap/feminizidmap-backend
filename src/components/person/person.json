@@ -19,42 +19,53 @@
     "educational_background": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::educational-background.educational-background"
+      "target": "api::educational-background.educational-background",
+      "private": true
     },
     "age": {
       "type": "integer"
     },
     "firstname": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "lastname": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "dropdown_staatsbuergerschaft_type": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::citizenship-type.citizenship-type"
+      "target": "api::citizenship-type.citizenship-type",
+      "private": true
     },
     "dropdown_rechtlichter_status": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::legal-status.legal-status"
+      "target": "api::legal-status.legal-status",
+      "private": true
     },
-    "dropdown_staatsbuergerschaft": {
+    "dropdown_staatsbuergerschafts": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::citizenship.citizenship"
+      "relation": "oneToMany",
+      "target": "api::citizenship.citizenship",
+      "private": true
     },
     "profession": {
       "type": "string"
     },
     "workplace": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "address": {
       "type": "component",
       "repeatable": false,
-      "component": "adresse.adresse"
+      "component": "adresse.adresse",
+      "private": true
+    },
+    "public_name": {
+      "type": "string"
     }
   }
 }

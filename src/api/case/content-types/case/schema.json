@@ -58,6 +58,10 @@
     },
     "attempt": {
       "type": "boolean"
+    },
+    "authority": {
+      "type": "string",
+      "private": true
     }
   }
 }

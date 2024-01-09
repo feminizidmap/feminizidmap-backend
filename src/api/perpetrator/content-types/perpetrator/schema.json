@@ -30,7 +30,8 @@
     "dropdown_alkoholisiert_waehrend_der_tat": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::alcohol-influence-during-crime.alcohol-influence-during-crime"
+      "target": "api::alcohol-influence-during-crime.alcohol-influence-during-crime",
+      "private": true
     },
     "dropdown_drogeneinfluss_waehrend_der_tat": {
       "type": "relation",

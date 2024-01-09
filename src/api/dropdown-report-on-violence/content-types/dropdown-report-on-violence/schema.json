@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_reports_on_violence",
+  "info": {
+    "singularName": "dropdown-report-on-violence",
+    "pluralName": "dropdown-reports-on-violence",
+    "displayName": "[Dropdown] Berichte über Gewalt"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_survived_by_publics",
+  "info": {
+    "singularName": "dropdown-survived-by-public",
+    "pluralName": "dropdown-survived-by-publics",
+    "displayName": "[Dropdown] Hinterbliebene (public)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}
