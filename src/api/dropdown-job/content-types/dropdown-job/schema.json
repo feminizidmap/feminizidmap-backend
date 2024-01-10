@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "dropdown_reports_on_violence",
+  "collectionName": "dropdown_jobs",
   "info": {
-    "singularName": "dropdown-report-on-violence",
-    "pluralName": "dropdown-reports-on-violence",
-    "displayName": "[Dropdown] Berichte über Gewalt",
-    "description": ""
+    "singularName": "dropdown-job",
+    "pluralName": "dropdown-jobs",
+    "displayName": "[Dropdown] Beruf"
   },
   "options": {
     "draftAndPublish": true

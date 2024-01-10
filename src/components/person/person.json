@@ -7,10 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "citizenship": {
-      "type": "customField",
-      "customField": "plugin::country-select.country"
-    },
     "family_status": {
       "type": "relation",
       "relation": "oneToOne",
@@ -66,6 +62,11 @@
     },
     "public_name": {
       "type": "string"
+    },
+    "dropdown_beruf": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-job.dropdown-job"
     }
   }
 }

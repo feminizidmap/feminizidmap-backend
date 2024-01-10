@@ -20,6 +20,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::federal-state.federal-state"
+    },
+    "country": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
     }
   }
 }

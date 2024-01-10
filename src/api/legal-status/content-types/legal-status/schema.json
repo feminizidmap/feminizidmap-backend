@@ -14,6 +14,10 @@
   "attributes": {
     "label": {
       "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "private": true
     }
   }
 }

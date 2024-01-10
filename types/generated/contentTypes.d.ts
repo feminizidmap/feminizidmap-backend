@@ -768,6 +768,7 @@ export interface ApiCauseOfDeathCauseOfDeath extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -799,6 +800,8 @@ export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -831,6 +834,7 @@ export interface ApiCitizenshipTypeCitizenshipType
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -981,6 +985,37 @@ export interface ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat
   };
 }
 
+export interface ApiDropdownJobDropdownJob extends Schema.CollectionType {
+  collectionName: 'dropdown_jobs';
+  info: {
+    singularName: 'dropdown-job';
+    pluralName: 'dropdown-jobs';
+    displayName: '[Dropdown] Beruf';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-job.dropdown-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-job.dropdown-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDropdownReportOnViolenceDropdownReportOnViolence
   extends Schema.CollectionType {
   collectionName: 'dropdown_reports_on_violence';
@@ -988,12 +1023,14 @@ export interface ApiDropdownReportOnViolenceDropdownReportOnViolence
     singularName: 'dropdown-report-on-violence';
     pluralName: 'dropdown-reports-on-violence';
     displayName: '[Dropdown] Berichte \u00FCber Gewalt';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1089,6 +1126,7 @@ export interface ApiEducationalBackgroundEducationalBackground
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1120,6 +1158,7 @@ export interface ApiFamilyStatusFamilyStatus extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1182,6 +1221,7 @@ export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1246,6 +1286,7 @@ export interface ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1277,6 +1318,7 @@ export interface ApiLegalStatusLegalStatus extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1308,6 +1350,7 @@ export interface ApiLocationOfBodyLocationOfBody extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1548,6 +1591,7 @@ export interface ApiRelationshipToVictimRelationshipToVictim
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1771,6 +1815,7 @@ export interface ApiWeaponWeapon extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1813,6 +1858,7 @@ declare module '@strapi/types' {
       'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat': ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat;
+      'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
       'api::dropdown-report-on-violence.dropdown-report-on-violence': ApiDropdownReportOnViolenceDropdownReportOnViolence;
       'api::dropdown-survived-by-public.dropdown-survived-by-public': ApiDropdownSurvivedByPublicDropdownSurvivedByPublic;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;

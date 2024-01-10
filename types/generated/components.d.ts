@@ -16,6 +16,8 @@ export interface AdresseAdresse extends Schema.Component {
       'oneToOne',
       'api::federal-state.federal-state'
     >;
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
   };
 }
 
@@ -27,8 +29,6 @@ export interface PersonPerson extends Schema.Component {
     description: '';
   };
   attributes: {
-    citizenship: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
     family_status: Attribute.Relation<
       'person.person',
       'oneToOne',
@@ -65,6 +65,11 @@ export interface PersonPerson extends Schema.Component {
     workplace: Attribute.String & Attribute.Private;
     address: Attribute.Component<'adresse.adresse'> & Attribute.Private;
     public_name: Attribute.String;
+    dropdown_beruf: Attribute.Relation<
+      'person.person',
+      'oneToOne',
+      'api::dropdown-job.dropdown-job'
+    >;
   };
 }
 
