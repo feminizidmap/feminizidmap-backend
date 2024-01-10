@@ -25,9 +25,9 @@
     "details_of_location": {
       "type": "string"
     },
-    "dropdown_weitere_gewalthandlungen": {
+    "dropdown_weitere_gewalthandlungens": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::violent-act.violent-act"
     },
     "dropdown_waffen": {
@@ -44,9 +44,10 @@
       "target": "api::feminicide-type.feminicide-type"
     },
     "further_victims": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
-    "motiv": {
+    "details_on_motives": {
       "type": "string"
     },
     "faelle": {
@@ -67,6 +68,16 @@
     "label": {
       "type": "string",
       "private": true
+    },
+    "dropdown_motive": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-motive.dropdown-motive"
+    },
+    "dropdown_gewalthandlungen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::violent-act.violent-act"
     }
   }
 }

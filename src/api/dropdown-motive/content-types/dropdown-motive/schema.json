@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_motives",
+  "info": {
+    "singularName": "dropdown-motive",
+    "pluralName": "dropdown-motives",
+    "displayName": "[Dropdown] Motives"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "private": true
+    }
+  }
+}

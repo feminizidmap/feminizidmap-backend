@@ -840,9 +840,9 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
       'api::location-of-body.location-of-body'
     >;
     details_of_location: Attribute.String;
-    dropdown_weitere_gewalthandlungen: Attribute.Relation<
+    dropdown_weitere_gewalthandlungens: Attribute.Relation<
       'api::crime.crime',
-      'oneToOne',
+      'oneToMany',
       'api::violent-act.violent-act'
     >;
     dropdown_waffen: Attribute.Relation<
@@ -856,8 +856,8 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
-    further_victims: Attribute.String;
-    motiv: Attribute.String;
+    further_victims: Attribute.String & Attribute.Private;
+    details_on_motives: Attribute.String;
     faelle: Attribute.Relation<
       'api::crime.crime',
       'oneToOne',
@@ -870,6 +870,16 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
     >;
     description_of_crime_scene: Attribute.Text & Attribute.Private;
     label: Attribute.String & Attribute.Private;
+    dropdown_motive: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::dropdown-motive.dropdown-motive'
+    >;
+    dropdown_gewalthandlungen: Attribute.Relation<
+      'api::crime.crime',
+      'oneToOne',
+      'api::violent-act.violent-act'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -974,6 +984,37 @@ export interface ApiDropdownJobDropdownJob extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dropdown-job.dropdown-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownMotiveDropdownMotive extends Schema.CollectionType {
+  collectionName: 'dropdown_motives';
+  info: {
+    singularName: 'dropdown-motive';
+    pluralName: 'dropdown-motives';
+    displayName: '[Dropdown] Motives';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-motive.dropdown-motive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-motive.dropdown-motive',
       'oneToOne',
       'admin::user'
     > &
@@ -1836,6 +1877,7 @@ declare module '@strapi/types' {
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat': ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
+      'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;
       'api::dropdown-report-on-violence.dropdown-report-on-violence': ApiDropdownReportOnViolenceDropdownReportOnViolence;
       'api::dropdown-survived-by-public.dropdown-survived-by-public': ApiDropdownSurvivedByPublicDropdownSurvivedByPublic;
       'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
