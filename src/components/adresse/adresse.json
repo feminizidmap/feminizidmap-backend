@@ -8,7 +8,8 @@
   "options": {},
   "attributes": {
     "street": {
-      "type": "string"
+      "type": "string",
+      "private": true
     },
     "city": {
       "type": "string"

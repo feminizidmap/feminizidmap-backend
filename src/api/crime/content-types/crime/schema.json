@@ -25,11 +25,6 @@
     "details_of_location": {
       "type": "string"
     },
-    "dropdown_gewalthandlung_die_zum_tod_fuehrte": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::cause-of-death.cause-of-death"
-    },
     "dropdown_weitere_gewalthandlungen": {
       "type": "relation",
       "relation": "oneToOne",
@@ -64,6 +59,14 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-label.media-label"
+    },
+    "description_of_crime_scene": {
+      "type": "text",
+      "private": true
+    },
+    "label": {
+      "type": "string",
+      "private": true
     }
   }
 }

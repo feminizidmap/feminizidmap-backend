@@ -730,11 +730,6 @@ export interface ApiCaseCase extends Schema.CollectionType {
     >;
     summary: Attribute.Text & Attribute.Private;
     notes: Attribute.Text & Attribute.Private;
-    opfers: Attribute.Relation<
-      'api::case.case',
-      'oneToMany',
-      'api::victim.victim'
-    >;
     taeters: Attribute.Relation<
       'api::case.case',
       'oneToMany',
@@ -745,44 +740,17 @@ export interface ApiCaseCase extends Schema.CollectionType {
     review3: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     attempt: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     authority: Attribute.String & Attribute.Private;
+    opfers: Attribute.Relation<
+      'api::case.case',
+      'oneToMany',
+      'api::victim.victim'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCauseOfDeathCauseOfDeath extends Schema.CollectionType {
-  collectionName: 'cause_of_deaths';
-  info: {
-    singularName: 'cause-of-death';
-    pluralName: 'cause-of-deaths';
-    displayName: '[Dropdown]  Gewalthandlung die zum Tod f\u00FChrte';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    description: Attribute.Text & Attribute.Private;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::cause-of-death.cause-of-death',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::cause-of-death.cause-of-death',
-      'oneToOne',
-      'admin::user'
-    > &
       Attribute.Private;
   };
 }
@@ -872,11 +840,6 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
       'api::location-of-body.location-of-body'
     >;
     details_of_location: Attribute.String;
-    dropdown_gewalthandlung_die_zum_tod_fuehrte: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::cause-of-death.cause-of-death'
-    >;
     dropdown_weitere_gewalthandlungen: Attribute.Relation<
       'api::crime.crime',
       'oneToOne',
@@ -905,6 +868,8 @@ export interface ApiCrimeCrime extends Schema.CollectionType {
       'oneToMany',
       'api::media-label.media-label'
     >;
+    description_of_crime_scene: Attribute.Text & Attribute.Private;
+    label: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1495,6 +1460,12 @@ export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
       'oneToOne',
       'api::relationship-to-victim.relationship-to-victim'
     >;
+    label: Attribute.String & Attribute.Private;
+    faelle: Attribute.Relation<
+      'api::perpetrator.perpetrator',
+      'manyToOne',
+      'api::case.case'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1753,6 +1724,12 @@ export interface ApiVictimVictim extends Schema.CollectionType {
       'oneToOne',
       'api::dropdown-report-on-violence.dropdown-report-on-violence'
     >;
+    label: Attribute.String & Attribute.Private;
+    faelle: Attribute.Relation<
+      'api::victim.victim',
+      'manyToOne',
+      'api::case.case'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1776,7 +1753,7 @@ export interface ApiViolentActViolentAct extends Schema.CollectionType {
   info: {
     singularName: 'violent-act';
     pluralName: 'violent-acts';
-    displayName: '[Dropdown] Weitere Gewalthandlungen';
+    displayName: '[Dropdown] Gewalthandlungen';
     description: '';
   };
   options: {
@@ -1784,6 +1761,7 @@ export interface ApiViolentActViolentAct extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
+    description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1852,7 +1830,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::alcohol-influence-during-crime.alcohol-influence-during-crime': ApiAlcoholInfluenceDuringCrimeAlcoholInfluenceDuringCrime;
       'api::case.case': ApiCaseCase;
-      'api::cause-of-death.cause-of-death': ApiCauseOfDeathCauseOfDeath;
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::crime.crime': ApiCrimeCrime;

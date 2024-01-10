@@ -39,6 +39,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::dropdown-report-on-violence.dropdown-report-on-violence"
+    },
+    "label": {
+      "type": "string",
+      "private": true
+    },
+    "faelle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::case.case",
+      "inversedBy": "opfers"
     }
   }
 }

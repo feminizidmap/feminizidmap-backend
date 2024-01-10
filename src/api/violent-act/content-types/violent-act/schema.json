@@ -4,7 +4,7 @@
   "info": {
     "singularName": "violent-act",
     "pluralName": "violent-acts",
-    "displayName": "[Dropdown] Weitere Gewalthandlungen",
+    "displayName": "[Dropdown] Gewalthandlungen",
     "description": ""
   },
   "options": {
@@ -14,6 +14,10 @@
   "attributes": {
     "label": {
       "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "private": true
     }
   }
 }

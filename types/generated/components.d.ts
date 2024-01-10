@@ -8,7 +8,7 @@ export interface AdresseAdresse extends Schema.Component {
     description: '';
   };
   attributes: {
-    street: Attribute.String;
+    street: Attribute.String & Attribute.Private;
     city: Attribute.String;
     county: Attribute.String;
     dropdown_bundesland: Attribute.Relation<
