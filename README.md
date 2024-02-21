@@ -1,3 +1,12 @@
+# Hello, this is still very much a work in progress!
+
+Do not open tickets to ask for documentation or how to help out, we are not ready for that yet.
+
+Check back at a later point in time!
+
+
+-----
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
