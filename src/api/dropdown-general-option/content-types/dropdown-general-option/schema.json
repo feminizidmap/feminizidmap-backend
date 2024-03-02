@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_general_options",
+  "info": {
+    "singularName": "dropdown-general-option",
+    "pluralName": "dropdown-general-options",
+    "displayName": "[Dropdown] General Option"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

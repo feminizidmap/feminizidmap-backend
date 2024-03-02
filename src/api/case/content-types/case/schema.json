@@ -34,12 +34,6 @@
       "type": "text",
       "private": true
     },
-    "taeters": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::perpetrator.perpetrator",
-      "mappedBy": "faelle"
-    },
     "crime": {
       "type": "relation",
       "relation": "oneToOne",
@@ -70,6 +64,11 @@
       "relation": "oneToMany",
       "target": "api::victim.victim",
       "mappedBy": "faelle"
+    },
+    "perpetrator": {
+      "type": "component",
+      "repeatable": true,
+      "component": "perpretrator.perpetrator"
     }
   }
 }

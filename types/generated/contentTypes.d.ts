@@ -730,11 +730,6 @@ export interface ApiCaseCase extends Schema.CollectionType {
     >;
     summary: Attribute.Text & Attribute.Private;
     notes: Attribute.Text & Attribute.Private;
-    taeters: Attribute.Relation<
-      'api::case.case',
-      'oneToMany',
-      'api::perpetrator.perpetrator'
-    >;
     crime: Attribute.Relation<'api::case.case', 'oneToOne', 'api::crime.crime'>;
     review2: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     review3: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
@@ -745,6 +740,7 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'oneToMany',
       'api::victim.victim'
     >;
+    perpetrator: Attribute.Component<'perpretrator.perpetrator', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -922,6 +918,37 @@ export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::criminal-act.criminal-act',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownGeneralOptionDropdownGeneralOption
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_general_options';
+  info: {
+    singularName: 'dropdown-general-option';
+    pluralName: 'dropdown-general-options';
+    displayName: '[Dropdown] General Option';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-general-option.dropdown-general-option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-general-option.dropdown-general-option',
       'oneToOne',
       'admin::user'
     > &
@@ -1502,11 +1529,6 @@ export interface ApiPerpetratorPerpetrator extends Schema.CollectionType {
       'api::relationship-to-victim.relationship-to-victim'
     >;
     label: Attribute.String & Attribute.Private;
-    faelle: Attribute.Relation<
-      'api::perpetrator.perpetrator',
-      'manyToOne',
-      'api::case.case'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1875,6 +1897,7 @@ declare module '@strapi/types' {
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
+      'api::dropdown-general-option.dropdown-general-option': ApiDropdownGeneralOptionDropdownGeneralOption;
       'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat': ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
       'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;

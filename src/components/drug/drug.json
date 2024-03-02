@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_drug_drugs",
+  "info": {
+    "displayName": "drug",
+    "icon": "puzzle"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

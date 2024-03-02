@@ -81,12 +81,6 @@
     "label": {
       "type": "string",
       "private": true
-    },
-    "faelle": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::case.case",
-      "inversedBy": "taeters"
     }
   }
 }
