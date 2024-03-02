@@ -18,6 +18,8 @@ export interface AdresseAdresse extends Schema.Component {
     >;
     country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+    coordinates: Attribute.JSON &
+      Attribute.CustomField<'plugin::google-maps.location-picker'>;
   };
 }
 

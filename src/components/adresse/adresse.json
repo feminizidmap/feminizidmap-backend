@@ -25,6 +25,10 @@
     "country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "coordinates": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
     }
   }
 }
