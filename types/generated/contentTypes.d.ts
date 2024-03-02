@@ -1252,37 +1252,6 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
   };
 }
 
-export interface ApiPossibleSuspectPossibleSuspect
-  extends Schema.CollectionType {
-  collectionName: 'possible_suspects';
-  info: {
-    singularName: 'possible-suspect';
-    pluralName: 'possible-suspects';
-    displayName: '[Dropdown] M\u00F6glicher Verd\u00E4chtiger';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::possible-suspect.possible-suspect',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::possible-suspect.possible-suspect',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiRelationshipToVictimRelationshipToVictim
   extends Schema.CollectionType {
   collectionName: 'relationships_to_victim';
@@ -1442,7 +1411,6 @@ declare module '@strapi/types' {
       'api::location-of-body.location-of-body': ApiLocationOfBodyLocationOfBody;
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
       'api::notification.notification': ApiNotificationNotification;
-      'api::possible-suspect.possible-suspect': ApiPossibleSuspectPossibleSuspect;
       'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
       'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
