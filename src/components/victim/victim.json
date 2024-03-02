@@ -1,0 +1,85 @@
+{
+  "collectionName": "components_victim_victims",
+  "info": {
+    "displayName": "Victim",
+    "icon": "user",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "family_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::family-status.family-status"
+    },
+    "educational_background": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::educational-background.educational-background"
+    },
+    "nationality_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::citizenship-type.citizenship-type"
+    },
+    "nationality": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::citizenship.citizenship"
+    },
+    "legal_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::legal-status.legal-status"
+    },
+    "profession": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-job.dropdown-job"
+    },
+    "profession_details": {
+      "type": "string"
+    },
+    "workplace": {
+      "type": "string"
+    },
+    "influence_alcohol": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "influence_drugs": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "drugs_details": {
+      "type": "string"
+    },
+    "reports_on_violence_details": {
+      "type": "string"
+    },
+    "reports_on_violence": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "survived_by": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "survived_by_details": {
+      "type": "string"
+    }
+  }
+}

@@ -21,17 +21,6 @@ export interface AdresseAdresse extends Schema.Component {
   };
 }
 
-export interface DrugDrug extends Schema.Component {
-  collectionName: 'components_drug_drugs';
-  info: {
-    displayName: 'drug';
-    icon: 'puzzle';
-  };
-  attributes: {
-    label: Attribute.String;
-  };
-}
-
 export interface PerpretratorPerpetrator extends Schema.Component {
   collectionName: 'components_perpretrator_perpetrators';
   info: {
@@ -138,55 +127,72 @@ export interface PerpretratorPerpetrator extends Schema.Component {
   };
 }
 
-export interface PersonPerson extends Schema.Component {
-  collectionName: 'components_person_people';
+export interface VictimVictim extends Schema.Component {
+  collectionName: 'components_victim_victims';
   info: {
-    displayName: 'person';
+    displayName: 'Victim';
     icon: 'user';
     description: '';
   };
   attributes: {
+    firstname: Attribute.String;
+    lastname: Attribute.String;
+    age: Attribute.Integer;
     family_status: Attribute.Relation<
-      'person.person',
+      'victim.victim',
       'oneToOne',
       'api::family-status.family-status'
     >;
     educational_background: Attribute.Relation<
-      'person.person',
+      'victim.victim',
       'oneToOne',
       'api::educational-background.educational-background'
-    > &
-      Attribute.Private;
-    age: Attribute.Integer;
-    firstname: Attribute.String & Attribute.Private;
-    lastname: Attribute.String & Attribute.Private;
-    dropdown_staatsbuergerschaft_type: Attribute.Relation<
-      'person.person',
+    >;
+    nationality_type: Attribute.Relation<
+      'victim.victim',
       'oneToOne',
       'api::citizenship-type.citizenship-type'
-    > &
-      Attribute.Private;
-    dropdown_rechtlichter_status: Attribute.Relation<
-      'person.person',
+    >;
+    nationality: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::citizenship.citizenship'
+    >;
+    legal_status: Attribute.Relation<
+      'victim.victim',
       'oneToOne',
       'api::legal-status.legal-status'
-    > &
-      Attribute.Private;
-    dropdown_staatsbuergerschafts: Attribute.Relation<
-      'person.person',
-      'oneToMany',
-      'api::citizenship.citizenship'
-    > &
-      Attribute.Private;
-    profession: Attribute.String;
-    workplace: Attribute.String & Attribute.Private;
-    address: Attribute.Component<'adresse.adresse'> & Attribute.Private;
-    public_name: Attribute.String;
-    dropdown_beruf: Attribute.Relation<
-      'person.person',
+    >;
+    profession: Attribute.Relation<
+      'victim.victim',
       'oneToOne',
       'api::dropdown-job.dropdown-job'
     >;
+    profession_details: Attribute.String;
+    workplace: Attribute.String;
+    influence_alcohol: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    influence_drugs: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    drugs_details: Attribute.String;
+    reports_on_violence_details: Attribute.String;
+    reports_on_violence: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    survived_by: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    survived_by_details: Attribute.String;
   };
 }
 
@@ -194,9 +200,8 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'adresse.adresse': AdresseAdresse;
-      'drug.drug': DrugDrug;
       'perpretrator.perpetrator': PerpretratorPerpetrator;
-      'person.person': PersonPerson;
+      'victim.victim': VictimVictim;
     }
   }
 }

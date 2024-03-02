@@ -59,16 +59,15 @@
       "type": "string",
       "private": true
     },
-    "opfers": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::victim.victim",
-      "mappedBy": "faelle"
-    },
     "perpetrator": {
       "type": "component",
       "repeatable": true,
       "component": "perpretrator.perpetrator"
+    },
+    "victim": {
+      "type": "component",
+      "repeatable": true,
+      "component": "victim.victim"
     }
   }
 }
