@@ -4,7 +4,7 @@
   "info": {
     "singularName": "citizenship",
     "pluralName": "citizenships",
-    "displayName": "[Dropdown] Staatsbürgerschaft",
+    "displayName": "[Dropdown] Ausländische Staatsbürgerschaft",
     "description": ""
   },
   "options": {
@@ -14,10 +14,6 @@
   "attributes": {
     "label": {
       "type": "string"
-    },
-    "country": {
-      "type": "customField",
-      "customField": "plugin::country-select.country"
     }
   }
 }

@@ -761,7 +761,7 @@ export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
   info: {
     singularName: 'citizenship';
     pluralName: 'citizenships';
-    displayName: '[Dropdown] Staatsb\u00FCrgerschaft';
+    displayName: '[Dropdown] Ausl\u00E4ndische Staatsb\u00FCrgerschaft';
     description: '';
   };
   options: {
@@ -769,8 +769,6 @@ export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

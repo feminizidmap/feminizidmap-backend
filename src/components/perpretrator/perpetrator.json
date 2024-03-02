@@ -43,12 +43,12 @@
       "relation": "oneToOne",
       "target": "api::dropdown-job.dropdown-job"
     },
-    "nationality_type": {
+    "citizenship_type": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::citizenship-type.citizenship-type"
     },
-    "nationality": {
+    "foreign_citizenship": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::citizenship.citizenship"
@@ -107,6 +107,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::gender-perpetrator.gender-perpetrator"
+    },
+    "cititzenship": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
     }
   }
 }

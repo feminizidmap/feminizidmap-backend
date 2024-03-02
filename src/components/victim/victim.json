@@ -26,12 +26,12 @@
       "relation": "oneToOne",
       "target": "api::educational-background.educational-background"
     },
-    "nationality_type": {
+    "citizenship_type": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::citizenship-type.citizenship-type"
     },
-    "nationality": {
+    "foreign_citizenship": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::citizenship.citizenship"
@@ -85,6 +85,10 @@
       "type": "component",
       "repeatable": false,
       "component": "adresse.adresse"
+    },
+    "citizenship": {
+      "type": "customField",
+      "customField": "plugin::country-select.country"
     }
   }
 }

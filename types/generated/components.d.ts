@@ -111,12 +111,12 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::dropdown-job.dropdown-job'
     >;
-    nationality_type: Attribute.Relation<
+    citizenship_type: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
       'api::citizenship-type.citizenship-type'
     >;
-    nationality: Attribute.Relation<
+    foreign_citizenship: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
       'api::citizenship.citizenship'
@@ -172,6 +172,8 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::gender-perpetrator.gender-perpetrator'
     >;
+    cititzenship: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
   };
 }
 
@@ -220,12 +222,12 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::educational-background.educational-background'
     >;
-    nationality_type: Attribute.Relation<
+    citizenship_type: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::citizenship-type.citizenship-type'
     >;
-    nationality: Attribute.Relation<
+    foreign_citizenship: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::citizenship.citizenship'
@@ -266,6 +268,8 @@ export interface VictimVictim extends Schema.Component {
     >;
     survived_by_details: Attribute.String;
     address: Attribute.Component<'adresse.adresse'>;
+    citizenship: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
   };
 }
 
