@@ -93,38 +93,10 @@
       "relation": "oneToOne",
       "target": "api::dropdown-general-option.dropdown-general-option"
     },
-    "drugs_details": {
-      "type": "string"
-    },
-    "mental_illness_details": {
-      "type": "string"
-    },
-    "criminal_record": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dropdown-general-option.dropdown-general-option"
-    },
-    "criminal_record_details": {
-      "type": "string"
-    },
-    "restraining_orders": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dropdown-general-option.dropdown-general-option"
-    },
-    "retraining_order_details": {
-      "type": "string"
-    },
-    "suicide_details": {
-      "type": "string"
-    },
-    "gender": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::gender-perpetrator.gender-perpetrator"
-    },
-    "sentence_details": {
-      "type": "string"
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.adresse"
     }
   }
 }

@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_source_sources",
+  "info": {
+    "displayName": "source",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Medien",
+        "Rechtsfälle",
+        "Polizeiberichte",
+        "Zivilgesellschaftliche Berichte",
+        "Einzelpersonen",
+        "Sonstiges (bitte angeben)"
+      ],
+      "default": "Medien"
+    },
+    "url_to_pdf": {
+      "type": "string"
+    }
+  }
+}

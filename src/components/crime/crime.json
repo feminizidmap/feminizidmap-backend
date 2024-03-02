@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_crime_crimes",
+  "info": {
+    "displayName": "crime",
+    "icon": "collapse",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "location_of_body": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-of-body.location-of-body"
+    },
+    "location_details": {
+      "type": "string"
+    },
+    "further_acts_of_violence": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::violent-act.violent-act"
+    },
+    "weapons": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::weapon.weapon"
+    },
+    "weapon_details": {
+      "type": "string"
+    },
+    "type_of_feminicide": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::feminicide-type.feminicide-type"
+    },
+    "motives": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-motive.dropdown-motive"
+    },
+    "motive_details": {
+      "type": "string"
+    },
+    "cause_of_death": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::violent-act.violent-act"
+    },
+    "description_of_crimescene": {
+      "type": "text"
+    }
+  }
+}

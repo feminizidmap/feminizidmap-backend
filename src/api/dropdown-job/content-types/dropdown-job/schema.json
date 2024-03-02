@@ -4,10 +4,11 @@
   "info": {
     "singularName": "dropdown-job",
     "pluralName": "dropdown-jobs",
-    "displayName": "[Dropdown] Beruf"
+    "displayName": "[Dropdown] Beruf",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

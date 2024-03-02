@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_comments_comments",
+  "info": {
+    "displayName": "comments",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "comment": {
+      "type": "text",
+      "private": true
+    }
+  }
+}

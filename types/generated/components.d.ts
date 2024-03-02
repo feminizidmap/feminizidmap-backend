@@ -3,7 +3,7 @@ import type { Schema, Attribute } from '@strapi/strapi';
 export interface AdresseAdresse extends Schema.Component {
   collectionName: 'components_adresse_adresses';
   info: {
-    displayName: 'Adresse';
+    displayName: 'Address';
     icon: 'pinMap';
     description: '';
   };
@@ -18,6 +18,62 @@ export interface AdresseAdresse extends Schema.Component {
     >;
     country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+  };
+}
+
+export interface CommentsComments extends Schema.Component {
+  collectionName: 'components_comments_comments';
+  info: {
+    displayName: 'comments';
+    icon: 'feather';
+  };
+  attributes: {
+    comment: Attribute.Text & Attribute.Private;
+  };
+}
+
+export interface CrimeCrime extends Schema.Component {
+  collectionName: 'components_crime_crimes';
+  info: {
+    displayName: 'crime';
+    icon: 'collapse';
+    description: '';
+  };
+  attributes: {
+    location_of_body: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::location-of-body.location-of-body'
+    >;
+    location_details: Attribute.String;
+    further_acts_of_violence: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::violent-act.violent-act'
+    >;
+    weapons: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::weapon.weapon'
+    >;
+    weapon_details: Attribute.String;
+    type_of_feminicide: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::feminicide-type.feminicide-type'
+    >;
+    motives: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::dropdown-motive.dropdown-motive'
+    >;
+    motive_details: Attribute.String;
+    cause_of_death: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::violent-act.violent-act'
+    >;
+    description_of_crimescene: Attribute.Text;
   };
 }
 
@@ -103,27 +159,31 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
-    drugs_details: Attribute.String;
-    mental_illness_details: Attribute.String;
-    criminal_record: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    >;
-    criminal_record_details: Attribute.String;
-    restraining_orders: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    >;
-    retraining_order_details: Attribute.String;
-    suicide_details: Attribute.String;
-    gender: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::gender-perpetrator.gender-perpetrator'
-    >;
-    sentence_details: Attribute.String;
+    address: Attribute.Component<'adresse.adresse'>;
+  };
+}
+
+export interface SourceSource extends Schema.Component {
+  collectionName: 'components_source_sources';
+  info: {
+    displayName: 'source';
+    icon: 'earth';
+    description: '';
+  };
+  attributes: {
+    url: Attribute.String;
+    type: Attribute.Enumeration<
+      [
+        'Medien',
+        'Rechtsf\u00E4lle',
+        'Polizeiberichte',
+        'Zivilgesellschaftliche Berichte',
+        'Einzelpersonen',
+        'Sonstiges (bitte angeben)'
+      ]
+    > &
+      Attribute.DefaultTo<'Medien'>;
+    url_to_pdf: Attribute.String;
   };
 }
 
@@ -193,6 +253,7 @@ export interface VictimVictim extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     survived_by_details: Attribute.String;
+    address: Attribute.Component<'adresse.adresse'>;
   };
 }
 
@@ -200,7 +261,10 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'adresse.adresse': AdresseAdresse;
+      'comments.comments': CommentsComments;
+      'crime.crime': CrimeCrime;
       'perpretrator.perpetrator': PerpretratorPerpetrator;
+      'source.source': SourceSource;
       'victim.victim': VictimVictim;
     }
   }

@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,32 +20,16 @@
       "type": "date",
       "required": true
     },
-    "sources": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::source.source",
-      "mappedBy": "faelle"
-    },
-    "summary": {
-      "type": "text",
-      "private": true
-    },
     "notes": {
       "type": "text",
       "private": true
     },
-    "crime": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::crime.crime",
-      "inversedBy": "faelle"
-    },
-    "review2": {
+    "review": {
       "type": "boolean",
       "private": true,
       "default": false
     },
-    "review3": {
+    "review2": {
       "type": "boolean",
       "private": true,
       "default": false
@@ -68,6 +52,31 @@
       "type": "component",
       "repeatable": true,
       "component": "victim.victim"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.adresse"
+    },
+    "source": {
+      "type": "component",
+      "repeatable": true,
+      "component": "source.source"
+    },
+    "crime": {
+      "type": "component",
+      "repeatable": false,
+      "component": "crime.crime"
+    },
+    "media_labels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-label.media-label"
+    },
+    "comments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "comments.comments"
     }
   }
 }

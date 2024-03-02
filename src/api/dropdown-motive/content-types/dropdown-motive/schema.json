@@ -4,10 +4,11 @@
   "info": {
     "singularName": "dropdown-motive",
     "pluralName": "dropdown-motives",
-    "displayName": "[Dropdown] Motives"
+    "displayName": "[Dropdown] Motives",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

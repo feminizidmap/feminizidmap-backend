@@ -80,6 +80,11 @@
     },
     "survived_by_details": {
       "type": "string"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "adresse.adresse"
     }
   }
 }

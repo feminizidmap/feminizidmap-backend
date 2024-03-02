@@ -726,28 +726,29 @@ export interface ApiCaseCase extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     identifier: Attribute.String & Attribute.Required;
     crime_date: Attribute.Date & Attribute.Required;
-    sources: Attribute.Relation<
-      'api::case.case',
-      'oneToMany',
-      'api::source.source'
-    >;
-    summary: Attribute.Text & Attribute.Private;
     notes: Attribute.Text & Attribute.Private;
-    crime: Attribute.Relation<'api::case.case', 'oneToOne', 'api::crime.crime'>;
+    review: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     review2: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
-    review3: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     attempt: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     authority: Attribute.String & Attribute.Private;
     perpetrator: Attribute.Component<'perpretrator.perpetrator', true>;
     victim: Attribute.Component<'victim.victim', true>;
+    address: Attribute.Component<'adresse.adresse'>;
+    source: Attribute.Component<'source.source', true>;
+    crime: Attribute.Component<'crime.crime'>;
+    media_labels: Attribute.Relation<
+      'api::case.case',
+      'oneToMany',
+      'api::media-label.media-label'
+    >;
+    comments: Attribute.Component<'comments.comments', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &
@@ -764,7 +765,7 @@ export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
@@ -772,7 +773,6 @@ export interface ApiCitizenshipCitizenship extends Schema.CollectionType {
       Attribute.CustomField<'plugin::country-select.country'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::citizenship.citizenship',
       'oneToOne',
@@ -798,14 +798,13 @@ export interface ApiCitizenshipTypeCitizenshipType
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.String & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::citizenship-type.citizenship-type',
       'oneToOne',
@@ -814,83 +813,6 @@ export interface ApiCitizenshipTypeCitizenshipType
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::citizenship-type.citizenship-type',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCrimeCrime extends Schema.CollectionType {
-  collectionName: 'crimes';
-  info: {
-    singularName: 'crime';
-    pluralName: 'crimes';
-    displayName: 'Tat';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    address: Attribute.Component<'adresse.adresse'>;
-    dropdown_fundort_des_koerper: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::location-of-body.location-of-body'
-    >;
-    details_of_location: Attribute.String;
-    dropdown_weitere_gewalthandlungens: Attribute.Relation<
-      'api::crime.crime',
-      'oneToMany',
-      'api::violent-act.violent-act'
-    >;
-    dropdown_waffen: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::weapon.weapon'
-    >;
-    details_on_weapons: Attribute.String;
-    dropdown_feminizidart: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::feminicide-type.feminicide-type'
-    >;
-    further_victims: Attribute.String & Attribute.Private;
-    details_on_motives: Attribute.String;
-    faelle: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::case.case'
-    >;
-    dropdown_mediale_bezeichnungs: Attribute.Relation<
-      'api::crime.crime',
-      'oneToMany',
-      'api::media-label.media-label'
-    >;
-    description_of_crime_scene: Attribute.Text & Attribute.Private;
-    label: Attribute.String & Attribute.Private;
-    dropdown_motive: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::dropdown-motive.dropdown-motive'
-    >;
-    dropdown_gewalthandlungen: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'api::violent-act.violent-act'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::crime.crime',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::crime.crime',
       'oneToOne',
       'admin::user'
     > &
@@ -907,13 +829,12 @@ export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::criminal-act.criminal-act',
       'oneToOne',
@@ -936,15 +857,15 @@ export interface ApiDropdownGeneralOptionDropdownGeneralOption
     singularName: 'dropdown-general-option';
     pluralName: 'dropdown-general-options';
     displayName: '[Dropdown] General Option';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::dropdown-general-option.dropdown-general-option',
       'oneToOne',
@@ -953,37 +874,6 @@ export interface ApiDropdownGeneralOptionDropdownGeneralOption
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dropdown-general-option.dropdown-general-option',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat
-  extends Schema.CollectionType {
-  collectionName: 'dropdown_hinterbliebene_privats';
-  info: {
-    singularName: 'dropdown-hinterbliebene-privat';
-    pluralName: 'dropdown-hinterbliebene-privats';
-    displayName: '[Dropdown] Hinterbliebene (privat)';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat',
       'oneToOne',
       'admin::user'
     > &
@@ -997,16 +887,16 @@ export interface ApiDropdownJobDropdownJob extends Schema.CollectionType {
     singularName: 'dropdown-job';
     pluralName: 'dropdown-jobs';
     displayName: '[Dropdown] Beruf';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::dropdown-job.dropdown-job',
       'oneToOne',
@@ -1028,16 +918,16 @@ export interface ApiDropdownMotiveDropdownMotive extends Schema.CollectionType {
     singularName: 'dropdown-motive';
     pluralName: 'dropdown-motives';
     displayName: '[Dropdown] Motives';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::dropdown-motive.dropdown-motive',
       'oneToOne',
@@ -1046,102 +936,6 @@ export interface ApiDropdownMotiveDropdownMotive extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dropdown-motive.dropdown-motive',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDropdownReportOnViolenceDropdownReportOnViolence
-  extends Schema.CollectionType {
-  collectionName: 'dropdown_reports_on_violence';
-  info: {
-    singularName: 'dropdown-report-on-violence';
-    pluralName: 'dropdown-reports-on-violence';
-    displayName: '[Dropdown] Berichte \u00FCber Gewalt';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    description: Attribute.Text & Attribute.Private;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dropdown-report-on-violence.dropdown-report-on-violence',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dropdown-report-on-violence.dropdown-report-on-violence',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDropdownSurvivedByPublicDropdownSurvivedByPublic
-  extends Schema.CollectionType {
-  collectionName: 'dropdown_survived_by_publics';
-  info: {
-    singularName: 'dropdown-survived-by-public';
-    pluralName: 'dropdown-survived-by-publics';
-    displayName: '[Dropdown] Hinterbliebene (public)';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dropdown-survived-by-public.dropdown-survived-by-public',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dropdown-survived-by-public.dropdown-survived-by-public',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime
-  extends Schema.CollectionType {
-  collectionName: 'drug_influence_during_crimes';
-  info: {
-    singularName: 'drug-influence-during-crime';
-    pluralName: 'drug-influence-during-crimes';
-    displayName: '[Dropdown] Drogeneinfluss w\u00E4hrend der Tat';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::drug-influence-during-crime.drug-influence-during-crime',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::drug-influence-during-crime.drug-influence-during-crime',
       'oneToOne',
       'admin::user'
     > &
@@ -1159,14 +953,13 @@ export interface ApiEducationalBackgroundEducationalBackground
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::educational-background.educational-background',
       'oneToOne',
@@ -1191,14 +984,13 @@ export interface ApiFamilyStatusFamilyStatus extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::family-status.family-status',
       'oneToOne',
@@ -1223,13 +1015,12 @@ export interface ApiFederalStateFederalState extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::federal-state.federal-state',
       'oneToOne',
@@ -1254,14 +1045,13 @@ export interface ApiFeminicideTypeFeminicideType extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::feminicide-type.feminicide-type',
       'oneToOne',
@@ -1287,13 +1077,12 @@ export interface ApiGenderPerpetratorGenderPerpetrator
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::gender-perpetrator.gender-perpetrator',
       'oneToOne',
@@ -1319,14 +1108,13 @@ export interface ApiLawsuitStatusPerpetratorLawsuitStatusPerpetrator
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator',
       'oneToOne',
@@ -1351,14 +1139,13 @@ export interface ApiLegalStatusLegalStatus extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::legal-status.legal-status',
       'oneToOne',
@@ -1383,14 +1170,13 @@ export interface ApiLocationOfBodyLocationOfBody extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::location-of-body.location-of-body',
       'oneToOne',
@@ -1415,13 +1201,12 @@ export interface ApiMediaLabelMediaLabel extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::media-label.media-label',
       'oneToOne',
@@ -1446,13 +1231,12 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::notification.notification',
       'oneToOne',
@@ -1478,13 +1262,12 @@ export interface ApiPossibleSuspectPossibleSuspect
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::possible-suspect.possible-suspect',
       'oneToOne',
@@ -1493,38 +1276,6 @@ export interface ApiPossibleSuspectPossibleSuspect
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::possible-suspect.possible-suspect',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPreviousMentalIllnessPreviousMentalIllness
-  extends Schema.CollectionType {
-  collectionName: 'previous_mental_illnesses';
-  info: {
-    singularName: 'previous-mental-illness';
-    pluralName: 'previous-mental-illnesses';
-    displayName: '[Dropdown] Psychische Vorerkrankungen';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    label: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::previous-mental-illness.previous-mental-illness',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::previous-mental-illness.previous-mental-illness',
       'oneToOne',
       'admin::user'
     > &
@@ -1542,14 +1293,13 @@ export interface ApiRelationshipToVictimRelationshipToVictim
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::relationship-to-victim.relationship-to-victim',
       'oneToOne',
@@ -1558,55 +1308,6 @@ export interface ApiRelationshipToVictimRelationshipToVictim
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::relationship-to-victim.relationship-to-victim',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSourceSource extends Schema.CollectionType {
-  collectionName: 'sources';
-  info: {
-    singularName: 'source';
-    pluralName: 'sources';
-    displayName: 'Quelle';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    last_retrieved: Attribute.Date & Attribute.Required & Attribute.Private;
-    url_to_pdf: Attribute.String & Attribute.Required & Attribute.Private;
-    label: Attribute.String;
-    faelle: Attribute.Relation<
-      'api::source.source',
-      'manyToOne',
-      'api::case.case'
-    >;
-    url: Attribute.String & Attribute.Required & Attribute.Private;
-    source_type: Attribute.Enumeration<
-      [
-        'Medien',
-        'Rechtsf\u00E4lle',
-        'Polizeiberichte',
-        'Zivilgesellschaftliche Berichte',
-        'Einzelpersonen',
-        'Sonstiges (bitte angeben)'
-      ]
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::source.source',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::source.source',
       'oneToOne',
       'admin::user'
     > &
@@ -1621,15 +1322,15 @@ export interface ApiSuicideAfterCrimeSuicideAfterCrime
     singularName: 'suicide-after-crime';
     pluralName: 'suicide-after-crimes';
     displayName: '[Dropdown] Selbstmord nach Tat';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::suicide-after-crime.suicide-after-crime',
       'oneToOne',
@@ -1654,14 +1355,13 @@ export interface ApiViolentActViolentAct extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::violent-act.violent-act',
       'oneToOne',
@@ -1686,14 +1386,13 @@ export interface ApiWeaponWeapon extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::weapon.weapon',
       'oneToOne',
@@ -1729,15 +1428,10 @@ declare module '@strapi/types' {
       'api::case.case': ApiCaseCase;
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
-      'api::crime.crime': ApiCrimeCrime;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
       'api::dropdown-general-option.dropdown-general-option': ApiDropdownGeneralOptionDropdownGeneralOption;
-      'api::dropdown-hinterbliebene-privat.dropdown-hinterbliebene-privat': ApiDropdownHinterbliebenePrivatDropdownHinterbliebenePrivat;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
       'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;
-      'api::dropdown-report-on-violence.dropdown-report-on-violence': ApiDropdownReportOnViolenceDropdownReportOnViolence;
-      'api::dropdown-survived-by-public.dropdown-survived-by-public': ApiDropdownSurvivedByPublicDropdownSurvivedByPublic;
-      'api::drug-influence-during-crime.drug-influence-during-crime': ApiDrugInfluenceDuringCrimeDrugInfluenceDuringCrime;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
       'api::federal-state.federal-state': ApiFederalStateFederalState;
@@ -1749,9 +1443,7 @@ declare module '@strapi/types' {
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
       'api::notification.notification': ApiNotificationNotification;
       'api::possible-suspect.possible-suspect': ApiPossibleSuspectPossibleSuspect;
-      'api::previous-mental-illness.previous-mental-illness': ApiPreviousMentalIllnessPreviousMentalIllness;
       'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
-      'api::source.source': ApiSourceSource;
       'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
       'api::weapon.weapon': ApiWeaponWeapon;
