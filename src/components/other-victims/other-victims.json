@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_other_victims_other_victims",
+  "info": {
+    "displayName": "other_victims"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

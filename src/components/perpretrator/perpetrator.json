@@ -111,6 +111,12 @@
     "cititzenship": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "drugs_details": {
+      "type": "string"
+    },
+    "mental_illness_details": {
+      "type": "string"
     }
   }
 }

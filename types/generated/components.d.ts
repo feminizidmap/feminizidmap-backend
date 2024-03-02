@@ -76,6 +76,17 @@ export interface CrimeCrime extends Schema.Component {
       'api::violent-act.violent-act'
     >;
     description_of_crimescene: Attribute.Text;
+    other_victims: Attribute.Component<'other-victims.other-victims', true>;
+  };
+}
+
+export interface OtherVictimsOtherVictims extends Schema.Component {
+  collectionName: 'components_other_victims_other_victims';
+  info: {
+    displayName: 'other_victims';
+  };
+  attributes: {
+    label: Attribute.String;
   };
 }
 
@@ -174,6 +185,8 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     >;
     cititzenship: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+    drugs_details: Attribute.String;
+    mental_illness_details: Attribute.String;
   };
 }
 
@@ -279,6 +292,7 @@ declare module '@strapi/types' {
       'adresse.adresse': AdresseAdresse;
       'comments.comments': CommentsComments;
       'crime.crime': CrimeCrime;
+      'other-victims.other-victims': OtherVictimsOtherVictims;
       'perpretrator.perpetrator': PerpretratorPerpetrator;
       'source.source': SourceSource;
       'victim.victim': VictimVictim;

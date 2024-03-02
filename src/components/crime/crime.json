@@ -48,6 +48,11 @@
     },
     "description_of_crimescene": {
       "type": "text"
+    },
+    "other_victims": {
+      "type": "component",
+      "repeatable": true,
+      "component": "other-victims.other-victims"
     }
   }
 }
