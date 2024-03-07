@@ -1288,15 +1288,15 @@ export interface ApiSourceTypeSourceType extends Schema.CollectionType {
     singularName: 'source-type';
     pluralName: 'source-types';
     displayName: '[Dropdown] Quellen Typ';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::source-type.source-type',
       'oneToOne',
