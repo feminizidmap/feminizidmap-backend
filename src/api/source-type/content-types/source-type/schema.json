@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "source_types",
+  "info": {
+    "singularName": "source-type",
+    "pluralName": "source-types",
+    "displayName": "[Dropdown] Quellen Typ"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

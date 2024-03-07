@@ -1282,6 +1282,36 @@ export interface ApiRelationshipToVictimRelationshipToVictim
   };
 }
 
+export interface ApiSourceTypeSourceType extends Schema.CollectionType {
+  collectionName: 'source_types';
+  info: {
+    singularName: 'source-type';
+    pluralName: 'source-types';
+    displayName: '[Dropdown] Quellen Typ';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::source-type.source-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::source-type.source-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSuicideAfterCrimeSuicideAfterCrime
   extends Schema.CollectionType {
   collectionName: 'suicide_after_crimes';
@@ -1410,6 +1440,7 @@ declare module '@strapi/types' {
       'api::media-label.media-label': ApiMediaLabelMediaLabel;
       'api::notification.notification': ApiNotificationNotification;
       'api::relationship-to-victim.relationship-to-victim': ApiRelationshipToVictimRelationshipToVictim;
+      'api::source-type.source-type': ApiSourceTypeSourceType;
       'api::suicide-after-crime.suicide-after-crime': ApiSuicideAfterCrimeSuicideAfterCrime;
       'api::violent-act.violent-act': ApiViolentActViolentAct;
       'api::weapon.weapon': ApiWeaponWeapon;
