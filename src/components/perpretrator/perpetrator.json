@@ -18,7 +18,6 @@
     },
     "is_suspect": {
       "type": "boolean",
-      "default": false,
       "required": true,
       "private": true
     },
