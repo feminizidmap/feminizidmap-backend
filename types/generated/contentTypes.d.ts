@@ -730,7 +730,7 @@ export interface ApiCaseCase extends Schema.CollectionType {
   };
   attributes: {
     identifier: Attribute.String & Attribute.Required;
-    crime_date: Attribute.Date & Attribute.Required;
+    crime_date: Attribute.Date;
     notes: Attribute.Text & Attribute.Private;
     review: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     review2: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;

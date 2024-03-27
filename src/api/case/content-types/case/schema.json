@@ -18,7 +18,7 @@
     },
     "crime_date": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "notes": {
       "type": "text",
