@@ -24,9 +24,6 @@
     "profession_details": {
       "type": "string"
     },
-    "workplace": {
-      "type": "string"
-    },
     "educational_background": {
       "type": "relation",
       "relation": "oneToOne",
