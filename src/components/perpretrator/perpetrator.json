@@ -70,11 +70,6 @@
       "relation": "oneToOne",
       "target": "api::criminal-act.criminal-act"
     },
-    "relationship_victim": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::relationship-to-victim.relationship-to-victim"
-    },
     "influence_alcohol": {
       "type": "relation",
       "relation": "oneToOne",

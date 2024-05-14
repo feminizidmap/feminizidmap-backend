@@ -59,11 +59,6 @@ export interface CrimeCrime extends Schema.Component {
       'api::weapon.weapon'
     >;
     weapon_details: Attribute.String;
-    type_of_feminicide: Attribute.Relation<
-      'crime.crime',
-      'oneToOne',
-      'api::feminicide-type.feminicide-type'
-    >;
     motives: Attribute.Relation<
       'crime.crime',
       'oneToOne',
@@ -151,11 +146,6 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'perpretrator.perpetrator',
       'oneToOne',
       'api::criminal-act.criminal-act'
-    >;
-    relationship_victim: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::relationship-to-victim.relationship-to-victim'
     >;
     influence_alcohol: Attribute.Relation<
       'perpretrator.perpetrator',
@@ -286,6 +276,16 @@ export interface VictimVictim extends Schema.Component {
     address: Attribute.Component<'adresse.adresse'>;
     citizenship: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
+    relationship_perpetrator: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::relationship-to-victim.relationship-to-victim'
+    >;
+    type_of_feminicide: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::feminicide-type.feminicide-type'
+    >;
   };
 }
 

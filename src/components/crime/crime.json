@@ -28,11 +28,6 @@
     "weapon_details": {
       "type": "string"
     },
-    "type_of_feminicide": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::feminicide-type.feminicide-type"
-    },
     "motives": {
       "type": "relation",
       "relation": "oneToOne",

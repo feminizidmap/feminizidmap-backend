@@ -89,6 +89,16 @@
     "citizenship": {
       "type": "customField",
       "customField": "plugin::country-select.country"
+    },
+    "relationship_perpetrator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::relationship-to-victim.relationship-to-victim"
+    },
+    "type_of_feminicide": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::feminicide-type.feminicide-type"
     }
   }
 }
