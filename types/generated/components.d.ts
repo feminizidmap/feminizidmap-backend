@@ -180,6 +180,19 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       Attribute.CustomField<'plugin::country-select.country'>;
     drugs_details: Attribute.String;
     mental_illness_details: Attribute.String;
+    sentence_details: Attribute.Text & Attribute.Private;
+    criminal_record: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    criminal_record_details: Attribute.Text & Attribute.Private;
+    restraining_order: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    restraining_order_details: Attribute.Text & Attribute.Private;
   };
 }
 

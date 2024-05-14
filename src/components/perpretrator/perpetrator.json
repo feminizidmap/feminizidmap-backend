@@ -109,6 +109,28 @@
     },
     "mental_illness_details": {
       "type": "string"
+    },
+    "sentence_details": {
+      "type": "text",
+      "private": true
+    },
+    "criminal_record": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "criminal_record_details": {
+      "type": "text",
+      "private": true
+    },
+    "restraining_order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "restraining_order_details": {
+      "type": "text",
+      "private": true
     }
   }
 }
