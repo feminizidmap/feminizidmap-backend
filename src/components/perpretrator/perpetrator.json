@@ -18,8 +18,9 @@
     },
     "is_suspect": {
       "type": "boolean",
-      "required": true,
-      "private": true
+      "required": false,
+      "private": true,
+      "default": false
     },
     "profession_details": {
       "type": "string"

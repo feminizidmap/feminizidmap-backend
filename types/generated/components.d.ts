@@ -101,7 +101,9 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     lastname: Attribute.String;
     firstname: Attribute.String;
     age: Attribute.Integer;
-    is_suspect: Attribute.Boolean & Attribute.Required & Attribute.Private;
+    is_suspect: Attribute.Boolean &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
     profession_details: Attribute.String;
     educational_background: Attribute.Relation<
       'perpretrator.perpetrator',
