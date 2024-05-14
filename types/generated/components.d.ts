@@ -84,9 +84,11 @@ export interface OtherVictimsOtherVictims extends Schema.Component {
   collectionName: 'components_other_victims_other_victims';
   info: {
     displayName: 'other_victims';
+    description: '';
   };
   attributes: {
     label: Attribute.String;
+    detail: Attribute.String;
   };
 }
 
