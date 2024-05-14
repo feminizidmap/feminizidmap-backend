@@ -95,11 +95,6 @@
       "repeatable": false,
       "component": "adresse.adresse"
     },
-    "suspect": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::relationship-to-victim.relationship-to-victim"
-    },
     "gender": {
       "type": "relation",
       "relation": "oneToOne",

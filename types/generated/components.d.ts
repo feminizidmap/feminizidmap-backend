@@ -171,11 +171,6 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     address: Attribute.Component<'adresse.adresse'>;
-    suspect: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::relationship-to-victim.relationship-to-victim'
-    >;
     gender: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
