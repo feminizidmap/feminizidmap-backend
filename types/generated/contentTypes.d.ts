@@ -747,6 +747,7 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'api::media-label.media-label'
     >;
     comments: Attribute.Component<'comments.comments', true>;
+    registration_date: Attribute.Date & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &
