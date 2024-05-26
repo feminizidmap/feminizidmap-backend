@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_other_victims",
+  "info": {
+    "singularName": "dropdown-other-victim",
+    "pluralName": "dropdown-other-victims",
+    "displayName": "[Dropdown] Weitere Opfer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

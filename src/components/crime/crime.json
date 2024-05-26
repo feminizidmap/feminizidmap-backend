@@ -44,15 +44,15 @@
     "description_of_crimescene": {
       "type": "text"
     },
-    "other_victims": {
-      "type": "component",
-      "repeatable": true,
-      "component": "other-victims.other-victims"
-    },
     "detailed_location_of_body": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::dropdown-details-of-location.dropdown-details-of-location"
+    },
+    "other_victims": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dropdown-other-victim.dropdown-other-victim"
     }
   }
 }

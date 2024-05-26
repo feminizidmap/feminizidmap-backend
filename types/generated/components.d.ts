@@ -71,24 +71,16 @@ export interface CrimeCrime extends Schema.Component {
       'api::violent-act.violent-act'
     >;
     description_of_crimescene: Attribute.Text;
-    other_victims: Attribute.Component<'other-victims.other-victims', true>;
     detailed_location_of_body: Attribute.Relation<
       'crime.crime',
       'oneToOne',
       'api::dropdown-details-of-location.dropdown-details-of-location'
     >;
-  };
-}
-
-export interface OtherVictimsOtherVictims extends Schema.Component {
-  collectionName: 'components_other_victims_other_victims';
-  info: {
-    displayName: 'other_victims';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    detail: Attribute.String;
+    other_victims: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::dropdown-other-victim.dropdown-other-victim'
+    >;
   };
 }
 
@@ -309,7 +301,6 @@ declare module '@strapi/types' {
       'adresse.adresse': AdresseAdresse;
       'comments.comments': CommentsComments;
       'crime.crime': CrimeCrime;
-      'other-victims.other-victims': OtherVictimsOtherVictims;
       'perpretrator.perpetrator': PerpretratorPerpetrator;
       'source.source': SourceSource;
       'victim.victim': VictimVictim;

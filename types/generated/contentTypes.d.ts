@@ -974,6 +974,38 @@ export interface ApiDropdownMotiveDropdownMotive extends Schema.CollectionType {
   };
 }
 
+export interface ApiDropdownOtherVictimDropdownOtherVictim
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_other_victims';
+  info: {
+    singularName: 'dropdown-other-victim';
+    pluralName: 'dropdown-other-victims';
+    displayName: '[Dropdown] Weitere Opfer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.String & Attribute.Private;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-other-victim.dropdown-other-victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-other-victim.dropdown-other-victim',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDropdownSurvivingDependentDropdownSurvivingDependent
   extends Schema.CollectionType {
   collectionName: 'dropdown_surviving_dependents';
@@ -1495,6 +1527,7 @@ declare module '@strapi/types' {
       'api::dropdown-general-option.dropdown-general-option': ApiDropdownGeneralOptionDropdownGeneralOption;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
       'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;
+      'api::dropdown-other-victim.dropdown-other-victim': ApiDropdownOtherVictimDropdownOtherVictim;
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent': ApiDropdownSurvivingDependentDropdownSurvivingDependent;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
