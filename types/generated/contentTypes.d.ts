@@ -856,16 +856,16 @@ export interface ApiDropdownDetailsOfLocationDropdownDetailsOfLocation
     singularName: 'dropdown-details-of-location';
     pluralName: 'dropdown-details-of-locations';
     displayName: '[Dropdown] Details zum Fundort ';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     label: Attribute.String;
     description: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::dropdown-details-of-location.dropdown-details-of-location',
       'oneToOne',

@@ -4,10 +4,11 @@
   "info": {
     "singularName": "dropdown-details-of-location",
     "pluralName": "dropdown-details-of-locations",
-    "displayName": "[Dropdown] Details zum Fundort "
+    "displayName": "[Dropdown] Details zum Fundort ",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
