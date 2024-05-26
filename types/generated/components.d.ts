@@ -122,11 +122,6 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::citizenship-type.citizenship-type'
     >;
-    foreign_citizenship: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::citizenship.citizenship'
-    >;
     legal_status: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
@@ -185,6 +180,13 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     restraining_order_details: Attribute.Text & Attribute.Private;
+    migration_background: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    > &
+      Attribute.Private;
+    citizenship_details: Attribute.Text & Attribute.Private;
   };
 }
 
@@ -232,11 +234,6 @@ export interface VictimVictim extends Schema.Component {
       'victim.victim',
       'oneToOne',
       'api::citizenship-type.citizenship-type'
-    >;
-    foreign_citizenship: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::citizenship.citizenship'
     >;
     legal_status: Attribute.Relation<
       'victim.victim',
@@ -286,6 +283,13 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
+    migration_background: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    > &
+      Attribute.Private;
+    citizenship_details: Attribute.Text & Attribute.Private;
   };
 }
 

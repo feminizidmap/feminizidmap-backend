@@ -31,11 +31,6 @@
       "relation": "oneToOne",
       "target": "api::citizenship-type.citizenship-type"
     },
-    "foreign_citizenship": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::citizenship.citizenship"
-    },
     "legal_status": {
       "type": "relation",
       "relation": "oneToOne",
@@ -99,6 +94,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::feminicide-type.feminicide-type"
+    },
+    "migration_background": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option",
+      "private": true
+    },
+    "citizenship_details": {
+      "type": "text",
+      "private": true
     }
   }
 }
