@@ -849,6 +849,38 @@ export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
   };
 }
 
+export interface ApiDropdownDetailsOfLocationDropdownDetailsOfLocation
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_details_of_locations';
+  info: {
+    singularName: 'dropdown-details-of-location';
+    pluralName: 'dropdown-details-of-locations';
+    displayName: '[Dropdown] Details zum Fundort ';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-details-of-location.dropdown-details-of-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-details-of-location.dropdown-details-of-location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDropdownGeneralOptionDropdownGeneralOption
   extends Schema.CollectionType {
   collectionName: 'dropdown_general_options';
@@ -935,6 +967,38 @@ export interface ApiDropdownMotiveDropdownMotive extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dropdown-motive.dropdown-motive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDropdownSurvivingDependentDropdownSurvivingDependent
+  extends Schema.CollectionType {
+  collectionName: 'dropdown_surviving_dependents';
+  info: {
+    singularName: 'dropdown-surviving-dependent';
+    pluralName: 'dropdown-surviving-dependents';
+    displayName: '[Dropdown] Hinterbliebene';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    label: Attribute.String;
+    description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent',
       'oneToOne',
       'admin::user'
     > &
@@ -1427,9 +1491,11 @@ declare module '@strapi/types' {
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
+      'api::dropdown-details-of-location.dropdown-details-of-location': ApiDropdownDetailsOfLocationDropdownDetailsOfLocation;
       'api::dropdown-general-option.dropdown-general-option': ApiDropdownGeneralOptionDropdownGeneralOption;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
       'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent': ApiDropdownSurvivingDependentDropdownSurvivingDependent;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
       'api::federal-state.federal-state': ApiFederalStateFederalState;

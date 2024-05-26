@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_surviving_dependents",
+  "info": {
+    "singularName": "dropdown-surviving-dependent",
+    "pluralName": "dropdown-surviving-dependents",
+    "displayName": "[Dropdown] Hinterbliebene",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

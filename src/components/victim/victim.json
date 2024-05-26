@@ -104,6 +104,11 @@
     "citizenship_details": {
       "type": "text",
       "private": true
+    },
+    "surviving_dependents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dropdown-surviving-dependent.dropdown-surviving-dependent"
     }
   }
 }

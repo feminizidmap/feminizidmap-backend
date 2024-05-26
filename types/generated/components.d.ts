@@ -72,6 +72,11 @@ export interface CrimeCrime extends Schema.Component {
     >;
     description_of_crimescene: Attribute.Text;
     other_victims: Attribute.Component<'other-victims.other-victims', true>;
+    detailed_location_of_body: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::dropdown-details-of-location.dropdown-details-of-location'
+    >;
   };
 }
 
@@ -290,6 +295,11 @@ export interface VictimVictim extends Schema.Component {
     > &
       Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
+    surviving_dependents: Attribute.Relation<
+      'victim.victim',
+      'oneToMany',
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
+    >;
   };
 }
 
