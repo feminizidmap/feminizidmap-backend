@@ -114,5 +114,5 @@ build
 .strapi-updater.json
 
 
-
 strapi.db
+database/
