@@ -81,6 +81,11 @@
     "registration_date": {
       "type": "date",
       "private": true
+    },
+    "uuid": {
+      "type": "string",
+      "private": true,
+      "unique": true
     }
   }
 }
