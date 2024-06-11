@@ -81,6 +81,7 @@ export interface CrimeCrime extends Schema.Component {
       'oneToMany',
       'api::dropdown-other-victim.dropdown-other-victim'
     >;
+    acts_of_violence_details: Attribute.Text;
   };
 }
 

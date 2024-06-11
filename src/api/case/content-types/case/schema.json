@@ -86,6 +86,10 @@
       "type": "string",
       "private": true,
       "unique": true
+    },
+    "media_labels_details": {
+      "type": "text",
+      "private": true
     }
   }
 }

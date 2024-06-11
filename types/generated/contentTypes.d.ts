@@ -860,6 +860,7 @@ export interface ApiCaseCase extends Schema.CollectionType {
     comments: Attribute.Component<'comments.comments', true>;
     registration_date: Attribute.Date & Attribute.Private;
     uuid: Attribute.String & Attribute.Private & Attribute.Unique;
+    media_labels_details: Attribute.Text & Attribute.Private;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::case.case', 'oneToOne', 'admin::user'> &

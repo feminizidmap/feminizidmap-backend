@@ -53,6 +53,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::dropdown-other-victim.dropdown-other-victim"
+    },
+    "acts_of_violence_details": {
+      "type": "text"
     }
   }
 }
