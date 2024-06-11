@@ -196,13 +196,15 @@ export interface SourceSource extends Schema.Component {
   };
   attributes: {
     url: Attribute.String;
-    url_to_pdf: Attribute.String;
     source_types: Attribute.Relation<
       'source.source',
       'oneToOne',
       'api::source-type.source-type'
     >;
     source_type_details: Attribute.String;
+    pdf_created: Attribute.Boolean &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
   };
 }
 

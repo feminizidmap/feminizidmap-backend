@@ -10,9 +10,6 @@
     "url": {
       "type": "string"
     },
-    "url_to_pdf": {
-      "type": "string"
-    },
     "source_types": {
       "type": "relation",
       "relation": "oneToOne",
@@ -20,6 +17,11 @@
     },
     "source_type_details": {
       "type": "string"
+    },
+    "pdf_created": {
+      "type": "boolean",
+      "default": false,
+      "private": true
     }
   }
 }
