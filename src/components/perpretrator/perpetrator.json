@@ -131,6 +131,9 @@
     "citizenship_details": {
       "type": "text",
       "private": true
+    },
+    "family_status_other": {
+      "type": "string"
     }
   }
 }

@@ -185,6 +185,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     > &
       Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
+    family_status_other: Attribute.String;
   };
 }
 
@@ -295,6 +296,7 @@ export interface VictimVictim extends Schema.Component {
       'oneToMany',
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
     >;
+    family_status_other: Attribute.String;
   };
 }
 

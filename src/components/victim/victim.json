@@ -109,6 +109,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::dropdown-surviving-dependent.dropdown-surviving-dependent"
+    },
+    "family_status_other": {
+      "type": "string"
     }
   }
 }
