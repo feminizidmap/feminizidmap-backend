@@ -90,6 +90,11 @@
     "media_labels_details": {
       "type": "text",
       "private": true
+    },
+    "dropdown_benachrichtigung_ueber_die_tat": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::notification.notification"
     }
   }
 }

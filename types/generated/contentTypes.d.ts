@@ -861,6 +861,11 @@ export interface ApiCaseCase extends Schema.CollectionType {
     registration_date: Attribute.Date & Attribute.Private;
     uuid: Attribute.String & Attribute.Private & Attribute.Unique;
     media_labels_details: Attribute.Text & Attribute.Private;
+    dropdown_benachrichtigung_ueber_die_tat: Attribute.Relation<
+      'api::case.case',
+      'oneToOne',
+      'api::notification.notification'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
