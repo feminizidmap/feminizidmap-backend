@@ -971,6 +971,45 @@ export interface ApiCriminalActCriminalAct extends Schema.CollectionType {
   };
 }
 
+export interface ApiDropdownCityDropdownCity extends Schema.CollectionType {
+  collectionName: 'dropdown_cities';
+  info: {
+    singularName: 'dropdown-city';
+    pluralName: 'dropdown-cities';
+    displayName: '[Dropdown] City';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.Text;
+    postal_code: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+        maxLength: 5;
+      }>;
+    county: Attribute.String;
+    federal_state: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dropdown-city.dropdown-city',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dropdown-city.dropdown-city',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDropdownDetailsOfLocationDropdownDetailsOfLocation
   extends Schema.CollectionType {
   collectionName: 'dropdown_details_of_locations';
@@ -1647,6 +1686,7 @@ declare module '@strapi/types' {
       'api::citizenship.citizenship': ApiCitizenshipCitizenship;
       'api::citizenship-type.citizenship-type': ApiCitizenshipTypeCitizenshipType;
       'api::criminal-act.criminal-act': ApiCriminalActCriminalAct;
+      'api::dropdown-city.dropdown-city': ApiDropdownCityDropdownCity;
       'api::dropdown-details-of-location.dropdown-details-of-location': ApiDropdownDetailsOfLocationDropdownDetailsOfLocation;
       'api::dropdown-general-option.dropdown-general-option': ApiDropdownGeneralOptionDropdownGeneralOption;
       'api::dropdown-job.dropdown-job': ApiDropdownJobDropdownJob;
