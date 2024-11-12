@@ -20,6 +20,12 @@ export interface AdresseAdresse extends Schema.Component {
       Attribute.CustomField<'plugin::country-select.country'>;
     coordinates: Attribute.JSON &
       Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    postal_code: Attribute.String;
+    dropdown_city: Attribute.Relation<
+      'adresse.adresse',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
   };
 }
 
