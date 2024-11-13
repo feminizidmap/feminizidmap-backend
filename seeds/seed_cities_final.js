@@ -38,9 +38,11 @@ const bootstrap = async () => {
   for (let i = 0; i < records.length; i++) {
     const record = records[i];
     const { ort, plz, landkreis, bundesland } = record;
+    const displayName = `${ort} [${plz}, ${landkreis ? `${landkreis}, ` : ''}${bundesland}]`;
 
     await createItem(strapiInstance, 'dropdown-city', {
-      name: ort,
+      city_name: ort,
+      city_name_display: displayName,
       postal_code: plz,
       county: landkreis,
       federal_state: bundesland

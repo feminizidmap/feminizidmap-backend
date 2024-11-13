@@ -983,7 +983,6 @@ export interface ApiDropdownCityDropdownCity extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.Text;
     postal_code: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -992,6 +991,8 @@ export interface ApiDropdownCityDropdownCity extends Schema.CollectionType {
       }>;
     county: Attribute.String;
     federal_state: Attribute.String;
+    city_name: Attribute.String;
+    city_name_display: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

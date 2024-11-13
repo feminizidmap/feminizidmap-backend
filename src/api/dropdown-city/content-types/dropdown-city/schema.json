@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "text"
-    },
     "postal_code": {
       "type": "string",
       "regex": "[0-9]{5,5}",
@@ -26,6 +23,12 @@
       "type": "string"
     },
     "federal_state": {
+      "type": "string"
+    },
+    "city_name": {
+      "type": "string"
+    },
+    "city_name_display": {
       "type": "string"
     }
   }
