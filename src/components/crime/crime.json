@@ -56,6 +56,14 @@
     },
     "acts_of_violence_details": {
       "type": "text"
+    },
+    "crime_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-city.dropdown-city"
+    },
+    "crime_address_details": {
+      "type": "string"
     }
   }
 }

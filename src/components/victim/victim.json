@@ -112,6 +112,14 @@
     },
     "family_status_other": {
       "type": "string"
+    },
+    "victim_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-city.dropdown-city"
+    },
+    "victim_address_details": {
+      "type": "string"
     }
   }
 }

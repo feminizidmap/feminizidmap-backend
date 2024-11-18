@@ -88,6 +88,12 @@ export interface CrimeCrime extends Schema.Component {
       'api::dropdown-other-victim.dropdown-other-victim'
     >;
     acts_of_violence_details: Attribute.Text;
+    crime_address: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    crime_address_details: Attribute.String;
   };
 }
 
@@ -192,6 +198,12 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     family_status_other: Attribute.String;
+    perpetrator_address: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    perpetrator_address_details: Attribute.String;
   };
 }
 
@@ -303,6 +315,12 @@ export interface VictimVictim extends Schema.Component {
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
     >;
     family_status_other: Attribute.String;
+    victim_address: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    victim_address_details: Attribute.String;
   };
 }
 
