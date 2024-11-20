@@ -188,6 +188,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     family_status_other: Attribute.String;
     gender_details: Attribute.String;
     suicide_details: Attribute.String;
+    judical_status_details: Attribute.String;
   };
 }
 
@@ -299,6 +300,7 @@ export interface VictimVictim extends Schema.Component {
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
     >;
     family_status_other: Attribute.String;
+    type_of_feminicide_details: Attribute.String;
   };
 }
 

@@ -140,6 +140,9 @@
     },
     "suicide_details": {
       "type": "string"
+    },
+    "judical_status_details": {
+      "type": "string"
     }
   }
 }
