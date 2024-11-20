@@ -91,10 +91,13 @@
       "type": "text",
       "private": true
     },
-    "dropdown_benachrichtigung_ueber_die_tat": {
+    "report_of_crime": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::notification.notification"
+    },
+    "report_of_crime_details": {
+      "type": "string"
     }
   }
 }

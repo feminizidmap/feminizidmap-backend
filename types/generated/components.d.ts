@@ -186,6 +186,8 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     family_status_other: Attribute.String;
+    gender_details: Attribute.String;
+    suicide_details: Attribute.String;
   };
 }
 

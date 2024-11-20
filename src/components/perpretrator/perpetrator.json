@@ -134,6 +134,12 @@
     },
     "family_status_other": {
       "type": "string"
+    },
+    "gender_details": {
+      "type": "string"
+    },
+    "suicide_details": {
+      "type": "string"
     }
   }
 }
