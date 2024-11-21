@@ -101,8 +101,7 @@
       "type": "string"
     },
     "sentence_details": {
-      "type": "text",
-      "private": true
+      "type": "string"
     },
     "criminal_record": {
       "type": "relation",
@@ -133,6 +132,15 @@
       "private": true
     },
     "family_status_other": {
+      "type": "string"
+    },
+    "gender_details": {
+      "type": "string"
+    },
+    "suicide_details": {
+      "type": "string"
+    },
+    "judical_status_details": {
       "type": "string"
     }
   }

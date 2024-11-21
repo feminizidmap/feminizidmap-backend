@@ -112,6 +112,9 @@
     },
     "family_status_other": {
       "type": "string"
+    },
+    "type_of_feminicide_details": {
+      "type": "string"
     }
   }
 }

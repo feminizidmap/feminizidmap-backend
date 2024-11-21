@@ -165,7 +165,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       Attribute.CustomField<'plugin::country-select.country'>;
     drugs_details: Attribute.String;
     mental_illness_details: Attribute.String;
-    sentence_details: Attribute.Text & Attribute.Private;
+    sentence_details: Attribute.String;
     criminal_record: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
@@ -186,6 +186,9 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     family_status_other: Attribute.String;
+    gender_details: Attribute.String;
+    suicide_details: Attribute.String;
+    judical_status_details: Attribute.String;
   };
 }
 
@@ -297,6 +300,7 @@ export interface VictimVictim extends Schema.Component {
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
     >;
     family_status_other: Attribute.String;
+    type_of_feminicide_details: Attribute.String;
   };
 }
 
