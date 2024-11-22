@@ -68,11 +68,6 @@
       "relation": "oneToOne",
       "target": "api::dropdown-general-option.dropdown-general-option"
     },
-    "survived_by": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dropdown-general-option.dropdown-general-option"
-    },
     "survived_by_details": {
       "type": "string"
     },
@@ -95,12 +90,6 @@
       "relation": "oneToOne",
       "target": "api::feminicide-type.feminicide-type"
     },
-    "migration_background": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dropdown-general-option.dropdown-general-option",
-      "private": true
-    },
     "citizenship_details": {
       "type": "text",
       "private": true
@@ -115,6 +104,11 @@
     },
     "type_of_feminicide_details": {
       "type": "string"
+    },
+    "survived_by": {
+      "type": "component",
+      "repeatable": true,
+      "component": "survived-by.survived-by"
     }
   }
 }

@@ -867,6 +867,8 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'api::notification.notification'
     >;
     report_of_crime_details: Attribute.String;
+    authorities_involved: Attribute.Component<'comments.comments', true>;
+    media_labels_used: Attribute.Component<'comments.comments', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
