@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_survived_by_survived_bies",
+  "info": {
+    "displayName": "survived_by",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "dropdown_hinterbliebene": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-surviving-dependent.dropdown-surviving-dependent"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "relation_details": {
+      "type": "string"
+    }
+  }
+}
