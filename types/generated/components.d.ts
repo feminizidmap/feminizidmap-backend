@@ -28,9 +28,10 @@ export interface CommentsComments extends Schema.Component {
   info: {
     displayName: 'comments';
     icon: 'feather';
+    description: '';
   };
   attributes: {
-    comment: Attribute.Text & Attribute.Private;
+    comment: Attribute.String & Attribute.Private;
   };
 }
 
@@ -55,13 +56,13 @@ export interface CrimeCrime extends Schema.Component {
     >;
     weapons: Attribute.Relation<
       'crime.crime',
-      'oneToOne',
+      'oneToMany',
       'api::weapon.weapon'
     >;
     weapon_details: Attribute.String;
     motives: Attribute.Relation<
       'crime.crime',
-      'oneToOne',
+      'oneToMany',
       'api::dropdown-motive.dropdown-motive'
     >;
     motive_details: Attribute.String;
@@ -178,12 +179,6 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     restraining_order_details: Attribute.Text & Attribute.Private;
-    migration_background: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    > &
-      Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     family_status_other: Attribute.String;
     gender_details: Attribute.String;
@@ -287,12 +282,6 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
-    migration_background: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    > &
-      Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     surviving_dependents: Attribute.Relation<
       'victim.victim',

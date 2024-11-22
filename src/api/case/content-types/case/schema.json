@@ -98,6 +98,16 @@
     },
     "report_of_crime_details": {
       "type": "string"
+    },
+    "authorities_involved": {
+      "type": "component",
+      "repeatable": true,
+      "component": "comments.comments"
+    },
+    "media_labels_used": {
+      "type": "component",
+      "repeatable": true,
+      "component": "comments.comments"
     }
   }
 }
