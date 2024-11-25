@@ -20,7 +20,7 @@ const bootstrap = async () => {
   console.log('=> Deleted old city entries\n');
 
   // Read and parse the CSV file
-  const filePath = path.join(__dirname, 'zuordnung_plz_ort.csv');
+  const filePath = path.join(__dirname, 'exported_cities.csv');
   const fileContent = fs.readFileSync(filePath, 'utf8');
 
   const records = parse(fileContent, {
@@ -37,7 +37,7 @@ const bootstrap = async () => {
   // Process each record
   for (let i = 0; i < records.length; i++) {
     const record = records[i];
-    const { ort, plz, landkreis, bundesland } = record;
+    const { ort, plz, landkreis, bundesland, lat, lon } = record;
     const displayName = `${ort} [${plz}, ${landkreis ? `${landkreis}, ` : ''}${bundesland}]`;
 
     await createItem(strapiInstance, 'dropdown-city', {
@@ -45,7 +45,9 @@ const bootstrap = async () => {
       city_name_display: displayName,
       postal_code: plz,
       county: landkreis,
-      federal_state: bundesland
+      federal_state: bundesland,
+      latitude: lat,
+      longitude: lon
     });
 
     // Update progress bar
