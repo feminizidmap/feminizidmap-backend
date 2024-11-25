@@ -993,6 +993,8 @@ export interface ApiDropdownCityDropdownCity extends Schema.CollectionType {
     federal_state: Attribute.String;
     city_name: Attribute.String;
     city_name_display: Attribute.String;
+    latitude: Attribute.String;
+    longitude: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

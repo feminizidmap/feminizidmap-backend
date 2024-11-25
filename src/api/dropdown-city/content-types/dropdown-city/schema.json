@@ -30,6 +30,12 @@
     },
     "city_name_display": {
       "type": "string"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
     }
   }
 }
