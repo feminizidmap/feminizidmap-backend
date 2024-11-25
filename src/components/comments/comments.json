@@ -2,12 +2,13 @@
   "collectionName": "components_comments_comments",
   "info": {
     "displayName": "comments",
-    "icon": "feather"
+    "icon": "feather",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "comment": {
-      "type": "text",
+      "type": "string",
       "private": true
     }
   }

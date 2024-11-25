@@ -22,7 +22,7 @@
     },
     "weapons": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::weapon.weapon"
     },
     "weapon_details": {
@@ -30,7 +30,7 @@
     },
     "motives": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::dropdown-motive.dropdown-motive"
     },
     "motive_details": {

@@ -28,9 +28,10 @@ export interface CommentsComments extends Schema.Component {
   info: {
     displayName: 'comments';
     icon: 'feather';
+    description: '';
   };
   attributes: {
-    comment: Attribute.Text & Attribute.Private;
+    comment: Attribute.String & Attribute.Private;
   };
 }
 
@@ -55,13 +56,13 @@ export interface CrimeCrime extends Schema.Component {
     >;
     weapons: Attribute.Relation<
       'crime.crime',
-      'oneToOne',
+      'oneToMany',
       'api::weapon.weapon'
     >;
     weapon_details: Attribute.String;
     motives: Attribute.Relation<
       'crime.crime',
-      'oneToOne',
+      'oneToMany',
       'api::dropdown-motive.dropdown-motive'
     >;
     motive_details: Attribute.String;
@@ -178,12 +179,6 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     restraining_order_details: Attribute.Text & Attribute.Private;
-    migration_background: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    > &
-      Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     family_status_other: Attribute.String;
     gender_details: Attribute.String;
@@ -210,6 +205,23 @@ export interface SourceSource extends Schema.Component {
     pdf_created: Attribute.Boolean &
       Attribute.Private &
       Attribute.DefaultTo<false>;
+  };
+}
+
+export interface SurvivedBySurvivedBy extends Schema.Component {
+  collectionName: 'components_survived_by_survived_bies';
+  info: {
+    displayName: 'survived_by';
+    description: '';
+  };
+  attributes: {
+    dropdown_hinterbliebene: Attribute.Relation<
+      'survived-by.survived-by',
+      'oneToOne',
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
+    >;
+    age: Attribute.Integer;
+    relation_details: Attribute.String;
   };
 }
 
@@ -268,11 +280,6 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
-    survived_by: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    >;
     survived_by_details: Attribute.String;
     address: Attribute.Component<'adresse.adresse'>;
     citizenship: Attribute.String &
@@ -287,12 +294,6 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
-    migration_background: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    > &
-      Attribute.Private;
     citizenship_details: Attribute.Text & Attribute.Private;
     surviving_dependents: Attribute.Relation<
       'victim.victim',
@@ -301,6 +302,7 @@ export interface VictimVictim extends Schema.Component {
     >;
     family_status_other: Attribute.String;
     type_of_feminicide_details: Attribute.String;
+    survived_by: Attribute.Component<'survived-by.survived-by', true>;
   };
 }
 
@@ -312,6 +314,7 @@ declare module '@strapi/types' {
       'crime.crime': CrimeCrime;
       'perpretrator.perpetrator': PerpretratorPerpetrator;
       'source.source': SourceSource;
+      'survived-by.survived-by': SurvivedBySurvivedBy;
       'victim.victim': VictimVictim;
     }
   }
