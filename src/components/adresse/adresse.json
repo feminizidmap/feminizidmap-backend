@@ -26,9 +26,15 @@
       "type": "customField",
       "customField": "plugin::country-select.country"
     },
-    "coordinates": {
-      "type": "customField",
-      "customField": "plugin::google-maps.location-picker"
+    "postal_code": {
+      "type": "string",
+      "required": false,
+      "regex": "[0-9]{5,5}"
+    },
+    "dropdown_city": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-city.dropdown-city"
     }
   }
 }

@@ -18,8 +18,12 @@ export interface AdresseAdresse extends Schema.Component {
     >;
     country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
-    coordinates: Attribute.JSON &
-      Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    postal_code: Attribute.String;
+    dropdown_city: Attribute.Relation<
+      'adresse.adresse',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
   };
 }
 
@@ -83,6 +87,12 @@ export interface CrimeCrime extends Schema.Component {
       'api::dropdown-other-victim.dropdown-other-victim'
     >;
     acts_of_violence_details: Attribute.Text;
+    crime_address: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    crime_address_details: Attribute.String;
   };
 }
 
@@ -184,6 +194,12 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     gender_details: Attribute.String;
     suicide_details: Attribute.String;
     judical_status_details: Attribute.String;
+    perpetrator_address: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    perpetrator_address_details: Attribute.String;
   };
 }
 
@@ -303,6 +319,12 @@ export interface VictimVictim extends Schema.Component {
     family_status_other: Attribute.String;
     type_of_feminicide_details: Attribute.String;
     survived_by: Attribute.Component<'survived-by.survived-by', true>;
+    victim_address: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    victim_address_details: Attribute.String;
   };
 }
 

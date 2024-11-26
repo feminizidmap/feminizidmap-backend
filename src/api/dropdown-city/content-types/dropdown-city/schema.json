@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_cities",
+  "info": {
+    "singularName": "dropdown-city",
+    "pluralName": "dropdown-cities",
+    "displayName": "[Dropdown] City",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "postal_code": {
+      "type": "string",
+      "regex": "[0-9]{5,5}",
+      "required": true,
+      "minLength": 5,
+      "maxLength": 5
+    },
+    "county": {
+      "type": "string"
+    },
+    "federal_state": {
+      "type": "string"
+    },
+    "city_name": {
+      "type": "string"
+    },
+    "city_name_display": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    }
+  }
+}

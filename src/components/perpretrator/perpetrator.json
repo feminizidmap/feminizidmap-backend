@@ -136,6 +136,14 @@
     },
     "judical_status_details": {
       "type": "string"
+    },
+    "perpetrator_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-city.dropdown-city"
+    },
+    "perpetrator_address_details": {
+      "type": "string"
     }
   }
 }

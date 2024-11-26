@@ -116,3 +116,6 @@ build
 
 strapi.db
 database/
+
+# Allow csvs in the seeds folder
+!seeds/*.csv
