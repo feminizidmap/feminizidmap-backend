@@ -64,6 +64,21 @@
     },
     "crime_address_details": {
       "type": "string"
+    },
+    "location_level_1": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-level-1.location-level-1"
+    },
+    "location_level_2": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-level-2.location-level-2"
+    },
+    "location_level_3": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location-level-3.location-level-3"
     }
   }
 }

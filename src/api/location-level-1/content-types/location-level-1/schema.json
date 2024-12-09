@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "location_level_1s",
+  "info": {
+    "singularName": "location-level-1",
+    "pluralName": "location-level-1s",
+    "displayName": "[Dropdown] location_level_1"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}
