@@ -76,7 +76,7 @@
       "repeatable": false,
       "component": "adresse.adresse"
     },
-    "citizenship": {
+    "citizenship_country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
     },
