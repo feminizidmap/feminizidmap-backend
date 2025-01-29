@@ -90,7 +90,7 @@
       "relation": "oneToOne",
       "target": "api::gender-perpetrator.gender-perpetrator"
     },
-    "cititzenship_country": {
+    "citizenship_country": {
       "type": "customField",
       "customField": "plugin::country-select.country"
     },

@@ -121,7 +121,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
   attributes: {
     address: Attribute.Component<'adresse.adresse'>;
     age: Attribute.Integer;
-    cititzenship_country: Attribute.String &
+    citizenship_country: Attribute.String &
       Attribute.CustomField<'plugin::country-select.country'>;
     citizenship_details: Attribute.Text & Attribute.Private;
     citizenship_type: Attribute.Relation<
