@@ -19,7 +19,6 @@
     "is_suspect": {
       "type": "boolean",
       "required": false,
-      "private": true,
       "default": false
     },
     "profession_details": {
@@ -122,8 +121,7 @@
       "private": true
     },
     "citizenship_details": {
-      "type": "text",
-      "private": true
+      "type": "text"
     },
     "family_status_other": {
       "type": "string"

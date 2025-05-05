@@ -8,7 +8,7 @@ export interface AdresseAdresse extends Schema.Component {
     description: '';
   };
   attributes: {
-    street: Attribute.String & Attribute.Private;
+    street: Attribute.String;
     city: Attribute.String;
     county: Attribute.String;
     dropdown_bundesland: Attribute.Relation<
@@ -122,9 +122,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
     lastname: Attribute.String;
     firstname: Attribute.String;
     age: Attribute.Integer;
-    is_suspect: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
+    is_suspect: Attribute.Boolean & Attribute.DefaultTo<false>;
     profession_details: Attribute.String;
     educational_background: Attribute.Relation<
       'perpretrator.perpetrator',
@@ -204,7 +202,7 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'api::dropdown-general-option.dropdown-general-option'
     >;
     restraining_order_details: Attribute.Text & Attribute.Private;
-    citizenship_details: Attribute.Text & Attribute.Private;
+    citizenship_details: Attribute.Text;
     family_status_other: Attribute.String;
     gender_details: Attribute.String;
     suicide_details: Attribute.String;
@@ -233,9 +231,7 @@ export interface SourceSource extends Schema.Component {
       'api::source-type.source-type'
     >;
     source_type_details: Attribute.String;
-    pdf_created: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
+    pdf_created: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -325,7 +321,7 @@ export interface VictimVictim extends Schema.Component {
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
-    citizenship_details: Attribute.Text & Attribute.Private;
+    citizenship_details: Attribute.Text;
     surviving_dependents: Attribute.Relation<
       'victim.victim',
       'oneToMany',

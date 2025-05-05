@@ -840,13 +840,13 @@ export interface ApiCaseCase extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    identifier: Attribute.String & Attribute.Required;
+    identifier: Attribute.String;
     crime_date: Attribute.Date;
-    notes: Attribute.Text & Attribute.Private;
-    review: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
-    review2: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
-    attempt: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
-    authority: Attribute.String & Attribute.Private;
+    notes: Attribute.Text;
+    review: Attribute.Boolean & Attribute.DefaultTo<false>;
+    review2: Attribute.Boolean & Attribute.DefaultTo<false>;
+    attempt: Attribute.Boolean & Attribute.DefaultTo<false>;
+    authority: Attribute.String;
     perpetrator: Attribute.Component<'perpretrator.perpetrator', true>;
     victim: Attribute.Component<'victim.victim', true>;
     address: Attribute.Component<'adresse.adresse'>;
@@ -858,9 +858,9 @@ export interface ApiCaseCase extends Schema.CollectionType {
       'api::media-label.media-label'
     >;
     comments: Attribute.Component<'comments.comments', true>;
-    registration_date: Attribute.Date & Attribute.Private;
-    uuid: Attribute.String & Attribute.Private & Attribute.Unique;
-    media_labels_details: Attribute.Text & Attribute.Private;
+    registration_date: Attribute.Date;
+    uuid: Attribute.String & Attribute.Unique;
+    media_labels_details: Attribute.Text;
     report_of_crime: Attribute.Relation<
       'api::case.case',
       'oneToOne',
