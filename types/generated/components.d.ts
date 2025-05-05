@@ -1,38 +1,38 @@
-import type { Attribute, Schema } from '@strapi/strapi';
+import type { Schema, Attribute } from '@strapi/strapi';
 
 export interface AdresseAdresse extends Schema.Component {
   collectionName: 'components_adresse_adresses';
   info: {
-    description: '';
     displayName: 'Address';
     icon: 'pinMap';
+    description: '';
   };
   attributes: {
+    street: Attribute.String & Attribute.Private;
     city: Attribute.String;
-    country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
     county: Attribute.String;
     dropdown_bundesland: Attribute.Relation<
       'adresse.adresse',
       'oneToOne',
       'api::federal-state.federal-state'
     >;
+    country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
+    postal_code: Attribute.String;
     dropdown_city: Attribute.Relation<
       'adresse.adresse',
       'oneToOne',
       'api::dropdown-city.dropdown-city'
     >;
-    postal_code: Attribute.String;
-    street: Attribute.String & Attribute.Private;
   };
 }
 
 export interface CommentsComments extends Schema.Component {
   collectionName: 'components_comments_comments';
   info: {
-    description: '';
     displayName: 'comments';
     icon: 'feather';
+    description: '';
   };
   attributes: {
     comment: Attribute.String & Attribute.Private;
@@ -42,35 +42,57 @@ export interface CommentsComments extends Schema.Component {
 export interface CrimeCrime extends Schema.Component {
   collectionName: 'components_crime_crimes';
   info: {
-    description: '';
     displayName: 'crime';
     icon: 'collapse';
+    description: '';
   };
   attributes: {
-    acts_of_violence_details: Attribute.Text;
+    location_of_body: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::location-of-body.location-of-body'
+    >;
+    location_details: Attribute.String;
+    further_acts_of_violence: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::violent-act.violent-act'
+    >;
+    weapons: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::weapon.weapon'
+    >;
+    weapon_details: Attribute.String;
+    motives: Attribute.Relation<
+      'crime.crime',
+      'oneToMany',
+      'api::dropdown-motive.dropdown-motive'
+    >;
+    motive_details: Attribute.String;
     cause_of_death: Attribute.Relation<
       'crime.crime',
       'oneToOne',
       'api::violent-act.violent-act'
     >;
-    crime_address: Attribute.Relation<
-      'crime.crime',
-      'oneToOne',
-      'api::dropdown-city.dropdown-city'
-    >;
-    crime_address_details: Attribute.String;
     description_of_crimescene: Attribute.Text;
     detailed_location_of_body: Attribute.Relation<
       'crime.crime',
       'oneToOne',
       'api::dropdown-details-of-location.dropdown-details-of-location'
     >;
-    further_acts_of_violence: Attribute.Relation<
+    other_victims: Attribute.Relation<
       'crime.crime',
       'oneToMany',
-      'api::violent-act.violent-act'
+      'api::dropdown-other-victim.dropdown-other-victim'
     >;
-    location_details: Attribute.String;
+    acts_of_violence_details: Attribute.Text;
+    crime_address: Attribute.Relation<
+      'crime.crime',
+      'oneToOne',
+      'api::dropdown-city.dropdown-city'
+    >;
+    crime_address_details: Attribute.String;
     location_level_1: Attribute.Relation<
       'crime.crime',
       'oneToOne',
@@ -86,61 +108,24 @@ export interface CrimeCrime extends Schema.Component {
       'oneToOne',
       'api::location-level-3.location-level-3'
     >;
-    location_of_body: Attribute.Relation<
-      'crime.crime',
-      'oneToOne',
-      'api::location-of-body.location-of-body'
-    >;
-    motive_details: Attribute.String;
-    motives: Attribute.Relation<
-      'crime.crime',
-      'oneToMany',
-      'api::dropdown-motive.dropdown-motive'
-    >;
-    other_victims: Attribute.Relation<
-      'crime.crime',
-      'oneToMany',
-      'api::dropdown-other-victim.dropdown-other-victim'
-    >;
-    weapon_details: Attribute.String;
-    weapons: Attribute.Relation<
-      'crime.crime',
-      'oneToMany',
-      'api::weapon.weapon'
-    >;
   };
 }
 
 export interface PerpretratorPerpetrator extends Schema.Component {
   collectionName: 'components_perpretrator_perpetrators';
   info: {
-    description: '';
     displayName: 'perpetrator';
     icon: 'user';
+    description: '';
   };
   attributes: {
-    address: Attribute.Component<'adresse.adresse'>;
+    lastname: Attribute.String;
+    firstname: Attribute.String;
     age: Attribute.Integer;
-    citizenship_country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
-    citizenship_details: Attribute.Text & Attribute.Private;
-    citizenship_type: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::citizenship-type.citizenship-type'
-    >;
-    committed_suicide: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::suicide-after-crime.suicide-after-crime'
-    >;
-    criminal_record: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
-    >;
-    criminal_record_details: Attribute.Text & Attribute.Private;
-    drugs_details: Attribute.String;
+    is_suspect: Attribute.Boolean &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
+    profession_details: Attribute.String;
     educational_background: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
@@ -151,14 +136,36 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::family-status.family-status'
     >;
-    family_status_other: Attribute.String;
-    firstname: Attribute.String;
-    gender: Attribute.Relation<
+    profession: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
-      'api::gender-perpetrator.gender-perpetrator'
+      'api::dropdown-job.dropdown-job'
     >;
-    gender_details: Attribute.String;
+    citizenship_type: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::citizenship-type.citizenship-type'
+    >;
+    legal_status: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::legal-status.legal-status'
+    >;
+    judical_status: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator'
+    >;
+    committed_suicide: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::suicide-after-crime.suicide-after-crime'
+    >;
+    sentence: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::criminal-act.criminal-act'
+    >;
     influence_alcohol: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
@@ -169,89 +176,82 @@ export interface PerpretratorPerpetrator extends Schema.Component {
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
-    is_suspect: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    judical_status: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::lawsuit-status-perpetrator.lawsuit-status-perpetrator'
-    >;
-    judical_status_details: Attribute.String;
-    lastname: Attribute.String;
-    legal_status: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::legal-status.legal-status'
-    >;
     mental_illness: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
+    address: Attribute.Component<'adresse.adresse'>;
+    gender: Attribute.Relation<
+      'perpretrator.perpetrator',
+      'oneToOne',
+      'api::gender-perpetrator.gender-perpetrator'
+    >;
+    citizenship_country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
+    drugs_details: Attribute.String;
     mental_illness_details: Attribute.String;
-    perpetrator_address: Attribute.Relation<
+    sentence_details: Attribute.String;
+    criminal_record: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
-      'api::dropdown-city.dropdown-city'
+      'api::dropdown-general-option.dropdown-general-option'
     >;
-    perpetrator_address_details: Attribute.String;
-    profession: Attribute.Relation<
-      'perpretrator.perpetrator',
-      'oneToOne',
-      'api::dropdown-job.dropdown-job'
-    >;
-    profession_details: Attribute.String;
+    criminal_record_details: Attribute.Text & Attribute.Private;
     restraining_order: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
     restraining_order_details: Attribute.Text & Attribute.Private;
-    sentence: Attribute.Relation<
+    citizenship_details: Attribute.Text & Attribute.Private;
+    family_status_other: Attribute.String;
+    gender_details: Attribute.String;
+    suicide_details: Attribute.String;
+    judical_status_details: Attribute.String;
+    perpetrator_address: Attribute.Relation<
       'perpretrator.perpetrator',
       'oneToOne',
-      'api::criminal-act.criminal-act'
+      'api::dropdown-city.dropdown-city'
     >;
-    sentence_details: Attribute.String;
-    suicide_details: Attribute.String;
+    perpetrator_address_details: Attribute.String;
   };
 }
 
 export interface SourceSource extends Schema.Component {
   collectionName: 'components_source_sources';
   info: {
-    description: '';
     displayName: 'source';
     icon: 'earth';
+    description: '';
   };
   attributes: {
-    pdf_created: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
-    source_type_details: Attribute.String;
+    url: Attribute.String;
     source_types: Attribute.Relation<
       'source.source',
       'oneToOne',
       'api::source-type.source-type'
     >;
-    url: Attribute.String;
+    source_type_details: Attribute.String;
+    pdf_created: Attribute.Boolean &
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
   };
 }
 
 export interface SurvivedBySurvivedBy extends Schema.Component {
   collectionName: 'components_survived_by_survived_bies';
   info: {
-    description: '';
     displayName: 'survived_by';
+    description: '';
   };
   attributes: {
-    age: Attribute.Integer;
     dropdown_hinterbliebene: Attribute.Relation<
       'survived-by.survived-by',
       'oneToOne',
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
     >;
+    age: Attribute.Integer;
     relation_details: Attribute.String;
   };
 }
@@ -259,45 +259,29 @@ export interface SurvivedBySurvivedBy extends Schema.Component {
 export interface VictimVictim extends Schema.Component {
   collectionName: 'components_victim_victims';
   info: {
-    description: '';
     displayName: 'Victim';
     icon: 'user';
+    description: '';
   };
   attributes: {
-    address: Attribute.Component<'adresse.adresse'>;
+    firstname: Attribute.String;
+    lastname: Attribute.String;
     age: Attribute.Integer;
-    citizenship_country: Attribute.String &
-      Attribute.CustomField<'plugin::country-select.country'>;
-    citizenship_details: Attribute.Text & Attribute.Private;
-    citizenship_type: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::citizenship-type.citizenship-type'
-    >;
-    drugs_details: Attribute.String;
-    educational_background: Attribute.Relation<
-      'victim.victim',
-      'oneToOne',
-      'api::educational-background.educational-background'
-    >;
     family_status: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::family-status.family-status'
     >;
-    family_status_other: Attribute.String;
-    firstname: Attribute.String;
-    influence_alcohol: Attribute.Relation<
+    educational_background: Attribute.Relation<
       'victim.victim',
       'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
+      'api::educational-background.educational-background'
     >;
-    influence_drugs: Attribute.Relation<
+    citizenship_type: Attribute.Relation<
       'victim.victim',
       'oneToOne',
-      'api::dropdown-general-option.dropdown-general-option'
+      'api::citizenship-type.citizenship-type'
     >;
-    lastname: Attribute.String;
     legal_status: Attribute.Relation<
       'victim.victim',
       'oneToOne',
@@ -309,37 +293,53 @@ export interface VictimVictim extends Schema.Component {
       'api::dropdown-job.dropdown-job'
     >;
     profession_details: Attribute.String;
-    relationship_perpetrator: Attribute.Relation<
+    workplace: Attribute.String;
+    influence_alcohol: Attribute.Relation<
       'victim.victim',
       'oneToOne',
-      'api::relationship-to-victim.relationship-to-victim'
+      'api::dropdown-general-option.dropdown-general-option'
     >;
+    influence_drugs: Attribute.Relation<
+      'victim.victim',
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
+    drugs_details: Attribute.String;
+    reports_on_violence_details: Attribute.String;
     reports_on_violence: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
     >;
-    reports_on_violence_details: Attribute.String;
-    survived_by: Attribute.Component<'survived-by.survived-by', true>;
     survived_by_details: Attribute.String;
-    surviving_dependents: Attribute.Relation<
+    address: Attribute.Component<'adresse.adresse'>;
+    citizenship_country: Attribute.String &
+      Attribute.CustomField<'plugin::country-select.country'>;
+    relationship_perpetrator: Attribute.Relation<
       'victim.victim',
-      'oneToMany',
-      'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
+      'oneToOne',
+      'api::relationship-to-victim.relationship-to-victim'
     >;
     type_of_feminicide: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::feminicide-type.feminicide-type'
     >;
+    citizenship_details: Attribute.Text & Attribute.Private;
+    surviving_dependents: Attribute.Relation<
+      'victim.victim',
+      'oneToMany',
+      'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
+    >;
+    family_status_other: Attribute.String;
     type_of_feminicide_details: Attribute.String;
+    survived_by: Attribute.Component<'survived-by.survived-by', true>;
     victim_address: Attribute.Relation<
       'victim.victim',
       'oneToOne',
       'api::dropdown-city.dropdown-city'
     >;
     victim_address_details: Attribute.String;
-    workplace: Attribute.String;
   };
 }
 
