@@ -14,34 +14,29 @@
   "attributes": {
     "identifier": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "crime_date": {
       "type": "date",
       "required": false
     },
     "notes": {
-      "type": "text",
-      "private": true
+      "type": "text"
     },
     "review": {
       "type": "boolean",
-      "private": true,
       "default": false
     },
     "review2": {
       "type": "boolean",
-      "private": true,
       "default": false
     },
     "attempt": {
       "type": "boolean",
-      "private": true,
       "default": false
     },
     "authority": {
-      "type": "string",
-      "private": true
+      "type": "string"
     },
     "perpetrator": {
       "type": "component",
@@ -79,17 +74,14 @@
       "component": "comments.comments"
     },
     "registration_date": {
-      "type": "date",
-      "private": true
+      "type": "date"
     },
     "uuid": {
       "type": "string",
-      "private": true,
       "unique": true
     },
     "media_labels_details": {
-      "type": "text",
-      "private": true
+      "type": "text"
     },
     "report_of_crime": {
       "type": "relation",
