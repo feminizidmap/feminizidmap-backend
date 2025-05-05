@@ -8,8 +8,7 @@
   "options": {},
   "attributes": {
     "comment": {
-      "type": "string",
-      "private": true
+      "type": "string"
     }
   }
 }

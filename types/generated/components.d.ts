@@ -35,7 +35,7 @@ export interface CommentsComments extends Schema.Component {
     description: '';
   };
   attributes: {
-    comment: Attribute.String & Attribute.Private;
+    comment: Attribute.String;
   };
 }
 
