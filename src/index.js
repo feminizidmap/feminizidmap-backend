@@ -1,5 +1,7 @@
 'use strict';
 
+const { caseUuidMiddleware, casePublishValidationMiddleware } = require('./middlewares/document-service/cases');
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -7,7 +9,11 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    // Register case document service middlewares
+    strapi.documents.use(caseUuidMiddleware());
+    strapi.documents.use(casePublishValidationMiddleware());
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
