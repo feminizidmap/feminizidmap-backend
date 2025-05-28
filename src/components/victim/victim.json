@@ -116,6 +116,19 @@
     },
     "victim_address_details": {
       "type": "string"
+    },
+    "victim_geolocation": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    },
+    "victim_geolocation_city": {
+      "type": "string"
+    },
+    "victim_geolocation_state": {
+      "type": "string"
+    },
+    "victim_geolocation_postal_code": {
+      "type": "string"
     }
   }
 }

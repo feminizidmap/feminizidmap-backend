@@ -142,6 +142,19 @@
     },
     "perpetrator_address_details": {
       "type": "string"
+    },
+    "perpetrator_geolocation": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    },
+    "perpetrator_geolocation_city": {
+      "type": "string"
+    },
+    "perpetrator_geolocation_state": {
+      "type": "string"
+    },
+    "perpetrator_geolocation_postal_code": {
+      "type": "string"
     }
   }
 }

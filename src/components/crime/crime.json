@@ -79,6 +79,19 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::location-level-3.location-level-3"
+    },
+    "crime_geolocation": {
+      "type": "customField",
+      "customField": "plugin::google-maps.location-picker"
+    },
+    "crime_geolocation_state": {
+      "type": "string"
+    },
+    "crime_geolocation_city": {
+      "type": "string"
+    },
+    "crime_geolocation_postal_code": {
+      "type": "string"
     }
   }
 }
