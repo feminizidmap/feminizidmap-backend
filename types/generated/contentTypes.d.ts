@@ -415,6 +415,7 @@ export interface ApiCaseCase extends Struct.CollectionTypeSchema {
     >;
     report_of_crime_details: Schema.Attribute.String;
     review: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    review_import: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     review2: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     source: Schema.Attribute.Component<'source.source', true>;
     updatedAt: Schema.Attribute.DateTime;
