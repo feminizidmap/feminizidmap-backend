@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "strapi-google-maps": "github:coderat-collective/strapi-google-maps",
-    "@strapi/plugin-users-permissions": "5.13.1",
-    "@strapi/strapi": "5.13.1",
+    "@strapi/plugin-users-permissions": "5.16.0",
+    "@strapi/strapi": "5.16.0",
     "better-sqlite3": "11.3.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.5.6",
@@ -22,7 +22,6 @@
     "strapi-csv-import-export": "^0.0.6",
     "strapi-plugin-country-select": "^2.1.0",
     "strapi-plugin-populate-deep": "^3.0.1",
-    "strapi-plugin-transformer": "^3.1.2",
     "styled-components": "^6.0.0",
     "uuid": "^9.0.1"
   },
