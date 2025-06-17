@@ -1,5 +1,11 @@
 module.exports = ({ env }) => ({
- 'transformer': {
+  "strapi-csv-import-export": {
+    config: {
+      authorizedExports: ["api::case.case"],
+      authorizedImports: ["api::case.case"]
+    }
+  },
+  'transformer': {
     enabled: true,
     config: {
       responseTransforms: {
