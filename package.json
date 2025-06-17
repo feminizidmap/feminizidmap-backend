@@ -10,7 +10,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@amicaldo/strapi-google-maps": "^2.0.1",
+    "strapi-google-maps": "github:coderat-collective/strapi-google-maps",
     "@strapi/plugin-users-permissions": "5.13.1",
     "@strapi/strapi": "5.13.1",
     "better-sqlite3": "11.3.0",

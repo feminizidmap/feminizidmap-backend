@@ -55,6 +55,11 @@ export interface CrimeCrime extends Struct.ComponentSchema {
       'api::dropdown-city.dropdown-city'
     >;
     crime_address_details: Schema.Attribute.String;
+    crime_geolocation: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    crime_geolocation_city: Schema.Attribute.String;
+    crime_geolocation_postal_code: Schema.Attribute.String;
+    crime_geolocation_state: Schema.Attribute.String;
     description_of_crimescene: Schema.Attribute.Text;
     detailed_location_of_body: Schema.Attribute.Relation<
       'oneToOne',
@@ -166,6 +171,11 @@ export interface PerpretratorPerpetrator extends Struct.ComponentSchema {
       'api::dropdown-city.dropdown-city'
     >;
     perpetrator_address_details: Schema.Attribute.String;
+    perpetrator_geolocation: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    perpetrator_geolocation_city: Schema.Attribute.String;
+    perpetrator_geolocation_postal_code: Schema.Attribute.String;
+    perpetrator_geolocation_state: Schema.Attribute.String;
     profession: Schema.Attribute.Relation<
       'oneToOne',
       'api::dropdown-job.dropdown-job'
@@ -290,6 +300,11 @@ export interface VictimVictim extends Struct.ComponentSchema {
       'api::dropdown-city.dropdown-city'
     >;
     victim_address_details: Schema.Attribute.String;
+    victim_geolocation: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    victim_geolocation_city: Schema.Attribute.String;
+    victim_geolocation_postal_code: Schema.Attribute.String;
+    victim_geolocation_state: Schema.Attribute.String;
     workplace: Schema.Attribute.String;
   };
 }
