@@ -40,28 +40,28 @@
     },
     "perpetrator": {
       "type": "component",
-      "repeatable": true,
-      "component": "perpretrator.perpetrator"
+      "component": "perpretrator.perpetrator",
+      "repeatable": true
     },
     "victim": {
       "type": "component",
-      "repeatable": true,
-      "component": "victim.victim"
+      "component": "victim.victim",
+      "repeatable": true
     },
     "address": {
       "type": "component",
-      "repeatable": false,
-      "component": "adresse.adresse"
+      "component": "adresse.adresse",
+      "repeatable": false
     },
     "source": {
       "type": "component",
-      "repeatable": true,
-      "component": "source.source"
+      "component": "source.source",
+      "repeatable": true
     },
     "crime": {
       "type": "component",
-      "repeatable": false,
-      "component": "crime.crime"
+      "component": "crime.crime",
+      "repeatable": false
     },
     "media_labels": {
       "type": "relation",
@@ -70,8 +70,8 @@
     },
     "comments": {
       "type": "component",
-      "repeatable": true,
-      "component": "comments.comments"
+      "component": "comments.comments",
+      "repeatable": true
     },
     "registration_date": {
       "type": "date"
@@ -93,17 +93,25 @@
     },
     "authorities_involved": {
       "type": "component",
-      "repeatable": true,
-      "component": "comments.comments"
+      "component": "comments.comments",
+      "repeatable": true
     },
     "media_labels_used": {
       "type": "component",
-      "repeatable": true,
-      "component": "comments.comments"
+      "component": "comments.comments",
+      "repeatable": true
     },
     "review_import": {
       "type": "boolean",
       "default": false
+    },
+    "verdict_binding_details": {
+      "type": "string"
+    },
+    "verdict_binding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-verdict-binding.dropdown-verdict-binding"
     }
   }
 }

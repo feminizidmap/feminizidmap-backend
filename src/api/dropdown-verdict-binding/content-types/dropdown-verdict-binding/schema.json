@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dropdown_verdict_bindings",
+  "info": {
+    "singularName": "dropdown-verdict-binding",
+    "pluralName": "dropdown-verdict-bindings",
+    "displayName": "[Dropdown] Urteil rechtskräftig"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
