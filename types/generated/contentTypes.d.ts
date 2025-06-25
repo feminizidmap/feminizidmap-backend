@@ -422,6 +422,11 @@ export interface ApiCaseCase extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     uuid: Schema.Attribute.String & Schema.Attribute.Unique;
+    verdict_binding: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::dropdown-verdict-binding.dropdown-verdict-binding'
+    >;
+    verdict_binding_details: Schema.Attribute.String;
     victim: Schema.Attribute.Component<'victim.victim', true>;
   };
 }
@@ -731,6 +736,36 @@ export interface ApiDropdownSurvivingDependentDropdownSurvivingDependent
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDropdownVerdictBindingDropdownVerdictBinding
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dropdown_verdict_bindings';
+  info: {
+    displayName: '[Dropdown] Urteil rechtskr\u00E4ftig';
+    pluralName: 'dropdown-verdict-bindings';
+    singularName: 'dropdown-verdict-binding';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dropdown-verdict-binding.dropdown-verdict-binding'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1845,6 +1880,7 @@ declare module '@strapi/strapi' {
       'api::dropdown-motive.dropdown-motive': ApiDropdownMotiveDropdownMotive;
       'api::dropdown-other-victim.dropdown-other-victim': ApiDropdownOtherVictimDropdownOtherVictim;
       'api::dropdown-surviving-dependent.dropdown-surviving-dependent': ApiDropdownSurvivingDependentDropdownSurvivingDependent;
+      'api::dropdown-verdict-binding.dropdown-verdict-binding': ApiDropdownVerdictBindingDropdownVerdictBinding;
       'api::educational-background.educational-background': ApiEducationalBackgroundEducationalBackground;
       'api::family-status.family-status': ApiFamilyStatusFamilyStatus;
       'api::federal-state.federal-state': ApiFederalStateFederalState;
