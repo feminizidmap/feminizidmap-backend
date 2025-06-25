@@ -81,8 +81,8 @@
     },
     "address": {
       "type": "component",
-      "repeatable": false,
-      "component": "adresse.adresse"
+      "component": "adresse.adresse",
+      "repeatable": false
     },
     "gender": {
       "type": "relation",
@@ -154,6 +154,14 @@
       "type": "string"
     },
     "perpetrator_geolocation_postal_code": {
+      "type": "string"
+    },
+    "verdict_binding": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-verdict-binding.dropdown-verdict-binding"
+    },
+    "verdict_binding_details": {
       "type": "string"
     }
   }

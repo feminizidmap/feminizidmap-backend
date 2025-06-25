@@ -192,6 +192,11 @@ export interface PerpretratorPerpetrator extends Struct.ComponentSchema {
     >;
     sentence_details: Schema.Attribute.String;
     suicide_details: Schema.Attribute.String;
+    verdict_binding: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::dropdown-verdict-binding.dropdown-verdict-binding'
+    >;
+    verdict_binding_details: Schema.Attribute.String;
   };
 }
 

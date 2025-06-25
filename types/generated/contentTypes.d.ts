@@ -422,11 +422,6 @@ export interface ApiCaseCase extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     uuid: Schema.Attribute.String & Schema.Attribute.Unique;
-    verdict_binding: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::dropdown-verdict-binding.dropdown-verdict-binding'
-    >;
-    verdict_binding_details: Schema.Attribute.String;
     victim: Schema.Attribute.Component<'victim.victim', true>;
   };
 }

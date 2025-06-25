@@ -104,14 +104,6 @@
     "review_import": {
       "type": "boolean",
       "default": false
-    },
-    "verdict_binding_details": {
-      "type": "string"
-    },
-    "verdict_binding": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dropdown-verdict-binding.dropdown-verdict-binding"
     }
   }
 }
