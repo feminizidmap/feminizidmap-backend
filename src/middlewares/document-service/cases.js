@@ -42,33 +42,59 @@ const casePublishValidationMiddleware = () => {
                            context.params.data.publishedAt !== null;
 
     if (isPublishAction || isUpdateAction) {
-      const { data } = context.params;
-      const documentId = context.params.id; // In v4/v5, id is usually in context.params.id for update/publish
+      // For publish action in Strapi v5, we need to get the ID from the result
+      let documentId = context.params.id;
+      
+      // If no ID in params, try to get it from documentId (Strapi v5 uses documentId)
+      if (!documentId && context.params.documentId) {
+        documentId = context.params.documentId;
+      }
+      
+      // If no ID in params, try to get it from the result (for publish action)
+      if (!documentId && context.result && context.result.id) {
+        documentId = context.result.id;
+      }
+      
+      // If still no ID, try to get it from the args (for publish action)
+      if (!documentId && context.args && context.args.id) {
+        documentId = context.args.id;
+      }
+
       let review, review2;
 
-      let currentReviewStatus = { review: data?.review, review2: data?.review2 };
-
-      if (documentId) { // This implies an update or publish action on an existing document
-        const currentEntry = await strapi.entityService.findOne('api::case.case', documentId, {
+      if (documentId) {
+        // This is an update or publish action on an existing document
+        // Try to find by documentId first, then by numeric ID
+        let currentEntry = await strapi.entityService.findOne('api::case.case', documentId, {
           fields: ['review', 'review2']
         });
         
-        if (currentEntry) {
-            currentReviewStatus.review = 'review' in data ? data.review : currentEntry.review;
-            currentReviewStatus.review2 = 'review2' in data ? data.review2 : currentEntry.review2;
-        } else if (isPublishAction) {
-            // This case should ideally not happen if publishing an existing documentId
-            throw new ValidationError('Case not found for publishing.');
+        // If not found by documentId, try to find by documentId field
+        if (!currentEntry) {
+          currentEntry = await strapi.db.query('api::case.case').findOne({
+            where: { documentId: documentId },
+            select: ['review', 'review2']
+          });
         }
-        // If currentEntry is null on an update, it means the entry doesn't exist, which is an issue.
-        // However, for a create action that might also set publishedAt (if allowed by model), documentId would be null.
-        // The current logic correctly defaults to data.review/data.review2 if documentId is not present.
+        
+        if (currentEntry) {
+          // For publish action, we use the current values from DB
+          review = currentEntry.review;
+          review2 = currentEntry.review2;
+        } else if (isPublishAction) {
+          throw new ValidationError('Case not found for publishing.');
+        } else {
+          // For updates on non-existent documents, use the provided data
+          const { data } = context.params;
+          review = data?.review;
+          review2 = data?.review2;
+        }
+      } else {
+        // This is a create action with publishedAt set (if possible)
+        const { data } = context.params;
+        review = data?.review;
+        review2 = data?.review2;
       }
-      // For a direct create with publishedAt set (if possible), documentId will be undefined,
-      // and we will use the review statuses from the payload (data.review, data.review2).
-      
-      review = currentReviewStatus.review;
-      review2 = currentReviewStatus.review2;
 
       // Validate both reviews are true
       if (!review || !review2) {
@@ -102,3 +128,4 @@ module.exports = {
   casePublishValidationMiddleware,
   // caseGeocodeOnSaveMiddleware, // Commented out
 };
+
