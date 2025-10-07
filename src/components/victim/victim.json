@@ -73,8 +73,8 @@
     },
     "address": {
       "type": "component",
-      "repeatable": false,
-      "component": "adresse.adresse"
+      "component": "adresse.adresse",
+      "repeatable": false
     },
     "citizenship_country": {
       "type": "customField",
@@ -106,8 +106,8 @@
     },
     "survived_by": {
       "type": "component",
-      "repeatable": true,
-      "component": "survived-by.survived-by"
+      "component": "survived-by.survived-by",
+      "repeatable": true
     },
     "victim_address": {
       "type": "relation",
@@ -128,6 +128,9 @@
       "type": "string"
     },
     "victim_geolocation_postal_code": {
+      "type": "string"
+    },
+    "relationship_perpetrator_details": {
       "type": "string"
     }
   }

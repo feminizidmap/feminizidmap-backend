@@ -284,6 +284,7 @@ export interface VictimVictim extends Struct.ComponentSchema {
       'oneToOne',
       'api::relationship-to-victim.relationship-to-victim'
     >;
+    relationship_perpetrator_details: Schema.Attribute.String;
     reports_on_violence: Schema.Attribute.Relation<
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
