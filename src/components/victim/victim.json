@@ -26,10 +26,16 @@
       "relation": "oneToOne",
       "target": "api::educational-background.educational-background"
     },
+    "educational_background_details": {
+      "type": "string"
+    },
     "citizenship_type": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::citizenship-type.citizenship-type"
+    },
+    "citizenship_details": {
+      "type": "text"
     },
     "legal_status": {
       "type": "relation",
@@ -60,13 +66,13 @@
     "drugs_details": {
       "type": "string"
     },
-    "reports_on_violence_details": {
-      "type": "string"
-    },
     "reports_on_violence": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "reports_on_violence_details": {
+      "type": "string"
     },
     "survived_by_details": {
       "type": "string"
@@ -85,13 +91,16 @@
       "relation": "oneToOne",
       "target": "api::relationship-to-victim.relationship-to-victim"
     },
+    "relationship_perpetrator_details": {
+      "type": "string"
+    },
     "type_of_feminicide": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::feminicide-type.feminicide-type"
     },
-    "citizenship_details": {
-      "type": "text"
+    "type_of_feminicide_details": {
+      "type": "string"
     },
     "surviving_dependents": {
       "type": "relation",
@@ -99,9 +108,6 @@
       "target": "api::dropdown-surviving-dependent.dropdown-surviving-dependent"
     },
     "family_status_other": {
-      "type": "string"
-    },
-    "type_of_feminicide_details": {
       "type": "string"
     },
     "survived_by": {
@@ -128,9 +134,6 @@
       "type": "string"
     },
     "victim_geolocation_postal_code": {
-      "type": "string"
-    },
-    "relationship_perpetrator_details": {
       "type": "string"
     }
   }

@@ -131,6 +131,7 @@ export interface PerpretratorPerpetrator extends Struct.ComponentSchema {
       'oneToOne',
       'api::educational-background.educational-background'
     >;
+    educational_background_details: Schema.Attribute.String;
     family_status: Schema.Attribute.Relation<
       'oneToOne',
       'api::family-status.family-status'
@@ -256,6 +257,7 @@ export interface VictimVictim extends Struct.ComponentSchema {
       'oneToOne',
       'api::educational-background.educational-background'
     >;
+    educational_background_details: Schema.Attribute.String;
     family_status: Schema.Attribute.Relation<
       'oneToOne',
       'api::family-status.family-status'
