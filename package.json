@@ -10,8 +10,8 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-users-permissions": "5.16.0",
-    "@strapi/strapi": "5.16.0",
+    "@strapi/plugin-users-permissions": "5.34.0",
+    "@strapi/strapi": "5.34.0",
     "better-sqlite3": "11.3.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.5.6",
@@ -24,7 +24,8 @@
     "strapi-plugin-populate-deep": "^3.0.1",
     "strapi-v5-plugin-populate-deep": "^4.0.5",
     "styled-components": "^6.0.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^4.3.6"
   },
   "author": {
     "name": "A Strapi developer"
