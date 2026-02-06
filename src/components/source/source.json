@@ -21,6 +21,9 @@
     "pdf_created": {
       "type": "boolean",
       "default": false
+    },
+    "comment": {
+      "type": "string"
     }
   }
 }

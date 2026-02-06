@@ -209,6 +209,7 @@ export interface SourceSource extends Struct.ComponentSchema {
     icon: 'earth';
   };
   attributes: {
+    comment: Schema.Attribute.String;
     pdf_created: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     source_type_details: Schema.Attribute.String;
     source_types: Schema.Attribute.Relation<
