@@ -6,11 +6,79 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
+/**
+ * Deep population config for all components and their nested relations.
+ * This ensures relation fields within components are fully resolved
+ * (not just bare IDs).
+ */
+const PUBLIC_POPULATE = {
+  victim: {
+    populate: {
+      family_status: true,
+      educational_background: true,
+      citizenship_type: true,
+      legal_status: true,
+      profession: true,
+      influence_alcohol: true,
+      influence_drugs: true,
+      reports_on_violence: true,
+      relationship_perpetrator: true,
+      type_of_feminicide: true,
+      surviving_dependents: true,
+      victim_address: true,
+      survived_by: {
+        populate: {
+          dropdown_hinterbliebene: true,
+        },
+      },
+    },
+  },
+  perpetrator: {
+    populate: {
+      educational_background: true,
+      family_status: true,
+      profession: true,
+      citizenship_type: true,
+      legal_status: true,
+      judical_status: true,
+      committed_suicide: true,
+      sentence: true,
+      influence_alcohol: true,
+      influence_drugs: true,
+      mental_illness: true,
+      gender: true,
+      criminal_record: true,
+      restraining_order: true,
+      perpetrator_address: true,
+      verdict_binding: true,
+    },
+  },
+  crime: {
+    populate: {
+      location_of_body: true,
+      further_acts_of_violence: true,
+      weapons: true,
+      motives: true,
+      cause_of_death: true,
+      detailed_location_of_body: true,
+      other_victims: true,
+      crime_address: true,
+      location_level_1: true,
+      location_level_2: true,
+      location_level_3: true,
+    },
+  },
+  source: {
+    populate: {
+      source_types: true,
+    },
+  },
+};
+
 module.exports = createCoreController('api::case.case', ({ strapi }) => ({
   // Shared serialization function
   serializeCase(caseItem) {
     return {
-      id: caseItem.id,
       identifier: caseItem.identifier,
       crime_date: caseItem.crime_date,
       registration_date: caseItem.registration_date,
@@ -21,14 +89,17 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       published_at: caseItem.publishedAt,
       created_at: caseItem.createdAt,
       updated_at: caseItem.updatedAt,
-      
+
       // Include populated components with privacy considerations
       victim: caseItem.victim && Array.isArray(caseItem.victim) ? caseItem.victim.map(victim => ({
-        id: victim.id,
         age: victim.age,
         family_status: victim.family_status,
+        family_status_other: victim.family_status_other,
         educational_background: victim.educational_background,
+        educational_background_details: victim.educational_background_details,
         citizenship_type: victim.citizenship_type,
+        citizenship_details: victim.citizenship_details,
+        citizenship_country: victim.citizenship_country,
         legal_status: victim.legal_status,
         profession: victim.profession,
         profession_details: victim.profession_details,
@@ -39,27 +110,38 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         reports_on_violence: victim.reports_on_violence,
         reports_on_violence_details: victim.reports_on_violence_details,
         relationship_perpetrator: victim.relationship_perpetrator,
+        relationship_perpetrator_details: victim.relationship_perpetrator_details,
         type_of_feminicide: victim.type_of_feminicide,
         type_of_feminicide_details: victim.type_of_feminicide_details,
         surviving_dependents: victim.surviving_dependents,
+        survived_by: victim.survived_by && Array.isArray(victim.survived_by) ? victim.survived_by.map(s => ({
+          dropdown_hinterbliebene: s.dropdown_hinterbliebene,
+          age: s.age,
+          relation_details: s.relation_details,
+        })) : [],
+        survived_by_details: victim.survived_by_details,
         victim_address: victim.victim_address,
         victim_address_details: victim.victim_address_details,
         victim_geolocation_city: victim.victim_geolocation_city,
         victim_geolocation_state: victim.victim_geolocation_state,
         victim_geolocation_postal_code: victim.victim_geolocation_postal_code,
         // Note: Excluding personal names (firstname, lastname) for privacy
-        // Note: Excluding detailed address components for privacy
+        // Note: Excluding victim_geolocation (exact coordinates) for privacy
+        // Note: Excluding nested address component for privacy
       })) : [],
-      
+
       perpetrator: caseItem.perpetrator && Array.isArray(caseItem.perpetrator) ? caseItem.perpetrator.map(perpetrator => ({
-        id: perpetrator.id,
         age: perpetrator.age,
         is_suspect: perpetrator.is_suspect,
         profession: perpetrator.profession,
         profession_details: perpetrator.profession_details,
         educational_background: perpetrator.educational_background,
+        educational_background_details: perpetrator.educational_background_details,
         family_status: perpetrator.family_status,
+        family_status_other: perpetrator.family_status_other,
         citizenship_type: perpetrator.citizenship_type,
+        citizenship_details: perpetrator.citizenship_details,
+        citizenship_country: perpetrator.citizenship_country,
         legal_status: perpetrator.legal_status,
         judical_status: perpetrator.judical_status,
         judical_status_details: perpetrator.judical_status_details,
@@ -84,12 +166,12 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         verdict_binding: perpetrator.verdict_binding,
         verdict_binding_details: perpetrator.verdict_binding_details,
         // Note: Excluding personal names (firstname, lastname) for privacy
-        // Note: Excluding detailed address components for privacy
-        // Note: Excluding private fields like criminal_record_details and restraining_order_details
+        // Note: Excluding perpetrator_geolocation (exact coordinates) for privacy
+        // Note: Excluding nested address component for privacy
+        // Note: Excluding private fields: criminal_record_details, restraining_order_details
       })) : [],
-      
+
       crime: caseItem.crime ? {
-        id: caseItem.crime.id,
         location_of_body: caseItem.crime.location_of_body,
         location_details: caseItem.crime.location_details,
         further_acts_of_violence: caseItem.crime.further_acts_of_violence,
@@ -110,42 +192,31 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         crime_geolocation_state: caseItem.crime.crime_geolocation_state,
         crime_geolocation_city: caseItem.crime.crime_geolocation_city,
         crime_geolocation_postal_code: caseItem.crime.crime_geolocation_postal_code,
-        // Note: Excluding detailed geolocation coordinates for privacy
+        // Note: Excluding crime_geolocation (exact coordinates) for privacy
       } : null,
-      
+
       source: caseItem.source && Array.isArray(caseItem.source) ? caseItem.source.map(source => ({
-        id: source.id,
         url: source.url,
         source_types: source.source_types,
         source_type_details: source.source_type_details,
-        pdf_created: source.pdf_created
+        pdf_created: source.pdf_created,
+        comment: source.comment,
       })) : [],
-      
-      address: caseItem.address ? {
-        id: caseItem.address.id,
-        // Add address fields as needed for privacy
-      } : null
+
+      // Note: Top-level address component removed — victim, perpetrator, and
+      // crime each carry their own address/geolocation fields already.
     };
   },
 
   // Override the find method to only return published cases
   async find(ctx) {
-    // Add filter to only get published cases
-    ctx.query.filters = {
-      ...ctx.query.filters,
-      publishedAt: {
-        $notNull: true
-      }
-    };
+    // Strapi v5: use the status query parameter for draft/publish filtering
+    ctx.query.status = 'published';
 
-    // Add population for components
+    // Deep population for components and their nested relations
     ctx.query.populate = {
       ...ctx.query.populate,
-      victim: true,
-      perpetrator: true,
-      crime: true,
-      source: true,
-      address: true
+      ...PUBLIC_POPULATE,
     };
 
     // Call the parent find method with our custom filter
@@ -162,22 +233,13 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
 
   // Override the findOne method to only return published cases
   async findOne(ctx) {
-    // Add filter to only get published cases
-    ctx.query.filters = {
-      ...ctx.query.filters,
-      publishedAt: {
-        $notNull: true
-      }
-    };
+    // Strapi v5: use the status query parameter for draft/publish filtering
+    ctx.query.status = 'published';
 
-    // Add population for components
+    // Deep population for components and their nested relations
     ctx.query.populate = {
       ...ctx.query.populate,
-      victim: true,
-      perpetrator: true,
-      crime: true,
-      source: true,
-      address: true
+      ...PUBLIC_POPULATE,
     };
 
     // Call the parent findOne method with our custom filter
@@ -194,4 +256,4 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       data: serializedData
     };
   }
-})); 
+}));
