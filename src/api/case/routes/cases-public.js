@@ -11,7 +11,6 @@ module.exports = {
       path: '/cases-public',
       handler: 'cases-public.find',
       config: {
-        auth: false,
         policies: [],
         middlewares: []
       }
@@ -21,7 +20,6 @@ module.exports = {
       path: '/cases-public/:id',
       handler: 'cases-public.findOne',
       config: {
-        auth: false,
         policies: [],
         middlewares: []
       }
