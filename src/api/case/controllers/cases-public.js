@@ -6,6 +6,14 @@
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
+function flattenRelation(rel) {
+  return rel?.label ?? null;
+}
+
+function flattenRelationArray(rels) {
+  return Array.isArray(rels) ? rels.map(r => r.label) : [];
+}
+
 /**
  * Deep population config for all components and their nested relations.
  * This ensures relation fields within components are fully resolved
@@ -51,7 +59,6 @@ const PUBLIC_POPULATE = {
       gender: true,
       criminal_record: true,
       restraining_order: true,
-      perpetrator_address: true,
       verdict_binding: true,
     },
   },
@@ -64,7 +71,7 @@ const PUBLIC_POPULATE = {
       cause_of_death: true,
       detailed_location_of_body: true,
       // other_victims: true,                 // PRIVATE: Weitere Opfer, only on request
-      crime_address: true,
+      // crime_address: true,                  // LEGACY: replaced by geolocation fields
       location_level_1: true,
       location_level_2: true,
       location_level_3: true,
@@ -89,9 +96,9 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       attempt: caseItem.attempt,
       // authority: caseItem.authority,       // PRIVATE: Behörden
       // notes: caseItem.notes,               // PRIVATE: internal notes
-      media_labels: caseItem.media_labels,
+      media_labels: flattenRelationArray(caseItem.media_labels),
       media_labels_details: caseItem.media_labels_details,
-      report_of_crime: caseItem.report_of_crime,
+      report_of_crime: flattenRelation(caseItem.report_of_crime),
       report_of_crime_details: caseItem.report_of_crime_details,
       published_at: caseItem.publishedAt,
       created_at: caseItem.createdAt,
@@ -100,7 +107,7 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       // Include populated components with privacy considerations
       victim: caseItem.victim && Array.isArray(caseItem.victim) ? caseItem.victim.map(victim => ({
         age: victim.age,
-        family_status: victim.family_status,
+        family_status: flattenRelation(victim.family_status),
         family_status_other: victim.family_status_other,
         // educational_background: victim.educational_background,             // PRIVATE: Bildungshintergrund
         // educational_background_details: victim.educational_background_details, // PRIVATE: Bildungshintergrund
@@ -108,21 +115,21 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         // citizenship_details: victim.citizenship_details,                   // PRIVATE: Staatsbürgerschaft
         // citizenship_country: victim.citizenship_country,                   // PRIVATE: Staatsbürgerschaft
         // legal_status: victim.legal_status,                                 // PRIVATE: related to citizenship
-        profession: victim.profession,
+        profession: flattenRelation(victim.profession),
         profession_details: victim.profession_details,
         // workplace: victim.workplace,                                       // PRIVATE: Arbeitsplatz
         // influence_alcohol: victim.influence_alcohol,                       // PRIVATE: Alkoholisiert (victim)
         // influence_drugs: victim.influence_drugs,                           // PRIVATE: Drogeneinfluss (victim)
         // drugs_details: victim.drugs_details,                               // PRIVATE: Drogeneinfluss (victim)
-        reports_on_violence: victim.reports_on_violence,
+        reports_on_violence: flattenRelation(victim.reports_on_violence),
         // reports_on_violence_details: victim.reports_on_violence_details,   // PRIVATE: free text
-        relationship_perpetrator: victim.relationship_perpetrator,
+        relationship_perpetrator: flattenRelation(victim.relationship_perpetrator),
         relationship_perpetrator_details: victim.relationship_perpetrator_details,
-        type_of_feminicide: victim.type_of_feminicide,
+        type_of_feminicide: flattenRelation(victim.type_of_feminicide),
         type_of_feminicide_details: victim.type_of_feminicide_details,
-        surviving_dependents: victim.surviving_dependents,
+        surviving_dependents: flattenRelationArray(victim.surviving_dependents),
         survived_by: victim.survived_by && Array.isArray(victim.survived_by) ? victim.survived_by.map(s => ({
-          dropdown_hinterbliebene: s.dropdown_hinterbliebene,
+          dropdown_hinterbliebene: flattenRelation(s.dropdown_hinterbliebene),
           // age: s.age,                                                      // PRIVATE: Hinterbliebene no age
           // relation_details: s.relation_details,                            // PRIVATE: Hinterbliebene no details
         })) : [],
@@ -140,37 +147,37 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       perpetrator: caseItem.perpetrator && Array.isArray(caseItem.perpetrator) ? caseItem.perpetrator.map(perpetrator => ({
         age: perpetrator.age,
         // is_suspect: perpetrator.is_suspect,                                // PRIVATE: Mögliche(r) Verdächtige(r)
-        profession: perpetrator.profession,
+        profession: flattenRelation(perpetrator.profession),
         profession_details: perpetrator.profession_details,
         // educational_background: perpetrator.educational_background,        // PRIVATE: not listed as public
         // educational_background_details: perpetrator.educational_background_details, // PRIVATE
-        family_status: perpetrator.family_status,
+        family_status: flattenRelation(perpetrator.family_status),
         family_status_other: perpetrator.family_status_other,
         // citizenship_type: perpetrator.citizenship_type,                    // PRIVATE: same as victim
         // citizenship_details: perpetrator.citizenship_details,              // PRIVATE: same as victim
         // citizenship_country: perpetrator.citizenship_country,              // PRIVATE: same as victim
         // legal_status: perpetrator.legal_status,                            // PRIVATE: related to citizenship
-        judical_status: perpetrator.judical_status,
+        judical_status: flattenRelation(perpetrator.judical_status),
         judical_status_details: perpetrator.judical_status_details,
-        committed_suicide: perpetrator.committed_suicide,
+        committed_suicide: flattenRelation(perpetrator.committed_suicide),
         suicide_details: perpetrator.suicide_details,
-        sentence: perpetrator.sentence,
+        sentence: flattenRelation(perpetrator.sentence),
         sentence_details: perpetrator.sentence_details,
-        influence_alcohol: perpetrator.influence_alcohol,
-        influence_drugs: perpetrator.influence_drugs,
+        influence_alcohol: flattenRelation(perpetrator.influence_alcohol),
+        influence_drugs: flattenRelation(perpetrator.influence_drugs),
         // drugs_details: perpetrator.drugs_details,                          // PRIVATE: Drogeneinfluss free text
-        mental_illness: perpetrator.mental_illness,
+        mental_illness: flattenRelation(perpetrator.mental_illness),
         // mental_illness_details: perpetrator.mental_illness_details,        // PRIVATE: Psychische Vorerkrankungen free text
-        criminal_record: perpetrator.criminal_record,
-        restraining_order: perpetrator.restraining_order,
-        gender: perpetrator.gender,
+        criminal_record: flattenRelation(perpetrator.criminal_record),
+        restraining_order: flattenRelation(perpetrator.restraining_order),
+        gender: flattenRelation(perpetrator.gender),
         gender_details: perpetrator.gender_details,
-        perpetrator_address: perpetrator.perpetrator_address,
+        // perpetrator_address: perpetrator.perpetrator_address,              // LEGACY: replaced by geolocation fields
         // perpetrator_address_details: perpetrator.perpetrator_address_details, // PRIVATE: address details
-        perpetrator_geolocation_city: perpetrator.perpetrator_geolocation_city,
-        perpetrator_geolocation_state: perpetrator.perpetrator_geolocation_state,
-        // perpetrator_geolocation_postal_code: perpetrator.perpetrator_geolocation_postal_code, // PRIVATE: too specific
-        verdict_binding: perpetrator.verdict_binding,
+        perpetrator_city: perpetrator.perpetrator_geolocation_city,
+        perpetrator_state: perpetrator.perpetrator_geolocation_state,
+        // perpetrator_postal_code: perpetrator.perpetrator_geolocation_postal_code, // PRIVATE: too specific
+        verdict_binding: flattenRelation(perpetrator.verdict_binding),
         verdict_binding_details: perpetrator.verdict_binding_details,
         // Note: Excluding personal names (firstname, lastname) for privacy
         // Note: Excluding perpetrator_geolocation (exact coordinates) for privacy
@@ -179,26 +186,26 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       })) : [],
 
       crime: caseItem.crime ? {
-        location_of_body: caseItem.crime.location_of_body,
+        location_of_body: flattenRelation(caseItem.crime.location_of_body),
         // location_details: caseItem.crime.location_details,                 // PRIVATE: don't publish street name
-        further_acts_of_violence: caseItem.crime.further_acts_of_violence,
-        weapons: caseItem.crime.weapons,
+        further_acts_of_violence: flattenRelationArray(caseItem.crime.further_acts_of_violence),
+        weapons: flattenRelationArray(caseItem.crime.weapons),
         weapon_details: caseItem.crime.weapon_details,
-        motives: caseItem.crime.motives,
+        motives: flattenRelationArray(caseItem.crime.motives),
         motive_details: caseItem.crime.motive_details,
-        cause_of_death: caseItem.crime.cause_of_death,
+        cause_of_death: flattenRelation(caseItem.crime.cause_of_death),
         // description_of_crimescene: caseItem.crime.description_of_crimescene, // PRIVATE: keep for researchers on request
-        detailed_location_of_body: caseItem.crime.detailed_location_of_body,
+        detailed_location_of_body: flattenRelation(caseItem.crime.detailed_location_of_body),
         // other_victims: caseItem.crime.other_victims,                       // PRIVATE: Weitere Opfer, only on request
         acts_of_violence_details: caseItem.crime.acts_of_violence_details,
-        crime_address: caseItem.crime.crime_address,
+        // crime_address: caseItem.crime.crime_address,                       // LEGACY: replaced by geolocation fields
         // crime_address_details: caseItem.crime.crime_address_details,       // PRIVATE: street-level details
-        location_level_1: caseItem.crime.location_level_1,
-        location_level_2: caseItem.crime.location_level_2,
-        location_level_3: caseItem.crime.location_level_3,
-        crime_geolocation_state: caseItem.crime.crime_geolocation_state,
-        crime_geolocation_city: caseItem.crime.crime_geolocation_city,
-        crime_geolocation_postal_code: caseItem.crime.crime_geolocation_postal_code,
+        location_level_1: flattenRelation(caseItem.crime.location_level_1),
+        location_level_2: flattenRelation(caseItem.crime.location_level_2),
+        location_level_3: flattenRelation(caseItem.crime.location_level_3),
+        crime_state: caseItem.crime.crime_geolocation_state,
+        crime_city: caseItem.crime.crime_geolocation_city,
+        crime_postal_code: caseItem.crime.crime_geolocation_postal_code,
         // Note: Excluding crime_geolocation (exact coordinates) for privacy
       } : null,
 
