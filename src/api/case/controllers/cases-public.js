@@ -16,8 +16,8 @@ function flattenRelationArray(rels) {
 
 /**
  * Deep population config for all components and their nested relations.
- * This ensures relation fields within components are fully resolved
- * (not just bare IDs).
+ * Keys here MUST match internal Strapi schema field names (not the
+ * public-facing names). Renaming happens in serializeCase() below.
  */
 const PUBLIC_POPULATE = {
   media_labels: true,
@@ -34,7 +34,7 @@ const PUBLIC_POPULATE = {
       reports_on_violence: true,
       relationship_perpetrator: true,
       type_of_feminicide: true,
-      surviving_dependents: true,
+      // surviving_dependents: true,             // LEGACY: replaced by survived_by component
       // victim_address: true,                // PRIVATE: Address (victim)
       survived_by: {
         populate: {
@@ -105,7 +105,7 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
       updated_at: caseItem.updatedAt,
 
       // Include populated components with privacy considerations
-      victim: caseItem.victim && Array.isArray(caseItem.victim) ? caseItem.victim.map(victim => ({
+      victims: caseItem.victim && Array.isArray(caseItem.victim) ? caseItem.victim.map(victim => ({
         age: victim.age,
         family_status: flattenRelation(victim.family_status),
         family_status_other: victim.family_status_other,
@@ -127,13 +127,11 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         relationship_perpetrator_details: victim.relationship_perpetrator_details,
         type_of_feminicide: flattenRelation(victim.type_of_feminicide),
         type_of_feminicide_details: victim.type_of_feminicide_details,
-        surviving_dependents: flattenRelationArray(victim.surviving_dependents),
-        survived_by: victim.survived_by && Array.isArray(victim.survived_by) ? victim.survived_by.map(s => ({
-          dropdown_hinterbliebene: flattenRelation(s.dropdown_hinterbliebene),
-          // age: s.age,                                                      // PRIVATE: Hinterbliebene no age
-          // relation_details: s.relation_details,                            // PRIVATE: Hinterbliebene no details
+        surviving_dependants: victim.survived_by && Array.isArray(victim.survived_by) ? victim.survived_by.map(s => ({
+          relationship_to_victim: flattenRelation(s.dropdown_hinterbliebene),
+          relationship_to_victim_details: s.relation_details,
+          age: s.age,
         })) : [],
-        // survived_by_details: victim.survived_by_details,                   // PRIVATE: Hinterbliebene details
         // victim_address: victim.victim_address,                             // PRIVATE: Address (victim)
         // victim_address_details: victim.victim_address_details,             // PRIVATE: Address (victim)
         // victim_geolocation_city: victim.victim_geolocation_city,           // PRIVATE: Address (victim)
@@ -144,7 +142,7 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         // Note: Excluding nested address component for privacy
       })) : [],
 
-      perpetrator: caseItem.perpetrator && Array.isArray(caseItem.perpetrator) ? caseItem.perpetrator.map(perpetrator => ({
+      perpetrators: caseItem.perpetrator && Array.isArray(caseItem.perpetrator) ? caseItem.perpetrator.map(perpetrator => ({
         age: perpetrator.age,
         // is_suspect: perpetrator.is_suspect,                                // PRIVATE: Mögliche(r) Verdächtige(r)
         profession: flattenRelation(perpetrator.profession),
