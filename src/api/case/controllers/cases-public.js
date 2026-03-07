@@ -132,14 +132,7 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
           relationship_to_victim_details: s.relation_details,
           age: s.age,
         })) : [],
-        // victim_address: victim.victim_address,                             // PRIVATE: Address (victim)
-        // victim_address_details: victim.victim_address_details,             // PRIVATE: Address (victim)
-        // victim_geolocation_city: victim.victim_geolocation_city,           // PRIVATE: Address (victim)
-        // victim_geolocation_state: victim.victim_geolocation_state,         // PRIVATE: Address (victim)
-        // victim_geolocation_postal_code: victim.victim_geolocation_postal_code, // PRIVATE: Address (victim)
-        // Note: Excluding personal names (firstname, lastname) for privacy
-        // Note: Excluding victim_geolocation (exact coordinates) for privacy
-        // Note: Excluding nested address component for privacy
+        name: `${victim.firstname || ''} ${victim.lastname || ''}`.trim() || null,
       })) : [],
 
       perpetrators: caseItem.perpetrator && Array.isArray(caseItem.perpetrator) ? caseItem.perpetrator.map(perpetrator => ({
@@ -178,8 +171,6 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         verdict_binding: flattenRelation(perpetrator.verdict_binding),
         verdict_binding_details: perpetrator.verdict_binding_details,
         // Note: Excluding personal names (firstname, lastname) for privacy
-        // Note: Excluding perpetrator_geolocation (exact coordinates) for privacy
-        // Note: Excluding nested address component for privacy
         // Note: Excluding private fields: criminal_record_details, restraining_order_details
       })) : [],
 
