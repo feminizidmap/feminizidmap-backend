@@ -216,52 +216,46 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
     };
   },
 
-  // Override the find method to only return published cases
   async find(ctx) {
-    // Strapi v5: use the status query parameter for draft/publish filtering
-    ctx.query.status = 'published';
+    const { page = 1, pageSize = 25 } = ctx.query.pagination || {};
 
-    // Deep population for components and their nested relations
-    ctx.query.populate = {
-      ...ctx.query.populate,
-      ...PUBLIC_POPULATE,
-    };
+    const [documents, total] = await Promise.all([
+      strapi.documents('api::case.case').findMany({
+        status: 'published',
+        populate: PUBLIC_POPULATE,
+        pagination: { page: Number(page), pageSize: Math.min(Number(pageSize), 10000) },
+      }),
+      strapi.documents('api::case.case').count({ status: 'published' }),
+    ]);
 
-    // Call the parent find method with our custom filter
-    const { data, meta } = await super.find(ctx);
-
-    // Use shared serialization for multiple cases
-    const serializedData = data.map(caseItem => this.serializeCase(caseItem));
+    const effectivePageSize = Math.min(Number(pageSize), 10000);
 
     return {
-      data: serializedData,
-      meta
+      data: documents.map(caseItem => this.serializeCase(caseItem)),
+      meta: {
+        pagination: {
+          page: Number(page),
+          pageSize: effectivePageSize,
+          pageCount: Math.ceil(total / effectivePageSize),
+          total,
+        },
+      },
     };
   },
 
-  // Override the findOne method to only return published cases
   async findOne(ctx) {
-    // Strapi v5: use the status query parameter for draft/publish filtering
-    ctx.query.status = 'published';
+    const document = await strapi.documents('api::case.case').findOne({
+      documentId: ctx.params.id,
+      status: 'published',
+      populate: PUBLIC_POPULATE,
+    });
 
-    // Deep population for components and their nested relations
-    ctx.query.populate = {
-      ...ctx.query.populate,
-      ...PUBLIC_POPULATE,
-    };
-
-    // Call the parent findOne method with our custom filter
-    const { data } = await super.findOne(ctx);
-
-    if (!data) {
+    if (!document) {
       return ctx.notFound('Case not found or not published');
     }
 
-    // Use shared serialization for single case
-    const serializedData = this.serializeCase(data);
-
     return {
-      data: serializedData
+      data: this.serializeCase(document),
     };
   }
 }));
