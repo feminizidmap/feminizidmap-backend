@@ -204,7 +204,8 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         crime_state: caseItem.crime.crime_geolocation_state,
         crime_city: caseItem.crime.crime_geolocation_city,
         crime_postal_code: caseItem.crime.crime_geolocation_postal_code,
-        // Note: Excluding crime_geolocation (exact coordinates) for privacy
+        crime_lat: caseItem.crime.crime_geolocation?.lat ?? null,
+        crime_lng: caseItem.crime.crime_geolocation?.lng ?? null,
       } : null,
 
       // PRIVATE: Source/Links — private, only for researchers
