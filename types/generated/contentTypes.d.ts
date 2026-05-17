@@ -1508,6 +1508,7 @@ export interface PluginGoogleMapsConfig extends Struct.SingleTypeSchema {
       'plugin::google-maps.config'
     > &
       Schema.Attribute.Private;
+    mapId: Schema.Attribute.String & Schema.Attribute.DefaultTo<'DEMO_MAP_ID'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
