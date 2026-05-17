@@ -10,8 +10,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-users-permissions": "5.38.0",
-    "@strapi/strapi": "5.38.0",
+    "@amicaldo/strapi-google-maps": "^3.0.2",
+    "@strapi/plugin-users-permissions": "5.46.0",
+    "@strapi/strapi": "5.46.0",
     "better-sqlite3": "11.3.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.5.6",
@@ -19,9 +20,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "strapi-csv-import-export": "^0.0.6",
-    "strapi-google-maps": "github:coderat-collective/strapi-google-maps",
     "strapi-plugin-country-select": "^2.1.0",
-    "strapi-plugin-populate-deep": "^3.0.1",
     "strapi-v5-plugin-populate-deep": "^4.0.5",
     "styled-components": "^6.0.0",
     "uuid": "^9.0.1",
@@ -34,7 +33,7 @@
     "uuid": "86133a58-02d7-44b0-8efb-642c638aed8a"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=22.0.0",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
