@@ -5,15 +5,6 @@ on:
     branches:
       - main
   push:
-    branches: [ "*" ]
-    tags: [ 'v*.*.*' ]
-name: Docker
-
-on:
-  pull_request:
-    branches:
-      - main
-  push:
     branches: [ "main" ]
     tags: [ 'v*.*.*' ]
   workflow_dispatch:
