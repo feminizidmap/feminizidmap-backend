@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@amicaldo/strapi-google-maps": "^3.0.2",
-    "@strapi/plugin-users-permissions": "5.46.0",
-    "@strapi/strapi": "5.46.0",
+    "@strapi/plugin-users-permissions": "5.49.0",
+    "@strapi/strapi": "5.49.0",
     "better-sqlite3": "11.3.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.5.6",
