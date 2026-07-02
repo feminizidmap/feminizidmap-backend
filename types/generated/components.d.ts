@@ -253,6 +253,7 @@ export interface VictimVictim extends Struct.ComponentSchema {
       'oneToOne',
       'api::citizenship-type.citizenship-type'
     >;
+    disability_details: Schema.Attribute.String;
     drugs_details: Schema.Attribute.String;
     educational_background: Schema.Attribute.Relation<
       'oneToOne',
@@ -265,6 +266,10 @@ export interface VictimVictim extends Struct.ComponentSchema {
     >;
     family_status_other: Schema.Attribute.String;
     firstname: Schema.Attribute.String;
+    has_disability: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
     influence_alcohol: Schema.Attribute.Relation<
       'oneToOne',
       'api::dropdown-general-option.dropdown-general-option'
@@ -314,6 +319,10 @@ export interface VictimVictim extends Struct.ComponentSchema {
     victim_geolocation_city: Schema.Attribute.String;
     victim_geolocation_postal_code: Schema.Attribute.String;
     victim_geolocation_state: Schema.Attribute.String;
+    was_homeless: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::dropdown-general-option.dropdown-general-option'
+    >;
     workplace: Schema.Attribute.String;
   };
 }
