@@ -4,5 +4,8 @@ module.exports = ({ env }) => ({
       authorizedExports: ["api::case.case"],
       authorizedImports: ["api::case.case"]
     }
-  }
+  },
+  'csv-exporter': {
+    enabled: true,
+  },
 });
