@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@amicaldo/strapi-google-maps": "^3.0.2",
-    "@qkix/strapi-plugin-ferry": "^0.2.0",
+    "@qkix/strapi-plugin-ferry": "git+https://github.com/feminizidmap/strapi-data-export.git#cde94af82566919f09ad5ef2b55fd3b8e712b67f",
     "@strapi/plugin-users-permissions": "5.53.0",
     "@strapi/strapi": "5.53.0",
     "better-sqlite3": "11.3.0",
