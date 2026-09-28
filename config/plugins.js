@@ -1,8 +1,8 @@
 module.exports = ({ env }) => ({
-  "strapi-csv-import-export": {
+  ferry: {
+    enabled: true,
     config: {
-      authorizedExports: ["api::case.case"],
-      authorizedImports: ["api::case.case"]
-    }
-  }
+      exclude: ['api::invoice.invoice'],
+    },
+  },
 });

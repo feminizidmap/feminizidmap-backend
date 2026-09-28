@@ -118,5 +118,9 @@ build
 strapi.db
 database/
 
+# Local plugin development via yalc — never commit
+.yalc
+yalc.lock
+
 # Allow csvs in the seeds folder
 !seeds/*.csv
