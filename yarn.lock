@@ -1512,9 +1512,9 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.29.tgz#5a40109a1ab5f84d6fd8fc928b19f367cbe7e7b1"
   integrity sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==
 
-"@qkix/strapi-plugin-ferry@git+https://github.com/feminizidmap/strapi-data-export.git#cde94af82566919f09ad5ef2b55fd3b8e712b67f":
+"@qkix/strapi-plugin-ferry@git+https://github.com/feminizidmap/strapi-data-export.git#8dd5a31cc0dc88d19d180783225c96937fcfec7a":
   version "0.2.0"
-  resolved "git+https://github.com/feminizidmap/strapi-data-export.git#cde94af82566919f09ad5ef2b55fd3b8e712b67f"
+  resolved "git+https://github.com/feminizidmap/strapi-data-export.git#8dd5a31cc0dc88d19d180783225c96937fcfec7a"
 
 "@radix-ui/number@1.0.1":
   version "1.0.1"

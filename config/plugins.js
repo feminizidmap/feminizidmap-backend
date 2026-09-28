@@ -1,1 +1,8 @@
-module.exports = ({ env }) => ({});
+module.exports = ({ env }) => ({
+  ferry: {
+    enabled: true,
+    config: {
+      exclude: ['api::invoice.invoice'],
+    },
+  },
+});
