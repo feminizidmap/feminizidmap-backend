@@ -135,6 +135,19 @@
     },
     "victim_geolocation_postal_code": {
       "type": "string"
+    },
+    "has_disability": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
+    },
+    "disability_details": {
+      "type": "string"
+    },
+    "was_homeless": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dropdown-general-option.dropdown-general-option"
     }
   }
 }

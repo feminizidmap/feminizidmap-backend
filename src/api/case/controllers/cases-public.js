@@ -36,6 +36,8 @@ const PUBLIC_POPULATE = {
       type_of_feminicide: true,
       // surviving_dependents: true,             // LEGACY: replaced by survived_by component
       // victim_address: true,                // PRIVATE: Address (victim)
+      has_disability: true,
+      was_homeless: true,
       survived_by: {
         populate: {
           dropdown_hinterbliebene: true,
@@ -127,6 +129,9 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
         relationship_perpetrator_details: victim.relationship_perpetrator_details,
         type_of_feminicide: flattenRelation(victim.type_of_feminicide),
         type_of_feminicide_details: victim.type_of_feminicide_details,
+        has_disability: flattenRelation(victim.has_disability),
+        // disability_details: victim.disability_details                      // PRIVATE
+        was_homeless: flattenRelation(victim.was_homeless),
         surviving_dependants: victim.survived_by && Array.isArray(victim.survived_by) ? victim.survived_by.map(s => ({
           relationship_to_victim: flattenRelation(s.dropdown_hinterbliebene),
           relationship_to_victim_details: s.relation_details,
