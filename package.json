@@ -12,8 +12,8 @@
   "dependencies": {
     "@amicaldo/strapi-google-maps": "^3.0.2",
     "@qkix/strapi-plugin-ferry": "git+https://github.com/feminizidmap/strapi-data-export.git#8dd5a31cc0dc88d19d180783225c96937fcfec7a",
-    "@strapi/plugin-users-permissions": "5.53.0",
-    "@strapi/strapi": "5.53.0",
+    "@strapi/plugin-users-permissions": "5.59.0",
+    "@strapi/strapi": "5.59.0",
     "better-sqlite3": "11.3.0",
     "cli-progress": "^3.12.0",
     "csv-parse": "^5.5.6",
