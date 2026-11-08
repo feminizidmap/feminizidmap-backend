@@ -197,7 +197,7 @@ function serializeCase(caseItem) {
       crime_state: caseItem.crime.crime_geolocation_state,
       crime_city: caseItem.crime.crime_geolocation_city,
       crime_postal_code: caseItem.crime.crime_geolocation_postal_code,
-      crime_coordinates: caseItem.crime.crime_geolocation.coordinates,
+      crime_coordinates: caseItem.crime.crime_geolocation?.coordinates ?? null,
     } : null,
 
     // PRIVATE: Source/Links — private, only for researchers
