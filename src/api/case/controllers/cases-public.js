@@ -217,30 +217,15 @@ module.exports = createCoreController('api::case.case', ({ strapi }) => ({
     };
   },
 
-  async find(ctx) {
-    const { page = 1, pageSize = 25 } = ctx.query.pagination || {};
-
-    const [documents, total] = await Promise.all([
-      strapi.documents('api::case.case').findMany({
-        status: 'published',
-        populate: PUBLIC_POPULATE,
-        pagination: { page: Number(page), pageSize: Math.min(Number(pageSize), 10000) },
-      }),
-      strapi.documents('api::case.case').count({ status: 'published' }),
-    ]);
-
-    const effectivePageSize = Math.min(Number(pageSize), 10000);
+  async find() {
+    const documents = await strapi.documents('api::case.case').findMany({
+      status: 'published',
+      populate: PUBLIC_POPULATE,
+    });
 
     return {
       data: documents.map(caseItem => this.serializeCase(caseItem)),
-      meta: {
-        pagination: {
-          page: Number(page),
-          pageSize: effectivePageSize,
-          pageCount: Math.ceil(total / effectivePageSize),
-          total,
-        },
-      },
+      meta: { total: documents.length },
     };
   },
 
