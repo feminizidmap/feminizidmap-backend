@@ -2,13 +2,14 @@ const path = require('path');
 const fs = require('fs');
 const { parse } = require('csv-parse/sync');
 const cliProgress = require('cli-progress');
-const Strapi = require('@strapi/strapi');
+const { compileStrapi, createStrapi } = require('@strapi/strapi');
 
 const { deleteAllItems, createItem } = require('./helpers');
 
 // Purge & seed
 const bootstrap = async () => {
-  const strapiInstance = await Strapi().load();
+  const appContext = await compileStrapi();
+  const strapiInstance = await createStrapi(appContext).load();
 
   // Purge cities
   const ressourcesToPurge = ['dropdown-city'];
@@ -57,6 +58,9 @@ const bootstrap = async () => {
   progressBar.stop();
 
   console.log('\n=> Seeding completed');
+
+  await strapiInstance.destroy();
+  process.exit(0);
 }
 
 bootstrap();

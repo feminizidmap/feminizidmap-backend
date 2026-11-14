@@ -41,6 +41,20 @@ npm run build
 yarn build
 ```
 
+## 🌱 Seeding data
+
+The `[Dropdown] City` collection (`dropdown-city`) is populated from a CSV of German cities/postal codes rather than entered by hand.
+
+```
+yarn seed:cities
+# or
+npm run seed:cities
+```
+
+This runs `seeds/seed_cities_final.js`, which boots Strapi programmatically, **deletes all existing `dropdown-city` entries**, and recreates them from `seeds/exported_cities.csv` (~12.8k rows: city name, postal code, county, federal state, latitude, longitude).
+
+Run it against the database you actually intend to reseed (check `.env`/`DATABASE_*` first) — there is no confirmation prompt and the purge is not reversible.
+
 ## ⚙️ Deployment
 
 Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
