@@ -327,6 +327,57 @@ export interface VictimVictim extends Struct.ComponentSchema {
   };
 }
 
+export interface WebsiteLink extends Struct.ComponentSchema {
+  collectionName: 'components_website_links';
+  info: {
+    description: '';
+    displayName: 'link';
+    icon: 'link';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface WebsiteLogo extends Struct.ComponentSchema {
+  collectionName: 'components_website_logos';
+  info: {
+    description: '';
+    displayName: 'logo';
+    icon: 'picture';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface WebsiteSession extends Struct.ComponentSchema {
+  collectionName: 'components_website_sessions';
+  info: {
+    description: '';
+    displayName: 'session';
+    icon: 'bulletList';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface WebsiteTag extends Struct.ComponentSchema {
+  collectionName: 'components_website_tags';
+  info: {
+    description: '';
+    displayName: 'tag';
+    icon: 'priceTag';
+  };
+  attributes: {
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
@@ -337,6 +388,10 @@ declare module '@strapi/strapi' {
       'source.source': SourceSource;
       'survived-by.survived-by': SurvivedBySurvivedBy;
       'victim.victim': VictimVictim;
+      'website.link': WebsiteLink;
+      'website.logo': WebsiteLogo;
+      'website.session': WebsiteSession;
+      'website.tag': WebsiteTag;
     }
   }
 }
