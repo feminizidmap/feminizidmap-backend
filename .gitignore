@@ -116,7 +116,11 @@ build
 .strapi/
 
 strapi.db
-database/
+# DB dumps stay out of git; migration scripts under database/migrations/ are tracked
+database/*
+!database/migrations/
+database/migrations/**/changes-*.json
+database/migrations/**/migration-*.md
 
 # Local plugin development via yalc — never commit
 .yalc
