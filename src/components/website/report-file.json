@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_website_report_files",
+  "info": {
+    "displayName": "report file",
+    "icon": "file",
+    "description": "A file published with a report, e.g. the report itself or the press release"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

@@ -19,7 +19,7 @@ node $S --db database/<file> --apply --replace   # purge the 3 collections first
 | `--db` | sqlite file, required on purpose |
 | `--source` | path to the Hugo repo, default `../feminizidmap.org` next to this repo |
 | `--apply` | boots Strapi against `--db` and writes. Stop the running Strapi first. |
-| `--replace` | needed if event/team/publication collections already have entries |
+| `--replace` | needed if event/team/publication/report collections already have entries. Purges and recreates them, so admin edits there are lost. |
 
 **Do not move files into the top level of `database/migrations/`.** Strapi runs
 every top-level `*.js` there on boot. This subfolder is ignored by Strapi.
@@ -39,6 +39,7 @@ every top-level `*.js` there on boot. This subfolder is ignored by Strapi.
 | `data/events.yaml` | `event-item`, en + de per event. Shared fields: title, start_date, end_date, place, link, tags. `en.sessions` / `de.sessions` per locale. |
 | `data/researchers.yaml` | `team-member`, en + de. Shared: name, active. `text_en` / `text_de` per locale. |
 | `data/publications.yaml` | `publication-item`. `link` + `link_name` become `links[0]`, followed by `links`. `project_related: true` → `category: feminizidmap_team`, otherwise `miscellaneous`. Exact duplicates are skipped. |
+| `static/reports/*.pdf`, `static/press/*.pdf` | `report` (`REPORTS` in the script, currently 2023): title + `release_date` per locale, shared `report_year`, `report_files` = Report + press release PDF per locale. The PDFs are uploaded to the media library; files with the same name and size are reused. |
 
 ### Event dates
 

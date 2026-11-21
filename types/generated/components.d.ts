@@ -354,6 +354,19 @@ export interface WebsiteLogo extends Struct.ComponentSchema {
   };
 }
 
+export interface WebsiteReportFile extends Struct.ComponentSchema {
+  collectionName: 'components_website_report_files';
+  info: {
+    description: 'A file published with a report, e.g. the report itself or the press release';
+    displayName: 'report file';
+    icon: 'file';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface WebsiteSession extends Struct.ComponentSchema {
   collectionName: 'components_website_sessions';
   info: {
@@ -390,6 +403,7 @@ declare module '@strapi/strapi' {
       'victim.victim': VictimVictim;
       'website.link': WebsiteLink;
       'website.logo': WebsiteLogo;
+      'website.report-file': WebsiteReportFile;
       'website.session': WebsiteSession;
       'website.tag': WebsiteTag;
     }
