@@ -16,9 +16,15 @@
       "type": "text",
       "required": true
     },
-    "project_related": {
-      "type": "boolean",
-      "default": false
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "feminizidmap_team",
+        "external_using_our_data",
+        "miscellaneous"
+      ],
+      "required": true,
+      "default": "miscellaneous"
     },
     "links": {
       "type": "component",

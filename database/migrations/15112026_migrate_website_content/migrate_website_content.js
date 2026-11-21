@@ -209,7 +209,9 @@ function buildPublications(src, warnings) {
       if (empty(l.url)) throw new Error(`publications.yaml #${i + 1}: link without url`);
       links.push({ name: empty(l.name) ? null : String(l.name), url: String(l.url) });
     }
-    const data = { title: String(p.title), project_related: p.project_related === true, links, tags: tags(p.tags) };
+    // The yaml only knows `project_related`; `external_using_our_data` has to be assigned in the admin.
+    const category = p.project_related === true ? 'feminizidmap_team' : 'miscellaneous';
+    const data = { title: String(p.title), category, links, tags: tags(p.tags) };
     const key = JSON.stringify(data);
     if (seen.has(key)) {
       warnings.push(`publications.yaml #${i + 1}: exact duplicate of an earlier entry, skipped ("${p.title}")`);
@@ -284,8 +286,8 @@ function renderLog({ args, mode, started, plan, warnings, result, error }) {
   ])));
 
   out.push('', '## Publications', '');
-  out.push(table(['#', 'Title', 'Project related', 'Links', 'Tags'], publications.map((p, i) => [
-    i + 1, short(p.label, 70), p.data.project_related, p.data.links.map((l) => l.name || l.url).join(', '),
+  out.push(table(['#', 'Title', 'Category', 'Links', 'Tags'], publications.map((p, i) => [
+    i + 1, short(p.label, 70), p.data.category, p.data.links.map((l) => l.name || l.url).join(', '),
     p.data.tags.map((t) => t.label).join(', '),
   ])));
 

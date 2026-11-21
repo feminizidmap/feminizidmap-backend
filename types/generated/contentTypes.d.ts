@@ -1549,6 +1549,11 @@ export interface ApiPublicationItemPublicationItem
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['feminizidmap_team', 'external_using_our_data', 'miscellaneous']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'miscellaneous'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1559,8 +1564,6 @@ export interface ApiPublicationItemPublicationItem
       'api::publication-item.publication-item'
     > &
       Schema.Attribute.Private;
-    project_related: Schema.Attribute.Boolean &
-      Schema.Attribute.DefaultTo<false>;
     publishedAt: Schema.Attribute.DateTime;
     tags: Schema.Attribute.Component<'website.tag', true>;
     title: Schema.Attribute.Text & Schema.Attribute.Required;

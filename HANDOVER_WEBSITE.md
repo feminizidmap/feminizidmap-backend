@@ -68,9 +68,11 @@ Past/upcoming is derived, there is no flag (Hugo's `past` is not migrated):
 | Field | Type | Hugo key |
 |---|---|---|
 | title | text, required | `title` |
-| project_related | boolean | `project_related` |
+| category | enumeration, required, default `miscellaneous`: `feminizidmap_team`, `external_using_our_data`, `miscellaneous` | `project_related` (true → `feminizidmap_team`, false → `miscellaneous`) |
 | links | repeatable `website.link` {name, url} | `link` + `link_name` (first entry), then `links` |
 | tags | repeatable `website.tag` {label} | `tags` |
+
+The page shows one group per category, in the enum order above. The group headings are frontend translations keyed by the enum value. `external_using_our_data` has no Hugo equivalent; editors assign it in the admin.
 
 ## Not modelled
 `data/network.yaml`, `data/cases.json` (unused by live templates), i18n UI strings (footer, newsletter, labels), navigation config, blog.
