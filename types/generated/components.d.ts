@@ -335,7 +335,6 @@ export interface WebsiteLink extends Struct.ComponentSchema {
     icon: 'link';
   };
   attributes: {
-    name: Schema.Attribute.String;
     url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

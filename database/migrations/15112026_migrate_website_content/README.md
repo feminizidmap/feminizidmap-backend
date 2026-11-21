@@ -38,7 +38,7 @@ every top-level `*.js` there on boot. This subfolder is ignored by Strapi.
 | `{{< partial "logowall.html" >}}` in about | removed from the body, `about.logos` = MvB prize + Prototype Fund (name + url, **no images**) |
 | `data/events.yaml` | `event-item`, en + de per event. Shared fields: title, start_date, end_date, place, link, tags. `en.sessions` / `de.sessions` per locale. |
 | `data/researchers.yaml` | `team-member`, en + de. Shared: name, active. `text_en` / `text_de` per locale. |
-| `data/publications.yaml` | `publication-item`. `link` + `link_name` become `links[0]`, followed by `links`. `project_related: true` → `category: feminizidmap_team`, otherwise `miscellaneous`. Exact duplicates are skipped. |
+| `data/publications.yaml` | `publication-item`. `link` becomes `links[0]`, followed by `links`; urls only (the English labels `link_name`/`name` are dropped). `project_related: true` → `category: feminizidmap_team`, otherwise `miscellaneous`. Exact duplicates are skipped. |
 | `static/reports/*.pdf`, `static/press/*.pdf` | `report` (`REPORTS` in the script, currently 2023): title + `release_date` per locale, shared `report_year`, `report_files` = Report + press release PDF per locale. The PDFs are uploaded to the media library; files with the same name and size are reused. |
 
 ### Event dates
