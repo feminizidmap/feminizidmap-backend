@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "publication_items",
+  "info": {
+    "singularName": "publication-item",
+    "pluralName": "publication-items",
+    "displayName": "[Website] Publications",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "feminizidmap_team",
+        "external_using_our_data",
+        "miscellaneous"
+      ],
+      "required": true,
+      "default": "miscellaneous"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "website.link"
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "website.tag"
+    }
+  }
+}
