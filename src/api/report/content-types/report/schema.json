@@ -25,7 +25,7 @@
       },
       "required": true
     },
-    "date": {
+    "release_date": {
       "type": "date",
       "pluginOptions": {
         "i18n": {
@@ -34,28 +34,25 @@
       },
       "required": true
     },
-    "content": {
-      "type": "blocks",
+    "report_year": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true,
+      "min": 2000
+    },
+    "report_files": {
+      "type": "component",
+      "repeatable": true,
+      "component": "website.report-file",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
-    },
-    "report_files": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "audios",
-        "videos"
-      ]
     }
   }
 }

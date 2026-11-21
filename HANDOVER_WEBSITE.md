@@ -74,5 +74,15 @@ Past/upcoming is derived, there is no flag (Hugo's `past` is not migrated):
 
 The page shows one group per category, in the enum order above. The group headings are frontend translations keyed by the enum value. `external_using_our_data` has no Hugo equivalent; editors assign it in the admin.
 
+### `GET /api/reports?locale=de&populate[report_files][populate]=file&sort=report_year:desc` (localized)
+| Field | Type | Localized |
+|---|---|---|
+| title | string, required | yes |
+| release_date | date, required | yes |
+| report_year | integer, required (year the data covers) | no |
+| report_files | repeatable `website.report-file` {title, file (media, files only)}, e.g. "Report" + "Pressemitteilung" | yes |
+
+`populate=*` does not reach the media inside the component; use the nested populate above.
+
 ## Not modelled
 `data/network.yaml`, `data/cases.json` (unused by live templates), i18n UI strings (footer, newsletter, labels), navigation config, blog.

@@ -2,7 +2,8 @@
 
 /**
  * Migrates the textual content of the Hugo site (feminizidmap.org) into the
- * Strapi website content types. Assets (images, PDFs) are NOT migrated.
+ * Strapi website content types. Only the report PDFs (REPORTS) are uploaded;
+ * other assets (images, linked PDFs) are not migrated.
  *
  *   node database/migrations/15112026_migrate_website_content/migrate_website_content.js \
  *     --db database/<file> [--source ../feminizidmap.org] [--apply] [--replace]
@@ -43,10 +44,36 @@ const ABOUT_LOGOS = [
   { name: 'Prototype Fund', url: 'https://prototypefund.de/project/feminizidmap/' },
 ];
 
+// Reports and their files (Hugo static/, paths relative to --source). Hugo had no report type;
+// the PDFs were linked from the home page and publications.yaml. Files are uploaded to the media library.
+const REPORTS = [
+  {
+    report_year: 2023,
+    release_date: '2026-03-08',
+    byLocale: {
+      de: {
+        title: 'Offizieller Bericht zu Feminiziden in Deutschland 2023',
+        files: [
+          { title: 'Report', path: 'static/reports/Feminizidmap-Report-2023.pdf' },
+          { title: 'Pressemitteilung', path: 'static/press/PRESSEMITTEILUNG_Feminizidmap_8Maerz2026.pdf' },
+        ],
+      },
+      en: {
+        title: 'Official report on feminicides in Germany 2023',
+        files: [
+          { title: 'Report', path: 'static/reports/Feminizidmap-Report-2023-EN.pdf' },
+          { title: 'Press release', path: 'static/press/PRESS_RELEASE_Feminizidmap_8March2026.pdf' },
+        ],
+      },
+    },
+  },
+];
+
 const UID = {
   event: 'api::event-item.event-item',
   team: 'api::team-member.team-member',
   publication: 'api::publication-item.publication-item',
+  report: 'api::report.report',
 };
 
 // ---------- args ----------
@@ -227,6 +254,24 @@ function buildPublications(src, warnings) {
   return out;
 }
 
+function buildReports(src) {
+  return REPORTS.map((r) => {
+    const byLocale = {};
+    for (const locale of LOCALES) {
+      const { title, files } = r.byLocale[locale];
+      byLocale[locale] = {
+        title,
+        files: files.map((f) => {
+          const abs = path.join(src, f.path);
+          if (!fs.existsSync(abs)) throw new Error(`report ${r.report_year} (${locale}): file not found: ${f.path}`);
+          return { title: f.title, path: abs, rel: f.path, size: fs.statSync(abs).size };
+        }),
+      };
+    }
+    return { label: `${r.report_year}`, report_year: r.report_year, release_date: r.release_date, byLocale };
+  });
+}
+
 // ---------- run log ----------
 
 const cell = (v) =>
@@ -291,6 +336,12 @@ function renderLog({ args, mode, started, plan, warnings, result, error }) {
     p.data.tags.map((t) => t.label).join(', '),
   ])));
 
+  out.push('', '## Reports', '');
+  out.push(table(['Year', 'Released', 'Locale', 'Title', 'Files'], plan.reports.flatMap((r) => LOCALES.map((locale) => [
+    r.report_year, r.release_date, locale, r.byLocale[locale].title,
+    r.byLocale[locale].files.map((f) => `${f.title}: \`${f.rel}\``).join(', '),
+  ]))));
+
   if (result && result.counts) {
     out.push('', '## Read back after apply', '');
     out.push(table(['Target', 'Rows (all locales, draft+published)'], Object.entries(result.counts)));
@@ -305,6 +356,27 @@ function renderLog({ args, mode, started, plan, warnings, result, error }) {
 }
 
 // ---------- apply ----------
+
+/** upload a local file to the media library, or reuse one with the same name and size; returns its id */
+async function uploadFile(strapi, f) {
+  const name = path.basename(f.path);
+  const sizeKb = Math.round((f.size / 1000) * 100) / 100; // Strapi stores the size in KB
+  const existing = await strapi.db.query('plugin::upload.file').findOne({ where: { name, size: sizeKb } });
+  if (existing) return existing.id;
+
+  // The upload service reads from `filepath`; hand it a copy so the Hugo repo is never touched.
+  const tmp = path.join(fs.mkdtempSync(path.join(require('os').tmpdir(), 'femmap-upload-')), name);
+  fs.copyFileSync(f.path, tmp);
+  try {
+    const [file] = await strapi.plugin('upload').service('upload').upload({
+      data: { fileInfo: { name } },
+      files: { filepath: tmp, originalFilename: name, mimetype: 'application/pdf', size: f.size },
+    });
+    return file.id;
+  } finally {
+    fs.rmSync(path.dirname(tmp), { recursive: true, force: true });
+  }
+}
 
 /** run one write, tagging any error with what was being written */
 async function step(context, fn) {
@@ -336,12 +408,23 @@ async function apply(args, plan) {
       }
     }
 
-    const collections = [UID.event, UID.team, UID.publication];
+    const collections = [UID.event, UID.team, UID.publication, UID.report];
     const existing = {};
     for (const uid of collections) existing[uid] = await strapi.db.query(uid).count();
     const nonEmpty = collections.filter((uid) => existing[uid] > 0);
     if (nonEmpty.length && !args.replace) {
       throw new Error(`Collections not empty: ${nonEmpty.map((u) => `${u} (${existing[u]})`).join(', ')}. Use --replace to purge them first.`);
+    }
+
+    // Uploads write to disk, so they run outside the transaction. A file with the same name and
+    // size already in the media library is reused, so re-runs don't create duplicates.
+    const uploadIds = new Map();
+    for (const report of plan.reports) {
+      for (const locale of LOCALES) {
+        for (const f of report.byLocale[locale].files) {
+          uploadIds.set(f.path, await step(`upload ${f.rel}`, () => uploadFile(strapi, f)));
+        }
+      }
     }
 
     await strapi.db.transaction(async () => {
@@ -381,6 +464,22 @@ async function apply(args, plan) {
           strapi.documents(UID.publication).create({ data: p.data, status: 'published' })
         );
       }
+
+      // reports: en first, then de on the same document (report_year is shared, the rest per locale)
+      for (const r of plan.reports) {
+        const data = (locale) => ({
+          title: r.byLocale[locale].title,
+          release_date: r.release_date,
+          report_year: r.report_year,
+          report_files: r.byLocale[locale].files.map((f) => ({ title: f.title, file: uploadIds.get(f.path) })),
+        });
+        const doc = await step(`${UID.report} en "${r.label}"`, () =>
+          strapi.documents(UID.report).create({ locale: 'en', data: data('en'), status: 'published' })
+        );
+        await step(`${UID.report} de "${r.label}"`, () =>
+          strapi.documents(UID.report).update({ documentId: doc.documentId, locale: 'de', data: data('de'), status: 'published' })
+        );
+      }
     });
 
     const counts = {};
@@ -390,7 +489,7 @@ async function apply(args, plan) {
     return {
       backup,
       counts,
-      summary: `Applied: ${plan.pages.length} page locales, ${plan.events.length} events ×${LOCALES.length}, ${plan.team.length} team members ×${LOCALES.length}, ${plan.publications.length} publications`,
+      summary: `Applied: ${plan.pages.length} page locales, ${plan.events.length} events ×${LOCALES.length}, ${plan.team.length} team members ×${LOCALES.length}, ${plan.publications.length} publications, ${plan.reports.length} reports ×${LOCALES.length} (${uploadIds.size} files)`,
     };
   } finally {
     await strapi.destroy();
@@ -409,6 +508,7 @@ async function main() {
     events: buildEvents(args.source, warnings),
     team: buildTeam(args.source, warnings),
     publications: buildPublications(args.source, warnings),
+    reports: buildReports(args.source),
   };
 
   let result = null;
