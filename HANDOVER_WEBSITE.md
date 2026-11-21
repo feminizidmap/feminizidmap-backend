@@ -69,7 +69,7 @@ Past/upcoming is derived, there is no flag (Hugo's `past` is not migrated):
 |---|---|---|
 | title | text, required | `title` |
 | category | enumeration, required, default `miscellaneous`: `feminizidmap_team`, `external_using_our_data`, `miscellaneous` | `project_related` (true → `feminizidmap_team`, false → `miscellaneous`) |
-| links | repeatable `website.link` {name, url} | `link` + `link_name` (first entry), then `links` |
+| links | repeatable `website.link` {url} | `link` (first entry), then `links[].url`. No labels: the yaml ones were English-only; the frontend shows "Link". |
 | tags | repeatable `website.tag` {label} | `tags` |
 
 The page shows one group per category, in the enum order above. The group headings are frontend translations keyed by the enum value. `external_using_our_data` has no Hugo equivalent; editors assign it in the admin.

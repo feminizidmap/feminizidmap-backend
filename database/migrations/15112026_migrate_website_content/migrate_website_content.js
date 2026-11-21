@@ -231,10 +231,11 @@ function buildPublications(src, warnings) {
   readYaml(src, 'publications.yaml').forEach((p, i) => {
     if (empty(p.title)) throw new Error(`publications.yaml #${i + 1}: no title`);
     const links = [];
-    if (!empty(p.link)) links.push({ name: empty(p.link_name) ? null : String(p.link_name), url: String(p.link) });
+    // Only urls: the yaml labels (`link_name`, `links[].name`) are English-only; the frontend shows a translated "Link".
+    if (!empty(p.link)) links.push({ url: String(p.link) });
     for (const l of p.links || []) {
       if (empty(l.url)) throw new Error(`publications.yaml #${i + 1}: link without url`);
-      links.push({ name: empty(l.name) ? null : String(l.name), url: String(l.url) });
+      links.push({ url: String(l.url) });
     }
     // The yaml only knows `project_related`; `external_using_our_data` has to be assigned in the admin.
     const category = p.project_related === true ? 'feminizidmap_team' : 'miscellaneous';
@@ -245,7 +246,6 @@ function buildPublications(src, warnings) {
       return;
     }
     seen.add(key);
-    if (links.some((l) => l.name === null)) warnings.push(`publications.yaml #${i + 1}: link without name ("${p.title}")`);
     for (const l of links.filter((l) => /^\/|\/\/(www\.)?feminizidmap\.org\//.test(l.url))) {
       warnings.push(`publications.yaml #${i + 1}: link \`${l.url}\` points to the old Hugo site`);
     }
@@ -332,7 +332,7 @@ function renderLog({ args, mode, started, plan, warnings, result, error }) {
 
   out.push('', '## Publications', '');
   out.push(table(['#', 'Title', 'Category', 'Links', 'Tags'], publications.map((p, i) => [
-    i + 1, short(p.label, 70), p.data.category, p.data.links.map((l) => l.name || l.url).join(', '),
+    i + 1, short(p.label, 70), p.data.category, p.data.links.map((l) => l.url).join(', '),
     p.data.tags.map((t) => t.label).join(', '),
   ])));
 
