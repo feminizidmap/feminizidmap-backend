@@ -2,7 +2,7 @@
 
 /**
  * Shared population config and privacy-filtered serialization for
- * public case endpoints (cases-public, cases-public-preview-2026).
+ * public case endpoints (cases-public, cases-public-preview).
  */
 
 function flattenRelation(rel) {
